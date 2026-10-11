@@ -265,6 +265,15 @@ if (typeof document !== "undefined") {
         div.append(det); cont.append(div);
       });
     }
+    if ($("btn-whatsapp")) {
+      $("btn-whatsapp").onclick = () => {
+        if (!window._resultado || window._resultado.length === 0) return;
+        const ganador = window._resultado[0];
+        const texto = `He sacado un ${ganador.r.total}% de afinidad con ${ganador.p.nombre} en el Test Electoral 2026 🗳️.\n\n¡Hazlo tú a ver qué te sale!\n${location.href}`;
+        const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+        window.open(url, '_blank');
+      };
+    }
 
     if ($("btn-empezar")) $("btn-empezar").onclick = () => { indice = 0; respuestas = {}; pintarPregunta(); mostrar("pregunta"); };
     if ($("btn-siguiente")) $("btn-siguiente").onclick = avanzar;
