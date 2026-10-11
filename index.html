@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test de afinidad electoral · Elecciones 2026</title>
+  <meta name="description" content="Responde a las preguntas y descubre con qué programas electorales coincides más. Sin partidos visibles.">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <div class="franja-aviso">Datos actualizados a <span id="fecha-act"></span>. Las posturas pueden actualizarse hasta las elecciones.</div>
+  
+  <header class="cabecera">
+    <a href="#" id="logo" class="logo">Test Electoral 2026</a>
+    <button id="btn-metodologia" class="enlace">Metodología</button>
+  </header>
+
+  <div id="aviso-ejemplo" class="aviso-ejemplo" hidden>
+    ⚠️ DATOS DE EJEMPLO
+  </div>
+
+  <main>
+    <!-- INICIO -->
+    <section id="vista-inicio" class="vista">
+      <h1>¿Con qué propuestas coincides más?</h1>
+      <p class="sub" id="sub-eleccion"></p>
+      <p>Responde a <strong id="num-preguntas">15</strong> preguntas sobre los grandes temas. Las opciones agrupan propuestas reales de los partidos <strong>(pero sus nombres están ocultos)</strong>.</p>
+      <ul class="lista-puntos">
+        <li>👉 <strong>Nueva mecánica:</strong> Elige tu opción principal (100% afinidad) y, si quieres, otra que también aceptarías (50%).</li>
+        <li>⚖️ <strong>Pesos:</strong> Los problemas más graves del CIS valen más puntos.</li>
+        <li>🔒 100% privado en tu navegador.</li>
+      </ul>
+      <button id="btn-empezar" class="boton primario">Empezar el test</button>
+    </section>
+
+    <!-- CUESTIONARIO -->
+    <section id="vista-pregunta" class="vista" hidden>
+      <div class="progreso-caja" aria-hidden="true"><div id="progreso" class="progreso"></div></div>
+      <p class="contador" id="contador"></p>
+      <p class="tema" id="tema"></p>
+      <h2 id="texto-pregunta" class="pregunta"></h2>
+      
+      <!-- Opciones dinámicas -->
+      <div id="opciones-dinamicas" class="opciones-contenedor"></div>
+
+      <label class="importante mt-3"><input type="checkbox" id="chk-importante"> Tema muy importante para mí (x2 puntos)</label>
+      
+      <div class="acciones-pregunta">
+        <button id="btn-siguiente" class="boton primario">Siguiente →</button>
+      </div>
+
+      <div class="navegacion">
+        <button id="btn-atras" class="enlace">← Atrás</button>
+        <button id="btn-saltar" class="enlace text-suave">Ninguna me convence / Saltar</button>
+      </div>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section id="vista-resultados" class="vista" hidden>
+      <h1>Tus resultados</h1>
+      <p class="nota" id="nota-resultados"></p>
+      <div id="lista-resultados"></div>
+      <div class="acciones">
+        <button id="btn-copiar" class="boton">Copiar mi resultado</button>
+        <button id="btn-repetir" class="boton">Repetir el test</button>
+      </div>
+    </section>
+
+    <!-- METODOLOGÍA -->
+    <section id="vista-metodologia" class="vista" hidden>
+      <h1>Metodología</h1>
+      <p>Este test está diseñado para evitar votar por "etiqueta". Las mecánicas principales son:</p>
+      <ul class="lista-puntos">
+        <li><strong>Pesos Base (1 a 3):</strong> Las preguntas tienen un valor interno basado en el ranking de problemas del CIS o si implican reformas constitucionales.</li>
+        <li><strong>Doble Elección:</strong> Tu opción 'Principal' otorga todos los puntos de esa pregunta. Si marcas una segunda como 'Aceptable', otorga la mitad. Evita polarización en posturas intermedias.</li>
+        <li><strong>Partidos Ocultos:</strong> Las opciones agrupan propuestas de programa, sin indicar de quién son hasta el final.</li>
+        <li><strong>Exclusiones:</strong> Si un partido no tiene postura clara en un tema, esa pregunta no penaliza su porcentaje total.</li>
+      </ul>
+      <button id="btn-volver" class="boton">Volver</button>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Proyecto independiente. No guarda tus datos.</p>
+  </footer>
+
+  <script src="datos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
