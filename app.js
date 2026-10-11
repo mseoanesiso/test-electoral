@@ -1,4 +1,4 @@
-// Lógica del test (Con Límites: 3 Importantes, 2 Inaceptables)
+// Lógica del test (Límites, Navegación y Contexto)
 const MAX_IMP = 3;
 const MAX_VETOS = 2;
 
@@ -19,8 +19,7 @@ function calcularAfinidad(partido, respuestas, preguntas) {
 
     let puntos = 0;
     if (r.inaceptable === pos.opcion) {
-      // PENALIZACIÓN SEVERA POR LÍNEA ROJA
-      puntos = -pesoTotalPregunta * 1.5; 
+      puntos = -pesoTotalPregunta * 1.5; // Veto penaliza
     } else if (r.principal === pos.opcion) {
       puntos = 1 * pesoTotalPregunta;
     } else if (r.secundaria === pos.opcion) {
@@ -45,7 +44,6 @@ function calcularAfinidad(partido, respuestas, preguntas) {
     });
   }
 
-  // Evitamos que baje de 0% si vetó mucho
   let total = sumaPesosMax ? Math.round((sumaPuntos / sumaPesosMax) * 100) : null;
   if (total !== null && total < 0) total = 0; 
   
@@ -116,6 +114,21 @@ if (typeof document !== "undefined") {
       if ($("tema")) $("tema").textContent = q.tema;
       if ($("texto-pregunta")) $("texto-pregunta").textContent = q.texto;
       
+      // Mostrar contexto informativo si la pregunta lo tiene
+      if ($("caja-contexto")) {
+        if (q.contexto) {
+          $("caja-contexto").innerHTML = `
+            <details class="detalles-contexto">
+              <summary>ℹ️ ¿De qué va este debate?</summary>
+              <p>${q.contexto}</p>
+            </details>
+          `;
+          $("caja-contexto").style.display = "block";
+        } else {
+          $("caja-contexto").style.display = "none";
+        }
+      }
+      
       const contenedorOpts = $("opciones-dinamicas");
       if (contenedorOpts) {
         contenedorOpts.innerHTML = "";
@@ -158,7 +171,7 @@ if (typeof document !== "undefined") {
         $("chk-importante").onchange = (e) => {
           const { imp } = contarLimites();
           if (e.target.checked && imp >= MAX_IMP) {
-            alert(`Ya has marcado el máximo de ${MAX_IMP} temas importantes. Desmarca otro primero para marcar este.`);
+            alert(`Ya has marcado el máximo de ${MAX_IMP} temas importantes. Desmarca otro primero.`);
             e.target.checked = false;
           } else {
             if (!respuestas[q.id]) respuestas[q.id] = {};
@@ -217,9 +230,7 @@ if (typeof document !== "undefined") {
       if (!cont) return;
       cont.innerHTML = "";
       
-      if (!res.length) { 
-        cont.textContent = "No hay datos para calcular."; return; 
-      }
+      if (!res.length) { cont.textContent = "No hay datos para calcular."; return; }
       window._resultado = res;
 
       res.forEach((x) => {
@@ -245,6 +256,9 @@ if (typeof document !== "undefined") {
               <div style="margin-bottom: 4px;">👤 <strong>Tú:</strong> ${d.textoTuya}</div>
               <div style="margin-bottom: 6px;">🏛️ <strong>Partido:</strong> ${d.textoPartido}</div>
             </div>
+            <div class="nota" style="font-size: 12.5px; background: var(--fondo); padding: 4px 8px; border-radius: 4px; display: inline-block;">
+              ⚖️ Puntos: <strong>${d.puntosObtenidos}/${d.pesoMaximo}</strong> &nbsp;·&nbsp; 🔗 Fuente: ${d.fuente}
+            </div>
           `;
           det.append(f);
         });
@@ -252,7 +266,6 @@ if (typeof document !== "undefined") {
       });
     }
 
-    // Eventos e inicialización (se mantienen igual)
     if ($("btn-empezar")) $("btn-empezar").onclick = () => { indice = 0; respuestas = {}; pintarPregunta(); mostrar("pregunta"); };
     if ($("btn-siguiente")) $("btn-siguiente").onclick = avanzar;
     if ($("btn-saltar")) $("btn-saltar").onclick = () => { delete respuestas[PREGUNTAS[indice].id]; avanzar(); };
