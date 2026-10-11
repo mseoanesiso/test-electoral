@@ -49,7 +49,13 @@
     <section id="vista-pregunta" class="vista" hidden>
       <div class="progreso-caja" aria-hidden="true"><div id="progreso" class="progreso"></div></div>
       
-      <!-- Nueva barra de navegación por números -->
+      <!-- Contadores de límites -->
+      <div class="contadores-limites">
+        <span id="cont-imp">⭐️ Importantes: 0/3</span>
+        <span id="cont-veto">🚫 Inaceptables: 0/2</span>
+      </div>
+
+      <!-- Navegación por números -->
       <div id="nav-numeros" class="nav-numeros"></div>
 
       <p class="contador" id="contador"></p>
@@ -59,7 +65,7 @@
       <!-- Opciones dinámicas -->
       <div id="opciones-dinamicas" class="opciones-contenedor"></div>
 
-      <label class="importante mt-3"><input type="checkbox" id="chk-importante"> Tema muy importante para mí (x2 puntos)</label>
+      <label class="importante mt-3"><input type="checkbox" id="chk-importante"> Tema clave para mí (x2 puntos)</label>
       
       <div class="acciones-pregunta">
         <button id="btn-siguiente" class="boton primario">Siguiente →</button>
@@ -70,7 +76,7 @@
         <button id="btn-saltar" class="enlace text-suave">Ninguna me convence / Saltar</button>
       </div>
     </section>
-
+    
     <!-- RESULTADOS -->
     <section id="vista-resultados" class="vista" hidden>
       <h1>Tus resultados</h1>
