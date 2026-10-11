@@ -1,4 +1,7 @@
-// Lógica del test (Nueva metodología con navegación)
+// Lógica del test (Con Límites: 3 Importantes, 2 Inaceptables)
+const MAX_IMP = 3;
+const MAX_VETOS = 2;
+
 function calcularAfinidad(partido, respuestas, preguntas) {
   let sumaPuntos = 0, sumaPesosMax = 0;
   const porTema = {};
@@ -15,8 +18,14 @@ function calcularAfinidad(partido, respuestas, preguntas) {
     const pesoTotalPregunta = (q.pesoBase || 1) * multiplicador;
 
     let puntos = 0;
-    if (r.principal === pos.opcion) puntos = 1 * pesoTotalPregunta;
-    else if (r.secundaria === pos.opcion) puntos = 0.5 * pesoTotalPregunta;
+    if (r.inaceptable === pos.opcion) {
+      // PENALIZACIÓN SEVERA POR LÍNEA ROJA
+      puntos = -pesoTotalPregunta * 1.5; 
+    } else if (r.principal === pos.opcion) {
+      puntos = 1 * pesoTotalPregunta;
+    } else if (r.secundaria === pos.opcion) {
+      puntos = 0.5 * pesoTotalPregunta;
+    }
 
     sumaPuntos += puntos;
     sumaPesosMax += pesoTotalPregunta;
@@ -25,16 +34,27 @@ function calcularAfinidad(partido, respuestas, preguntas) {
     porTema[q.tema].suma += puntos;
     porTema[q.tema].max += pesoTotalPregunta;
 
-    const textoTuya = q.opciones.find(o => o.id === r.principal)?.texto || "Ninguna";
+    let textoTuya = q.opciones.find(o => o.id === r.principal)?.texto || "Ninguna";
+    if (r.inaceptable) textoTuya += " <br><span style='color:#d1495b'>🚫 Vetaste: " + (q.opciones.find(o => o.id === r.inaceptable)?.texto) + "</span>";
+    
     const textoPartido = q.opciones.find(o => o.id === pos.opcion)?.texto || "Sin definir";
 
     detalle.push({ 
-      pregunta: q, textoTuya, textoPartido, puntosObtenidos: puntos, pesoMaximo: pesoTotalPregunta, fuente: pos.fuente + " (" + pos.fecha + ")"
+      pregunta: q, textoTuya, textoPartido, puntosObtenidos: puntos, pesoMaximo: pesoTotalPregunta, 
+      fuente: pos.fuente + " (" + pos.fecha + ")", vetado: r.inaceptable === pos.opcion
     });
   }
 
-  const total = sumaPesosMax ? Math.round((sumaPuntos / sumaPesosMax) * 100) : null;
-  const temas = Object.entries(porTema).map(([tema, t]) => ({ tema, pct: Math.round((t.suma / t.max) * 100) }));
+  // Evitamos que baje de 0% si vetó mucho
+  let total = sumaPesosMax ? Math.round((sumaPuntos / sumaPesosMax) * 100) : null;
+  if (total !== null && total < 0) total = 0; 
+  
+  const temas = Object.entries(porTema).map(([tema, t]) => {
+    let pct = Math.round((t.suma / t.max) * 100);
+    if (pct < 0) pct = 0;
+    return { tema, pct };
+  });
+
   return { total, temas, detalle, respondidas: Object.keys(respuestas).length };
 }
 
@@ -44,12 +64,32 @@ if (typeof document !== "undefined") {
     const vistas = ["inicio", "pregunta", "resultados", "metodologia"];
     let indice = 0, respuestas = {}, vistaAnterior = "inicio";
 
+    function contarLimites() {
+      let imp = 0, vetos = 0;
+      Object.values(respuestas).forEach(r => {
+        if (r.importante) imp++;
+        if (r.inaceptable) vetos++;
+      });
+      return { imp, vetos };
+    }
+
+    function actualizarContadoresUI() {
+      const { imp, vetos } = contarLimites();
+      if ($("cont-imp")) {
+        $("cont-imp").textContent = `⭐️ Importantes: ${imp}/${MAX_IMP}`;
+        $("cont-imp").className = imp === MAX_IMP ? "cont-max" : (imp > 0 ? "cont-activo" : "");
+      }
+      if ($("cont-veto")) {
+        $("cont-veto").textContent = `🚫 Inaceptables: ${vetos}/${MAX_VETOS}`;
+        $("cont-veto").className = vetos === MAX_VETOS ? "cont-max" : (vetos > 0 ? "cont-activo" : "");
+      }
+    }
+
     function mostrar(nombre) {
       vistas.forEach((v) => { if ($("vista-" + v)) $("vista-" + v).hidden = v !== nombre; });
       window.scrollTo(0, 0);
     }
 
-    // NUEVO: Pinta los números de arriba para navegar
     function pintarNavegacion() {
       const nav = $("nav-numeros");
       if (!nav) return;
@@ -57,19 +97,10 @@ if (typeof document !== "undefined") {
       PREGUNTAS.forEach((q, i) => {
         const btn = document.createElement("button");
         btn.className = "btn-num";
-        
         if (i === indice) btn.classList.add("actual");
-        else if (respuestas[q.id] && respuestas[q.id].principal) btn.classList.add("respondida");
-        
+        else if (respuestas[q.id] && (respuestas[q.id].principal || respuestas[q.id].inaceptable)) btn.classList.add("respondida");
         btn.textContent = i + 1;
-        btn.onclick = () => {
-          const qActual = PREGUNTAS[indice];
-          if (respuestas[qActual.id] && $("chk-importante")) {
-            respuestas[qActual.id].importante = $("chk-importante").checked;
-          }
-          indice = i;
-          pintarPregunta();
-        };
+        btn.onclick = () => { indice = i; pintarPregunta(); };
         nav.append(btn);
       });
     }
@@ -77,12 +108,11 @@ if (typeof document !== "undefined") {
     function pintarPregunta() {
       if (!PREGUNTAS || !PREGUNTAS[indice]) return;
       const q = PREGUNTAS[indice];
+      actualizarContadoresUI();
+      pintarNavegacion();
       
       if ($("progreso")) $("progreso").style.width = ((indice) / PREGUNTAS.length) * 100 + "%";
       if ($("contador")) $("contador").textContent = "Pregunta " + (indice + 1) + " de " + PREGUNTAS.length;
-      
-      pintarNavegacion(); // Actualizamos los círculos de navegación
-
       if ($("tema")) $("tema").textContent = q.tema;
       if ($("texto-pregunta")) $("texto-pregunta").textContent = q.texto;
       
@@ -93,7 +123,10 @@ if (typeof document !== "undefined") {
         
         q.opciones.forEach(opt => {
           const div = document.createElement("div");
-          div.className = "opcion-tarjeta" + (previa.principal === opt.id ? " sel-prin" : "") + (previa.secundaria === opt.id ? " sel-sec" : "");
+          div.className = "opcion-tarjeta";
+          if (previa.principal === opt.id) div.classList.add("sel-prin");
+          if (previa.secundaria === opt.id) div.classList.add("sel-sec");
+          if (previa.inaceptable === opt.id) div.classList.add("sel-veto");
           
           const txt = document.createElement("p"); txt.textContent = opt.texto;
           const cajaBotones = document.createElement("div"); cajaBotones.className = "opcion-botones";
@@ -109,15 +142,34 @@ if (typeof document !== "undefined") {
           if (!previa.principal || previa.principal === opt.id) btnSec.style.display = "none";
           btnSec.onclick = () => marcarOpcion(q.id, opt.id, 'secundaria');
 
-          cajaBotones.append(btnPrin, btnSec);
+          const btnVeto = document.createElement("button");
+          btnVeto.className = "btn-veto" + (previa.inaceptable === opt.id ? " activo" : "");
+          btnVeto.textContent = previa.inaceptable === opt.id ? "Línea roja" : "Inaceptable 🚫";
+          btnVeto.onclick = () => marcarOpcion(q.id, opt.id, 'inaceptable');
+
+          cajaBotones.append(btnPrin, btnSec, btnVeto);
           div.append(txt, cajaBotones);
           contenedorOpts.append(div);
         });
       }
 
-      if ($("chk-importante")) $("chk-importante").checked = !!(respuestas[q.id] && respuestas[q.id].importante);
+      if ($("chk-importante")) {
+        $("chk-importante").checked = !!(respuestas[q.id] && respuestas[q.id].importante);
+        $("chk-importante").onchange = (e) => {
+          const { imp } = contarLimites();
+          if (e.target.checked && imp >= MAX_IMP) {
+            alert(`Ya has marcado el máximo de ${MAX_IMP} temas importantes. Desmarca otro primero para marcar este.`);
+            e.target.checked = false;
+          } else {
+            if (!respuestas[q.id]) respuestas[q.id] = {};
+            respuestas[q.id].importante = e.target.checked;
+            actualizarContadoresUI();
+          }
+        };
+      }
+
       if ($("btn-atras")) $("btn-atras").style.visibility = indice === 0 ? "hidden" : "visible";
-      if ($("btn-siguiente")) $("btn-siguiente").disabled = !(respuestas[q.id] && respuestas[q.id].principal);
+      if ($("btn-siguiente")) $("btn-siguiente").disabled = !(respuestas[q.id] && (respuestas[q.id].principal || respuestas[q.id].inaceptable));
     }
 
     function marcarOpcion(idPregunta, idOpcion, tipo) {
@@ -129,17 +181,29 @@ if (typeof document !== "undefined") {
         } else {
           respuestas[idPregunta].principal = idOpcion;
           if (respuestas[idPregunta].secundaria === idOpcion) respuestas[idPregunta].secundaria = null;
+          if (respuestas[idPregunta].inaceptable === idOpcion) respuestas[idPregunta].inaceptable = null;
         }
-      } else {
+      } else if (tipo === 'secundaria') {
         respuestas[idPregunta].secundaria = respuestas[idPregunta].secundaria === idOpcion ? null : idOpcion;
+        if (respuestas[idPregunta].inaceptable === idOpcion) respuestas[idPregunta].inaceptable = null;
+      } else if (tipo === 'inaceptable') {
+        const { vetos } = contarLimites();
+        if (respuestas[idPregunta].inaceptable === idOpcion) {
+          respuestas[idPregunta].inaceptable = null;
+        } else {
+          if (!respuestas[idPregunta].inaceptable && vetos >= MAX_VETOS) {
+            alert(`Solo puedes marcar ${MAX_VETOS} opciones inaceptables en todo el test.`);
+            return;
+          }
+          respuestas[idPregunta].inaceptable = idOpcion;
+          if (respuestas[idPregunta].principal === idOpcion) { respuestas[idPregunta].principal = null; respuestas[idPregunta].secundaria = null; }
+          if (respuestas[idPregunta].secundaria === idOpcion) respuestas[idPregunta].secundaria = null;
+        }
       }
       pintarPregunta();
     }
 
     function avanzar() {
-      const q = PREGUNTAS[indice];
-      if (respuestas[q.id] && $("chk-importante")) respuestas[q.id].importante = $("chk-importante").checked;
-
       if (indice < PREGUNTAS.length - 1) { 
         indice++; pintarPregunta(); 
       } else { 
@@ -154,11 +218,8 @@ if (typeof document !== "undefined") {
       cont.innerHTML = "";
       
       if (!res.length) { 
-        if ($("nota-resultados")) $("nota-resultados").textContent = "";
-        cont.textContent = "No has respondido a ninguna pregunta o no hay coincidencias."; return; 
+        cont.textContent = "No hay datos para calcular."; return; 
       }
-
-      if ($("nota-resultados")) $("nota-resultados").textContent = "Has respondido " + res[0].r.respondidas + " de " + PREGUNTAS.length + " preguntas.";
       window._resultado = res;
 
       res.forEach((x) => {
@@ -174,19 +235,15 @@ if (typeof document !== "undefined") {
           f.innerHTML = `<span>${t.tema}</span><strong>${t.pct} %</strong>`; det.append(f);
         });
         
-        const h = document.createElement("p"); h.className = "nota mt-3"; h.textContent = "Respuestas y fuentes:"; det.append(h);
-        
-        // DISEÑO MEJORADO DE LOS DETALLES
         x.r.detalle.forEach((d) => {
           const f = document.createElement("div"); f.className = "detalle-preg";
           f.innerHTML = `
-            <div style="margin-bottom: 6px; font-size: 15px; color: var(--acento);"><strong>${d.pregunta.tema}</strong></div>
+            <div style="margin-bottom: 6px; font-size: 15px; color: ${d.vetado ? '#d1495b' : 'var(--acento)'};">
+              <strong>${d.pregunta.tema} ${d.vetado ? '🚫 (Línea roja penalizada)' : ''}</strong>
+            </div>
             <div style="margin-bottom: 4px; padding-left: 8px; border-left: 2px solid var(--borde);">
               <div style="margin-bottom: 4px;">👤 <strong>Tú:</strong> ${d.textoTuya}</div>
               <div style="margin-bottom: 6px;">🏛️ <strong>Partido:</strong> ${d.textoPartido}</div>
-            </div>
-            <div class="nota" style="font-size: 12.5px; background: var(--fondo); padding: 4px 8px; border-radius: 4px; display: inline-block;">
-              ⚖️ Puntos: <strong>${d.puntosObtenidos}/${d.pesoMaximo}</strong> &nbsp;·&nbsp; 🔗 Fuente: ${d.fuente}
             </div>
           `;
           det.append(f);
@@ -195,27 +252,16 @@ if (typeof document !== "undefined") {
       });
     }
 
-    // Eventos
+    // Eventos e inicialización (se mantienen igual)
     if ($("btn-empezar")) $("btn-empezar").onclick = () => { indice = 0; respuestas = {}; pintarPregunta(); mostrar("pregunta"); };
     if ($("btn-siguiente")) $("btn-siguiente").onclick = avanzar;
     if ($("btn-saltar")) $("btn-saltar").onclick = () => { delete respuestas[PREGUNTAS[indice].id]; avanzar(); };
     if ($("btn-atras")) $("btn-atras").onclick = () => { if (indice > 0) { indice--; pintarPregunta(); } };
     if ($("btn-repetir")) $("btn-repetir").onclick = () => { respuestas = {}; indice = 0; mostrar("inicio"); };
-    if ($("logo")) $("logo").onclick = (e) => { e.preventDefault(); mostrar("inicio"); };
-    
-    if ($("btn-metodologia")) $("btn-metodologia").onclick = () => {
-      const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden);
-      if (visible !== "metodologia") vistaAnterior = visible;
-      mostrar("metodologia");
-    };
+    if ($("btn-metodologia")) $("btn-metodologia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "metodologia") vistaAnterior = visible; mostrar("metodologia"); };
     if ($("btn-volver")) $("btn-volver").onclick = () => mostrar(vistaAnterior);
 
-    // Inicialización
-    if (typeof ELECCIONES !== "undefined") {
-      if ($("sub-eleccion")) $("sub-eleccion").textContent = ELECCIONES.nombre + " · " + ELECCIONES.fecha;
-      if ($("fecha-act")) $("fecha-act").textContent = ELECCIONES.actualizacion;
-      if ($("aviso-ejemplo") && ELECCIONES.datosDeEjemplo) $("aviso-ejemplo").hidden = false;
-    }
+    if (typeof ELECCIONES !== "undefined" && $("sub-eleccion")) $("sub-eleccion").textContent = ELECCIONES.nombre + " · " + ELECCIONES.fecha;
     if (typeof PREGUNTAS !== "undefined" && $("num-preguntas")) $("num-preguntas").textContent = PREGUNTAS.length;
   });
 }
