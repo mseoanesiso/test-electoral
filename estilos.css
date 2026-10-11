@@ -132,6 +132,47 @@ h2.pregunta { font-size: 1.3rem; line-height: 1.4; margin: 6px 0 22px; }
   margin-top: 8px;
   line-height: 1.45;
 }
+/* Navegación por números (Burbujas) */
+.nav-numeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+.btn-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--borde);
+  background: var(--fondo);
+  color: var(--suave);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 0;
+}
+.btn-num:hover {
+  border-color: var(--acento);
+  color: var(--acento);
+}
+.btn-num.respondida {
+  background: var(--acento-secundario);
+  border-color: rgba(31, 79, 216, 0.3);
+  color: var(--acento);
+}
+.btn-num.actual {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(31, 79, 216, 0.3);
+}
 
 /* Resultados */
 .partido { border: 1px solid var(--borde); border-radius: 12px; padding: 16px; margin: 12px 0; }
