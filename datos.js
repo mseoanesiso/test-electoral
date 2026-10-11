@@ -9,11 +9,11 @@ const ELECCIONES = {
   datosDeEjemplo: false
 };
 
-// pesosBase: 3 (Problema principal CIS/Estructural), 2 (Muy importante), 1 (Importante)
 const PREGUNTAS = [
   {
     id: 1, tema: "Vivienda", pesoBase: 3,
     texto: "¿Qué política principal debería aplicarse para solucionar el problema del acceso a la vivienda?",
+    contexto: "El alquiler ha subido drásticamente. El debate está entre intervenir el mercado (forzando topes a los precios para proteger al inquilino) o liberalizarlo (construir más y desregular para que aumente la oferta y bajen los precios de forma natural).",
     opciones: [
       { id: "A", texto: "Fomentar la construcción privada, liberalizar suelo y dar avales públicos a los jóvenes para la compra." },
       { id: "B", texto: "Intervenir el mercado limitando por ley el precio de los alquileres y prohibir la compra a fondos especulativos." },
@@ -24,6 +24,7 @@ const PREGUNTAS = [
   {
     id: 2, tema: "Empleo", pesoBase: 3,
     texto: "¿Qué medida tomarías respecto a la jornada laboral y los salarios?",
+    contexto: "Se debate si el Estado debe obligar por ley a trabajar menos horas cobrando lo mismo para mejorar la calidad de vida, o si eso hundiría a las empresas y es mejor que cada sector lo negocie libremente.",
     opciones: [
       { id: "A", texto: "Que la jornada y salarios se decidan en negociación colectiva entre empresas y trabajadores, sin imposiciones por ley." },
       { id: "B", texto: "Reducir la jornada laboral por ley a 37,5 horas semanales sin pérdida salarial y seguir subiendo el SMI." },
@@ -33,6 +34,7 @@ const PREGUNTAS = [
   {
     id: 3, tema: "Sanidad", pesoBase: 3,
     texto: "¿Cómo debe gestionarse y financiarse la Sanidad Pública?",
+    contexto: "Ante las listas de espera, algunos proponen blindar la sanidad para que sea 100% pública y sin ánimo de lucro, mientras otros defienden derivar pacientes a la sanidad privada mediante conciertos para agilizar la atención.",
     opciones: [
       { id: "A", texto: "Centralizar las competencias sanitarias en el Estado para que sea igual en todo el país." },
       { id: "B", texto: "Aumentar la financiación autonómica pero manteniendo la posibilidad de colaboración público-privada (conciertos)." },
@@ -43,16 +45,18 @@ const PREGUNTAS = [
   {
     id: 4, tema: "Inmigración", pesoBase: 3,
     texto: "¿Cuál debería ser la principal política migratoria del país?",
+    contexto: "Con el aumento de llegadas, el debate oscila entre facilitar la integración de quienes ya trabajan aquí por humanidad y necesidad económica, frente a endurecer las fronteras y expulsiones por motivos de seguridad.",
     opciones: [
       { id: "A", texto: "Promover la regularización de inmigrantes que ya trabajan aquí y facilitar vías legales y seguras." },
       { id: "B", texto: "Fomentar una inmigración circular vinculada estrictamente al mercado laboral y a las necesidades de las empresas." },
       { id: "C", texto: "Control estricto de fronteras, deportación de quienes cometan delitos y vincular inmigración a un contrato de origen." },
-      { id: "D", texto: "Bloqueo naval militar, deportaciones masivas de irregulares y cierre de centros de menas." }
+      { id: "D", texto: "Bloqueo naval militar, deportaciones masivas de irregulares y cierre de centros de menores extranjeros." }
     ]
   },
   {
     id: 5, tema: "Impuestos", pesoBase: 2,
     texto: "¿Qué reforma fiscal necesita España?",
+    contexto: "Se discute si hay que bajar los impuestos en general para que la gente tenga más dinero en el bolsillo, o subirlos a las grandes fortunas para poder financiar mejores servicios públicos (sanidad, educación).",
     opciones: [
       { id: "A", texto: "Bajada generalizada, bonificando al máximo el IRPF y eliminando Patrimonio y Sucesiones en todo el país." },
       { id: "B", texto: "Reforma integral para gravar mucho más a las grandes fortunas, rentas del capital y beneficios extraordinarios." },
@@ -63,45 +67,50 @@ const PREGUNTAS = [
   {
     id: 6, tema: "Modelo Territorial", pesoBase: 2,
     texto: "¿Cómo debe organizarse el Estado autonómico?",
+    contexto: "El grado de autogobierno de regiones como Cataluña o País Vasco divide la política entre quienes piden un modelo federal plurinacional, los que defienden el modelo actual y quienes quieren recentralizar el Estado.",
     opciones: [
       { id: "A", texto: "Avanzar hacia un modelo plurinacional o federal que reconozca singularidades y permita mayor autogobierno." },
       { id: "B", texto: "Eliminar las comunidades autónomas y devolver todas las competencias (educación, sanidad, seguridad) al Estado." },
       { id: "C", texto: "Mantener el sistema autonómico pero garantizando una estricta igualdad multilateral en la financiación." },
-      { id: "D", texto: "Mantener el actual modelo constitucional, combatiendo los privilegios separatistas pero respetando el autogobierno." }
+      { id: "D", texto: "Mantener el actual modelo, combatiendo los privilegios separatistas pero respetando el autogobierno." }
     ]
   },
   {
     id: 7, tema: "Educación", pesoBase: 2,
     texto: "¿Qué peso deben tener la escuela pública y la concertada?",
+    contexto: "La escuela concertada (privada pero pagada con fondos públicos) genera división: unos creen que garantiza la libertad de elección de los padres, y otros creen que segrega y quita recursos a la escuela 100% pública.",
     opciones: [
       { id: "A", texto: "Defender la libertad de elección total, implantando el pin parental y el cheque escolar." },
       { id: "B", texto: "Defender la educación concertada al mismo nivel que la pública, asegurando la libertad de elección de los padres." },
-      { id: "C", texto: "Mantener la coexistencia de redes, pero garantizando que la educación pública sea el eje vertebrador del sistema." },
+      { id: "C", texto: "Mantener la coexistencia, pero garantizando que la educación pública sea el eje vertebrador del sistema." },
       { id: "D", texto: "Convertir la escuela pública en la única financiada por el Estado, retirando paulatinamente los conciertos." }
     ]
   },
   {
     id: 8, tema: "Pensiones", pesoBase: 2,
     texto: "¿Cómo garantizar la sostenibilidad de las pensiones?",
+    contexto: "Con una población envejecida, pagar las pensiones es cada vez más caro. Las soluciones varían entre recortar gastos o fomentar planes privados, frente a blindar su subida inyectando más dinero de los impuestos.",
     opciones: [
       { id: "A", texto: "Mantener la revalorización por ley según el IPC e inyectar fondos públicos si es necesario." },
       { id: "B", texto: "Fomentar sistemas privados de capitalización y plantear ajustes futuros para evitar la quiebra del sistema." },
-      { id: "C", texto: "Transitar hacia un modelo mixto de capitalización privada y recortar el gasto público en pensiones." }
+      { id: "C", texto: "Transitar hacia un modelo mixto de capitalización privada y recortar drásticamente el gasto público." }
     ]
   },
   {
     id: 9, tema: "Medio Ambiente y Energía", pesoBase: 1,
     texto: "¿Qué medidas energéticas deben priorizarse?",
+    contexto: "La crisis climática choca con la economía. Unos piden acelerar el cierre de las nucleares e ir al 100% renovable ya, mientras otros piden frenar porque las políticas verdes encarecen la industria.",
     opciones: [
       { id: "A", texto: "Crear una empresa pública de energía y acelerar al máximo la transición 100% renovable." },
       { id: "B", texto: "Avanzar hacia las energías renovables de forma ordenada, apoyando económicamente a la industria para adaptarse." },
       { id: "C", texto: "Alargar la vida útil de las centrales nucleares y ralentizar la transición verde si perjudica a la industria." },
-      { id: "D", texto: "Abandonar la Agenda 2030 y el Acuerdo de París, priorizando la soberanía energética sin importar la fuente." }
+      { id: "D", texto: "Abandonar la Agenda 2030, priorizando la soberanía energética sin importar la fuente." }
     ]
   },
   {
     id: 10, tema: "Feminismo e Igualdad", pesoBase: 2,
     texto: "¿Cuál debe ser el enfoque de las políticas de igualdad y violencia de género?",
+    contexto: "Existen visiones enfrentadas sobre si las leyes actuales protegen adecuadamente a mujeres y colectivos LGTBI o si, por el contrario, discriminan a los hombres y deben ser derogadas.",
     opciones: [
       { id: "A", texto: "Derogar la ley de violencia de género (hablando de 'violencia intrafamiliar') y suprimir el Ministerio de Igualdad." },
       { id: "B", texto: "Mantener el pacto de Estado contra la violencia de género pero retocando leyes recientes (como la Ley Trans)." },
@@ -111,6 +120,7 @@ const PREGUNTAS = [
   {
     id: 11, tema: "Okupación y Seguridad", pesoBase: 2,
     texto: "¿Cómo debe tratarse el problema de la okupación de viviendas?",
+    contexto: "El enfoque varía entre quienes lo ven principalmente como un problema grave de seguridad (exigiendo penas de cárcel y desalojos inmediatos) y quienes lo enmarcan en la crisis habitacional y la pobreza.",
     opciones: [
       { id: "A", texto: "Garantizar desalojos exprés en menos de 24 horas y endurecer las penas de cárcel por usurpación." },
       { id: "B", texto: "Agilizar los procesos judiciales de desalojo respetando las garantías legales de personas vulnerables." },
@@ -120,6 +130,7 @@ const PREGUNTAS = [
   {
     id: 12, tema: "Modelo de Jefatura del Estado", pesoBase: 1,
     texto: "¿Qué modelo de Jefatura del Estado prefieres?",
+    contexto: "El histórico debate sobre si el Jefe del Estado debe ser el Rey (cargo hereditario) o un Presidente de la República (elegido democráticamente).",
     opciones: [
       { id: "A", texto: "Mantener la Monarquía Parlamentaria, figura clave de estabilidad institucional." },
       { id: "B", texto: "Avanzar hacia una República mediante referéndum." }
@@ -128,6 +139,7 @@ const PREGUNTAS = [
   {
     id: 13, tema: "Política Exterior", pesoBase: 1,
     texto: "¿Cuál debería ser la posición internacional de España en conflictos globales?",
+    contexto: "La postura internacional varía entre el alineamiento estricto con la OTAN y EEUU, o posiciones más independientes centradas en vías diplomáticas, derechos humanos y freno a la venta de armas.",
     opciones: [
       { id: "A", texto: "Alineamiento total con la OTAN y apoyo incondicional a Ucrania y aliados occidentales." },
       { id: "B", texto: "Apoyo a Ucrania, compromiso europeísta firme y reconocimiento activo del Estado de Palestina." },
@@ -137,6 +149,7 @@ const PREGUNTAS = [
   {
     id: 14, tema: "Conciliación y Natalidad", pesoBase: 2,
     texto: "¿Cómo debería apoyarse a las familias y la natalidad?",
+    contexto: "Ante la baja natalidad, las soluciones oscilan entre dar cheques de dinero directo a las familias numerosas o crear servicios públicos universales (como guarderías gratuitas) para facilitar tener hijos.",
     opciones: [
       { id: "A", texto: "Ayudas económicas directas por hijo, apoyo a familias numerosas y fomentar la perspectiva de familia." },
       { id: "B", texto: "Universalizar la educación pública 0-3 años gratuita y seguir ampliando permisos de paternidad/maternidad." }
@@ -145,6 +158,7 @@ const PREGUNTAS = [
   {
     id: 15, tema: "Poder Judicial", pesoBase: 1,
     texto: "¿Cómo deberían elegirse los vocales del Consejo General del Poder Judicial (CGPJ)?",
+    contexto: "El órgano que gobierna a los jueces lo elige actualmente el Congreso y el Senado. Algunos partidos piden que lo elijan los propios jueces para evitar control político, otros prefieren mantener la elección democrática.",
     opciones: [
       { id: "A", texto: "Que la mayoría de los vocales sean elegidos directamente por los propios jueces, sin intervención política." },
       { id: "B", texto: "Mantener el sistema de elección parlamentaria que requiere consensos amplios (3/5 partes de las cámaras)." },
@@ -215,7 +229,7 @@ const PARTIDOS = [
     }
   },
   {
-    id: "frenteamplio", nombre: "Frente Amplio (Sumar, IU, Comuns)", color: "#E51C55",
+    id: "frenteamplio", nombre: "Frente Amplio (Sumar, IU)", color: "#E51C55",
     posiciones: {
       1: { opcion: "B", fuente: "Programa Sumar 2023", fecha: "2023" },
       2: { opcion: "B", fuente: "Ministerio de Trabajo", fecha: "2026" },
