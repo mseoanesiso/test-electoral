@@ -83,6 +83,28 @@ h2.pregunta { font-size: 1.3rem; line-height: 1.4; margin: 6px 0 22px; }
 .acciones-pregunta { margin-top: 24px; }
 .navegacion { display: flex; justify-content: space-between; margin-top: 16px; }
 
+/* Caja de concienciación en inicio */
+.caja-concienciacion {
+  background: var(--acento-secundario);
+  border: 1px dashed var(--acento);
+  border-radius: 12px;
+  padding: 18px;
+  margin: 24px 0;
+}
+.caja-concienciacion h3 {
+  margin-top: 0;
+  color: var(--acento);
+  font-size: 1.15rem;
+}
+.caja-concienciacion p {
+  margin: 10px 0 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+.caja-concienciacion p + p {
+  margin-top: 10px;
+}
+
 /* Resultados */
 .partido { border: 1px solid var(--borde); border-radius: 12px; padding: 16px; margin: 12px 0; }
 .partido-cab { display: flex; justify-content: space-between; align-items: baseline; }
