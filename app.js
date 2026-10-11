@@ -205,12 +205,18 @@ if (typeof document !== "undefined") {
         
         x.r.detalle.forEach((d) => {
           const f = document.createElement("div"); f.className = "detalle-preg";
-          f.innerHTML = `<strong>${d.pregunta.tema}:</strong> Tuya: <em>${d.textoTuya}</em> <br> Partido: <em>${d.textoPartido}</em> <br> <span class="nota">Puntos: ${d.puntosObtenidos}/${d.pesoMaximo} · Fuente: ${d.fuente}</span>`;
+          f.innerHTML = `
+            <div style="margin-bottom: 6px; font-size: 15px; color: var(--acento);"><strong>${d.pregunta.tema}</strong></div>
+            <div style="margin-bottom: 4px; padding-left: 8px; border-left: 2px solid var(--borde);">
+              <div style="margin-bottom: 4px;">👤 <strong>Tú:</strong> ${d.textoTuya}</div>
+              <div style="margin-bottom: 6px;">🏛️ <strong>Partido:</strong> ${d.textoPartido}</div>
+            </div>
+            <div class="nota" style="font-size: 12.5px; background: var(--fondo); padding: 4px 8px; border-radius: 4px; display: inline-block;">
+              ⚖️ Puntos: <strong>${d.puntosObtenidos}/${d.pesoMaximo}</strong> &nbsp;·&nbsp; 🔗 Fuente: ${d.fuente}
+            </div>
+          `;
           det.append(f);
         });
-        div.append(cab, barra, det);
-        cont.append(div);
-      });
     }
 
     // Eventos
