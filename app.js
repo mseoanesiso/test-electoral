@@ -59,7 +59,7 @@ function calcularAfinidad(partido, respuestas, preguntas) {
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     const $ = (id) => document.getElementById(id);
-    const vistas = ["inicio", "pregunta", "resultados", "metodologia"];
+    const vistas = ["inicio", "pregunta", "resultados", "metodologia", "guia"]
     let indice = 0, respuestas = {}, vistaAnterior = "inicio";
 
     function contarLimites() {
@@ -281,6 +281,8 @@ if (typeof document !== "undefined") {
     if ($("btn-atras")) $("btn-atras").onclick = () => { if (indice > 0) { indice--; pintarPregunta(); } };
     if ($("btn-repetir")) $("btn-repetir").onclick = () => { respuestas = {}; indice = 0; mostrar("inicio"); };
     if ($("btn-metodologia")) $("btn-metodologia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "metodologia") vistaAnterior = visible; mostrar("metodologia"); };
+    if ($("btn-guia")) $("btn-guia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "guia") vistaAnterior = visible; mostrar("guia"); };
+    if ($("btn-volver-guia")) $("btn-volver-guia").onclick = () => mostrar(vistaAnterior);
     if ($("btn-volver")) $("btn-volver").onclick = () => mostrar(vistaAnterior);
 
     if (typeof ELECCIONES !== "undefined" && $("sub-eleccion")) $("sub-eleccion").textContent = ELECCIONES.nombre + " · " + ELECCIONES.fecha;
