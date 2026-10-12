@@ -90,7 +90,7 @@ h2.pregunta { font-size: 1.3rem; line-height: 1.4; margin: 6px 0 22px; }
 .opcion-botones button:hover { border-color: var(--acento); color: var(--acento); }
 .opcion-botones .btn-prin.activo { background: var(--acento); color: white; border-color: var(--acento); }
 .opcion-botones .btn-sec.activo { background: var(--acento-secundario); color: var(--acento); border-color: var(--acento-secundario); }
-.opcion-botones .btn-veto.activo { background: #fff0f2; color: #d1495b; border-color: #d1495b; }
+.opcion-botones .btn-veto.activo { background: rgba(209, 73, 91, 0.12); color: #d1495b; border-color: #d1495b; }
 .opcion-botones .btn-veto:hover { border-color: #d1495b; color: #d1495b; }
 
 .importante { display: flex; gap: 10px; align-items: center; font-size: 15px; color: var(--suave); background: var(--fondo); padding: 12px; border-radius: 12px; cursor: pointer;}
@@ -125,3 +125,13 @@ details summary { cursor: pointer; color: var(--acento); font-size: 15px; font-w
 .acciones { display: grid; gap: 12px; margin: 24px 0; }
 .pie { text-align: center; color: var(--suave); font-size: 13px; padding-bottom: 24px; }
 @media (min-width: 640px) { .acciones { grid-template-columns: 1fr 1fr; } }
+
+/* Aviso de versión beta */
+.aviso-beta { background: #ffd9d9; color: #6b1010; text-align: center; padding: 10px 16px; font-size: 14px; line-height: 1.4; }
+@media (prefers-color-scheme: dark) { .aviso-beta { background: #4a1a1a; color: #ffc9c9; } }
+
+/* Resultados: base de preguntas y registro de cambios */
+.base-preguntas { margin: 0 0 8px 0; font-size: 13px; }
+.cambio { padding: 10px 0; border-bottom: 1px solid var(--borde); font-size: 15px; line-height: 1.45; }
+.cambio:last-child { border-bottom: none; }
+.enlace-pie { padding: 0; font-size: 13px; text-decoration: underline; }
