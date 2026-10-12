@@ -6,7 +6,8 @@ const ELECCIONES = {
   nombre: "Elecciones generales de España",
   fecha: "29 de noviembre de 2026",
   actualizacion: "11/10/2026",
-  datosDeEjemplo: false
+  datosDeEjemplo: false,
+  datosVerificados: false // pasar a true cuando todas las posiciones tengan fuente con enlace
 };
 
 const PREGUNTAS = [
@@ -268,4 +269,13 @@ const PARTIDOS = [
       15: { opcion: "C", fuente: "Declaraciones públicas", fecha: "2023" }
     }
   }
+];
+
+// ============================================================
+// REGISTRO DE CAMBIOS (el más reciente arriba). Se muestra en la web.
+// ============================================================
+const CAMBIOS = [
+  { fecha: "12/10/2026", texto: "Corregidos varios fallos: la fecha de actualización aparecía vacía, el botón de copiar no funcionaba y marcar «tema clave» sin elegir opción alteraba los porcentajes." },
+  { fecha: "12/10/2026", texto: "Añadidos el aviso de versión beta, el recuento «basado en X de Y preguntas», el soporte para fuentes con enlace y este registro de cambios." },
+  { fecha: "11/10/2026", texto: "Primera versión del test: 15 preguntas y 5 partidos (PSOE, PP, Vox, Frente Amplio y Podemos)." }
 ];
