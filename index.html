@@ -87,12 +87,18 @@
     <section id="vista-resultados" class="vista" hidden>
       <h1>Tus resultados</h1>
       <p class="nota" id="nota-resultados"></p>
+      
+      <!-- NUEVO AVISO DE CONCIENCIACIÓN FINAL -->
+      <div class="caja-concienciacion" style="background: var(--fondo); border-color: var(--borde); margin-bottom: 24px; padding: 16px;">
+        <h3 style="font-size: 1rem; margin-bottom: 8px;">ℹ️ Tu voto, tu decisión</h3>
+        <p style="font-size: 0.9rem; margin-top: 0;">Este test es solo una herramienta orientativa para ayudarte a ordenar tus prioridades. <strong>El resultado no debe ser tu decisión final de voto.</strong> Te animamos a informarte por tu cuenta, leer los programas electorales y contrastar información para tener una visión completa de por qué votar (o no votar) a cada formación.</p>
+      </div>
+
       <div id="lista-resultados"></div>
       <div class="acciones">
         <button id="btn-whatsapp" class="boton btn-whatsapp">Compartir en WhatsApp 🟢</button>
         <button id="btn-copiar" class="boton">Copiar mi resultado</button>
         <button id="btn-repetir" class="boton">Repetir el test</button>
-      </div>
       </div>
     </section>
 
@@ -107,6 +113,21 @@
         <li><strong>Partidos Ocultos:</strong> Las opciones agrupan propuestas de programa, sin indicar de quién son hasta el final.</li>
       </ul>
       <button id="btn-volver" class="boton">Volver</button>
+    </section>
+    <!-- GUÍA DE TEMAS -->
+    <section id="vista-guia" class="vista" hidden>
+      <h1>Guía de Temas Clave</h1>
+      <p>Antes de votar, es útil entender cuáles son los grandes debates que marcan estas elecciones. El test aborda estos bloques fundamentales:</p>
+      
+      <ul class="lista-puntos">
+        <li>🏠 <strong>Economía y Bienestar:</strong> Cómo garantizar el acceso a la vivienda, si debemos bajar impuestos o subirlos para financiar más servicios, y cómo asegurar el futuro de las pensiones y el empleo.</li>
+        <li>🏥 <strong>Servicios Públicos:</strong> El modelo de Sanidad y Educación estatal, y el equilibrio entre lo público y lo concertado/privado.</li>
+        <li>🌍 <strong>Retos Sociales:</strong> El enfoque del país ante la inmigración, las políticas de igualdad, la seguridad ciudadana y la transición ecológica.</li>
+        <li>🏛️ <strong>Modelo de Estado:</strong> El grado de autogobierno de las comunidades autónomas, el debate sobre la Jefatura del Estado y la posición de España en conflictos internacionales.</li>
+      </ul>
+      
+      <p class="nota mt-3">Entender estas posturas te ayudará no solo a hacer el test con más claridad, sino a interpretar las noticias y los debates políticos en tu día a día.</p>
+      <button id="btn-volver-guia" class="boton mt-3">Volver</button>
     </section>
   </main>
 
