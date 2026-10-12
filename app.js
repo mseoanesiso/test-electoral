@@ -1,4 +1,4 @@
-// Lógica del test (Límites, Navegación y Contexto)
+// Lógica del test (Límites, Navegación, Contexto, WhatsApp y Guía)
 const MAX_IMP = 3;
 const MAX_VETOS = 2;
 
@@ -59,7 +59,9 @@ function calcularAfinidad(partido, respuestas, preguntas) {
 if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     const $ = (id) => document.getElementById(id);
-    const vistas = ["inicio", "pregunta", "resultados", "metodologia", "guia"]
+    
+    // AQUÍ ESTÁ LA CLAVE: "guia" añadida a la lista de vistas
+    const vistas = ["inicio", "pregunta", "resultados", "metodologia", "guia"]; 
     let indice = 0, respuestas = {}, vistaAnterior = "inicio";
 
     function contarLimites() {
@@ -265,6 +267,8 @@ if (typeof document !== "undefined") {
         div.append(det); cont.append(div);
       });
     }
+
+    // LISTA DE EVENTOS PARA LOS BOTONES
     if ($("btn-whatsapp")) {
       $("btn-whatsapp").onclick = () => {
         if (!window._resultado || window._resultado.length === 0) return;
@@ -274,17 +278,21 @@ if (typeof document !== "undefined") {
         window.open(url, '_blank');
       };
     }
-
+    
     if ($("btn-empezar")) $("btn-empezar").onclick = () => { indice = 0; respuestas = {}; pintarPregunta(); mostrar("pregunta"); };
     if ($("btn-siguiente")) $("btn-siguiente").onclick = avanzar;
     if ($("btn-saltar")) $("btn-saltar").onclick = () => { delete respuestas[PREGUNTAS[indice].id]; avanzar(); };
     if ($("btn-atras")) $("btn-atras").onclick = () => { if (indice > 0) { indice--; pintarPregunta(); } };
     if ($("btn-repetir")) $("btn-repetir").onclick = () => { respuestas = {}; indice = 0; mostrar("inicio"); };
+    
     if ($("btn-metodologia")) $("btn-metodologia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "metodologia") vistaAnterior = visible; mostrar("metodologia"); };
-    if ($("btn-guia")) $("btn-guia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "guia") vistaAnterior = visible; mostrar("guia"); };
-    if ($("btn-volver-guia")) $("btn-volver-guia").onclick = () => mostrar(vistaAnterior);
     if ($("btn-volver")) $("btn-volver").onclick = () => mostrar(vistaAnterior);
 
+    // EVENTOS PARA LA GUÍA
+    if ($("btn-guia")) $("btn-guia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "guia") vistaAnterior = visible; mostrar("guia"); };
+    if ($("btn-volver-guia")) $("btn-volver-guia").onclick = () => mostrar(vistaAnterior);
+
+    // Inicialización de textos
     if (typeof ELECCIONES !== "undefined" && $("sub-eleccion")) $("sub-eleccion").textContent = ELECCIONES.nombre + " · " + ELECCIONES.fecha;
     if (typeof PREGUNTAS !== "undefined" && $("num-preguntas")) $("num-preguntas").textContent = PREGUNTAS.length;
   });
