@@ -97,7 +97,7 @@ if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     const $ = (id) => document.getElementById(id);
 
-    const vistas = ["inicio", "pregunta", "resultados", "metodologia", "guia", "cambios"];
+    const vistas = ["mapa", "inicio", "pregunta", "resultados", "metodologia", "guia", "cambios"];
     let indice = 0, respuestas = {}, vistaAnterior = "inicio";
 
     function contarLimites() {
@@ -398,12 +398,29 @@ if (typeof document !== "undefined") {
     if ($("btn-cambios")) $("btn-cambios").onclick = () => { pintarCambios(); irA("cambios"); };
     if ($("btn-volver-cambios")) $("btn-volver-cambios").onclick = () => mostrar(vistaAnterior);
 
-    // ---------- INICIALIZACIÓN ----------
+// --------- EVENTOS DEL MAPA ---------
+    document.querySelectorAll(".baldosa").forEach(btn => {
+      btn.onclick = (e) => {
+        window.comunidadSeleccionada = e.target.dataset.id; // Guardamos la CA
+        const nombreCA = e.target.textContent;
+        
+        // Personalizamos la pantalla de inicio con la comunidad elegida
+        if ($("sub-eleccion")) {
+          $("sub-eleccion").innerHTML = `${ELECCIONES.nombre}<br><strong style="color:var(--acento)">📍 Test adaptado para ${nombreCA}</strong>`;
+        }
+        mostrar("inicio");
+      };
+    });
+
+    // --------- INICIALIZACIÓN ---------
     if (typeof ELECCIONES !== "undefined") {
       if ($("sub-eleccion")) $("sub-eleccion").textContent = ELECCIONES.nombre + " · " + ELECCIONES.fecha;
       if ($("fecha-act") && ELECCIONES.actualizacion) $("fecha-act").textContent = ELECCIONES.actualizacion;
-      if ($("aviso-beta") && (ELECCIONES.datosVerificados === false || ELECCIONES.datosDeEjemplo)) $("aviso-beta").hidden = false;
+      if ($("aviso-beta") && (ELECCIONES.datosVerificados === false \vert{}\vert{} ELECCIONES.datosDeEjemplo)) $("aviso-beta").hidden = false;
     }
     if (typeof PREGUNTAS !== "undefined" && $("num-preguntas")) $("num-preguntas").textContent = PREGUNTAS.length;
+    
+    // Mostramos el mapa al cargar la web
+    mostrar("mapa");
   });
 }
