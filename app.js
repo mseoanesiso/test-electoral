@@ -278,6 +278,25 @@ if (typeof document !== "undefined") {
         window.open(url, '_blank');
       };
     }
+
+    // NUEVO: Botón nativo para compartir en otras Apps
+    if ($("btn-compartir")) {
+      $("btn-compartir").addEventListener("click", () => {
+        if (!window._resultado || window._resultado.length === 0) return;
+        const ganador = window._resultado[0];
+        const texto = `He sacado un ${ganador.r.total}% de afinidad con ${ganador.p.nombre} en el Test Electoral 2026 🗳️.\n\n¡Hazlo tú a ver qué te sale!`;
+        
+        if (navigator.share) {
+          navigator.share({
+            title: 'Test Electoral 2026',
+            text: texto,
+            url: location.href
+          }).catch((error) => console.log('Error al compartir', error));
+        } else {
+          alert("Tu navegador actual no soporta esta función. ¡Copia el enlace de arriba para pasarlo!");
+        }
+      });
+    }
     
     if ($("btn-empezar")) $("btn-empezar").onclick = () => { indice = 0; respuestas = {}; pintarPregunta(); mostrar("pregunta"); };
     if ($("btn-siguiente")) $("btn-siguiente").onclick = avanzar;
@@ -285,8 +304,14 @@ if (typeof document !== "undefined") {
     if ($("btn-atras")) $("btn-atras").onclick = () => { if (indice > 0) { indice--; pintarPregunta(); } };
     if ($("btn-repetir")) $("btn-repetir").onclick = () => { respuestas = {}; indice = 0; mostrar("mapa"); }; // Volver a elegir provincia
     
-    // El nuevo botón para volver atrás
-    if ($("btn-cambiar-prov")) $("btn-cambiar-prov").onclick = () => { window.scrollTo(0, 0); mostrar("mapa"); };
+    // El nuevo botón para volver atrás (Corregido)
+    if ($("btn-cambiar-prov")) {
+      $("btn-cambiar-prov").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo(0, 0); 
+        mostrar("mapa"); 
+      });
+    }
 
     if ($("btn-metodologia")) $("btn-metodologia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "metodologia") vistaAnterior = visible; mostrar("metodologia"); };
     if ($("btn-volver")) $("btn-volver").onclick = () => mostrar(vistaAnterior);
