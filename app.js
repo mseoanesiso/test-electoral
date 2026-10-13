@@ -227,7 +227,8 @@ if (typeof document !== "undefined") {
     }
 
     function pintarResultados() {
-      const res = PARTIDOS.map((p) => ({ p: p, r: calcularAfinidad(p, respuestas, PREGUNTAS) })).filter((x) => x.r.total !== null).sort((a, b) => b.r.total - a.r.total);
+      const partidosAUsar = window.partidosActivos || PARTIDOS;
+      const res = partidosAUsar.map((p) => ({ p: p, r: calcularAfinidad(p, respuestas, PREGUNTAS) })).filter((x) => x.r.total !== null).sort((a, b) => b.r.total - a.r.total);
       const cont = $("lista-resultados");
       if (!cont) return;
       cont.innerHTML = "";
