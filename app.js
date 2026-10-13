@@ -326,6 +326,19 @@ if (typeof document !== "undefined") {
         window.comunidadSeleccionada = e.target.dataset.ca;
         const nombreProvincia = e.target.textContent;
         
+        // FILTRAR PARTIDOS: Solo los que tengan "todas", coincidan con la CA o con la provincia
+        window.partidosActivos = PARTIDOS.filter(p => 
+          !p.comunidades || 
+          p.comunidades.includes("todas") || 
+          p.comunidades.includes(window.comunidadSeleccionada) ||
+          p.comunidades.includes(window.provinciaSeleccionada)
+        );
+        
+        // Escribir los nombres en la caja
+        if ($("lista-partidos-texto")) {
+          $("lista-partidos-texto").textContent = window.partidosActivos.map(p => p.nombre).join(", ");
+        }
+
         document.querySelectorAll(".comunidad-desplegable").forEach(det => {
           det.removeAttribute("open");
         });
