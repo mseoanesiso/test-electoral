@@ -199,7 +199,7 @@ const PREGUNTAS = [
 
 const PARTIDOS = [
   {
-    id: "psoe", nombre: "PSOE", color: "#E01021",
+    id: "psoe", nombre: "PSOE", color: "#E01021", comunidades: ["todas"],
     posiciones: {
       1: { opcion: "C", fuente: "Ley de Vivienda / Programa 2023", fecha: "2023" },
       2: { opcion: "B", fuente: "Acuerdo de coalición 2023", fecha: "2023" },
@@ -222,7 +222,7 @@ const PARTIDOS = [
     }
   },
   {
-    id: "pp", nombre: "PP", color: "#0155A4",
+    id: "pp", nombre: "PP", color: "#0155A4", comunidades: ["todas"],
     posiciones: {
       1: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
       2: { opcion: "A", fuente: "Declaraciones recientes", fecha: "2026" },
@@ -245,7 +245,7 @@ const PARTIDOS = [
     }
   },
   {
-    id: "vox", nombre: "Vox", color: "#63BE21",
+    id: "vox", nombre: "Vox", color: "#63BE21", comunidades: ["todas"],
     posiciones: {
       1: { opcion: "D", fuente: "Agenda España", fecha: "2023" },
       2: { opcion: "C", fuente: "Agenda España", fecha: "2023" },
@@ -268,7 +268,7 @@ const PARTIDOS = [
     }
   },
   {
-    id: "frenteamplio", nombre: "Frente Amplio (Sumar, IU)", color: "#E51C55",
+    id: "frenteamplio", nombre: "Frente Amplio (Sumar, IU)", color: "#E51C55", comunidades: ["todas"],
     posiciones: {
       1: { opcion: "B", fuente: "Programa Sumar 2023", fecha: "2023" },
       2: { opcion: "B", fuente: "Ministerio de Trabajo", fecha: "2026" },
@@ -291,7 +291,7 @@ const PARTIDOS = [
     }
   },
   {
-    id: "podemos", nombre: "Podemos", color: "#6A2E68",
+    id: "podemos", nombre: "Podemos", color: "#6A2E68", comunidades: ["todas"],
     posiciones: {
       1: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
       2: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
@@ -311,6 +311,24 @@ const PARTIDOS = [
       16: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
       17: { opcion: "A", fuente: "Impulso Ley Trans", fecha: "2023" },
       18: { opcion: "A", fuente: "Programa 2023 / Ley Solo Sí es Sí", fecha: "2023" }
+    }
+  },
+  
+  // EJEMPLO DE PARTIDO REGIONAL 1 (Solo se verá si pulsas Barcelona, Girona, Lleida o Tarragona)
+  {
+    id: "erc", nombre: "ERC", color: "#FFB232", comunidades: ["cataluna"],
+    posiciones: {
+      1: { opcion: "B", fuente: "Ley Vivienda", fecha: "2023" },
+      // ... rellena el resto de las 18 opciones de ERC para que puntúen correctamente en el test
+    }
+  },
+  
+  // EJEMPLO DE PARTIDO REGIONAL 2 (Solo se verá si pulsas A Coruña, Lugo, Ourense o Pontevedra)
+  {
+    id: "bng", nombre: "BNG", color: "#74C1ED", comunidades: ["galicia"],
+    posiciones: {
+      1: { opcion: "B", fuente: "Programa BNG", fecha: "2023" },
+      // ... rellena el resto de las 18 opciones del BNG para que puntúen correctamente en el test
     }
   }
 ];
