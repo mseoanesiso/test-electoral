@@ -19,45 +19,45 @@
   </header>
 
   <main>
-    <!-- SELECCIÓN DE PROVINCIA (DESPLEGABLES) -->
+    <!-- SELECCIÓN DE COMUNIDAD -->
     <section id="vista-mapa" class="vista">
-      <h1 style="text-align: center;">Selecciona tu Provincia</h1>
+      <h1 style="text-align: center;">Selecciona tu Comunidad Autónoma</h1>
       
       <div class="caja-concienciacion" style="margin-bottom: 24px;">
         <h3 style="margin-top: 0;">¿Cómo funcionan las elecciones? 🗳️</h3>
-        <p>En España elegimos a los 350 diputados del Congreso. Sin embargo, <strong>no votamos en una única urna nacional</strong>. El país se divide en 52 circunscripciones (las provincias).</p>
-        <p style="margin-bottom: 0;">Cuando votas, eliges a los diputados que le tocan a tu provincia. Por eso, las opciones políticas varían. Selecciona tu provincia para hacer el test con los partidos que realmente estarán en tu colegio electoral.</p>
+        <p>En España los escaños del Congreso se reparten por territorios. Las opciones políticas que encontrarás en la papeleta varían dependiendo de dónde votes.</p>
+        <p style="margin-bottom: 0;">Selecciona tu Comunidad Autónoma para hacer el test adaptado con los partidos (estatales y regionalistas) que tienen opciones reales de conseguir representación allí.</p>
       </div>
 
-      <div class="acordeon-comunidades">
-        <details class="comunidad-desplegable" style="--color-ca: #009B48;"><summary>Andalucía</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="andalucia" data-id="almeria">Almería</button><button class="btn-provincia" data-ca="andalucia" data-id="cadiz">Cádiz</button><button class="btn-provincia" data-ca="andalucia" data-id="cordoba">Córdoba</button><button class="btn-provincia" data-ca="andalucia" data-id="granada">Granada</button><button class="btn-provincia" data-ca="andalucia" data-id="huelva">Huelva</button><button class="btn-provincia" data-ca="andalucia" data-id="jaen">Jaén</button><button class="btn-provincia" data-ca="andalucia" data-id="malaga">Málaga</button><button class="btn-provincia" data-ca="andalucia" data-id="sevilla">Sevilla</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #E32726;"><summary>Aragón</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="aragon" data-id="huesca">Huesca</button><button class="btn-provincia" data-ca="aragon" data-id="teruel">Teruel</button><button class="btn-provincia" data-ca="aragon" data-id="zaragoza">Zaragoza</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #005CB8;"><summary>Asturias</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="asturias" data-id="asturias">Asturias</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #8C3F8F;"><summary>Islas Baleares</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="baleares" data-id="baleares">Islas Baleares</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #FFC400;"><summary>Canarias</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="canarias" data-id="laspalmas">Las Palmas</button><button class="btn-provincia" data-ca="canarias" data-id="tenerife">Santa Cruz de Tenerife</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #C7243A;"><summary>Cantabria</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="cantabria" data-id="cantabria">Cantabria</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #8B1C31;"><summary>Castilla-La Mancha</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="clm" data-id="albacete">Albacete</button><button class="btn-provincia" data-ca="clm" data-id="ciudadreal">Ciudad Real</button><button class="btn-provincia" data-ca="clm" data-id="cuenca">Cuenca</button><button class="btn-provincia" data-ca="clm" data-id="guadalajara">Guadalajara</button><button class="btn-provincia" data-ca="clm" data-id="toledo">Toledo</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #AD1A28;"><summary>Castilla y León</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="cyl" data-id="avila">Ávila</button><button class="btn-provincia" data-ca="cyl" data-id="burgos">Burgos</button><button class="btn-provincia" data-ca="cyl" data-id="leon">León</button><button class="btn-provincia" data-ca="cyl" data-id="palencia">Palencia</button><button class="btn-provincia" data-ca="cyl" data-id="salamanca">Salamanca</button><button class="btn-provincia" data-ca="cyl" data-id="segovia">Segovia</button><button class="btn-provincia" data-ca="cyl" data-id="soria">Soria</button><button class="btn-provincia" data-ca="cyl" data-id="valladolid">Valladolid</button><button class="btn-provincia" data-ca="cyl" data-id="zamora">Zamora</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #F4B32A;"><summary>Cataluña</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="cataluna" data-id="barcelona">Barcelona</button><button class="btn-provincia" data-ca="cataluna" data-id="girona">Girona</button><button class="btn-provincia" data-ca="cataluna" data-id="lleida">Lleida</button><button class="btn-provincia" data-ca="cataluna" data-id="tarragona">Tarragona</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #F08B22;"><summary>Comunidad Valenciana</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="valencia" data-id="alicante">Alicante</button><button class="btn-provincia" data-ca="valencia" data-id="castellon">Castellón</button><button class="btn-provincia" data-ca="valencia" data-id="valenciaprov">Valencia</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #00A36C;"><summary>Extremadura</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="extremadura" data-id="badajoz">Badajoz</button><button class="btn-provincia" data-ca="extremadura" data-id="caceres">Cáceres</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #74C1ED;"><summary>Galicia</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="galicia" data-id="acoruna">A Coruña</button><button class="btn-provincia" data-ca="galicia" data-id="lugo">Lugo</button><button class="btn-provincia" data-ca="galicia" data-id="ourense">Ourense</button><button class="btn-provincia" data-ca="galicia" data-id="pontevedra">Pontevedra</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #CE1126;"><summary>Comunidad de Madrid</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="madrid" data-id="madrid">Madrid</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #A20E36;"><summary>Región de Murcia</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="murcia" data-id="murcia">Murcia</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #DE2B27;"><summary>Navarra</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="navarra" data-id="navarra">Navarra</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #008000;"><summary>País Vasco / Euskadi</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="paisvasco" data-id="alava">Álava</button><button class="btn-provincia" data-ca="paisvasco" data-id="bizkaia">Bizkaia</button><button class="btn-provincia" data-ca="paisvasco" data-id="gipuzkoa">Gipuzkoa</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #DF2027;"><summary>La Rioja</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="larioja" data-id="larioja">La Rioja</button></div></details>
-        <details class="comunidad-desplegable" style="--color-ca: #5c6578;"><summary>Ciudades Autónomas</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="ceuta" data-id="ceuta">Ceuta</button><button class="btn-provincia" data-ca="melilla" data-id="melilla">Melilla</button></div></details>
+      <div class="grid-comunidades">
+        <button class="btn-comunidad" style="--color-ca: #009B48;" data-id="andalucia">Andalucía</button>
+        <button class="btn-comunidad" style="--color-ca: #E32726;" data-id="aragon">Aragón</button>
+        <button class="btn-comunidad" style="--color-ca: #005CB8;" data-id="asturias">Asturias</button>
+        <button class="btn-comunidad" style="--color-ca: #8C3F8F;" data-id="baleares">Islas Baleares</button>
+        <button class="btn-comunidad" style="--color-ca: #FFC400;" data-id="canarias">Canarias</button>
+        <button class="btn-comunidad" style="--color-ca: #C7243A;" data-id="cantabria">Cantabria</button>
+        <button class="btn-comunidad" style="--color-ca: #8B1C31;" data-id="clm">Castilla-La Mancha</button>
+        <button class="btn-comunidad" style="--color-ca: #AD1A28;" data-id="cyl">Castilla y León</button>
+        <button class="btn-comunidad" style="--color-ca: #F4B32A;" data-id="cataluna">Cataluña</button>
+        <button class="btn-comunidad" style="--color-ca: #F08B22;" data-id="valencia">Comunidad Valenciana</button>
+        <button class="btn-comunidad" style="--color-ca: #00A36C;" data-id="extremadura">Extremadura</button>
+        <button class="btn-comunidad" style="--color-ca: #74C1ED;" data-id="galicia">Galicia</button>
+        <button class="btn-comunidad" style="--color-ca: #CE1126;" data-id="madrid">Comunidad de Madrid</button>
+        <button class="btn-comunidad" style="--color-ca: #A20E36;" data-id="murcia">Región de Murcia</button>
+        <button class="btn-comunidad" style="--color-ca: #DE2B27;" data-id="navarra">Navarra</button>
+        <button class="btn-comunidad" style="--color-ca: #008000;" data-id="paisvasco">País Vasco / Euskadi</button>
+        <button class="btn-comunidad" style="--color-ca: #DF2027;" data-id="larioja">La Rioja</button>
+        <button class="btn-comunidad" style="--color-ca: #5c6578;" data-id="ceutamelilla">Ceuta y Melilla</button>
       </div>
     </section>
 
-    <!-- INICIO (Oculto hasta elegir provincia) -->
+    <!-- INICIO -->
     <section id="vista-inicio" class="vista" hidden>
       <h1>¿Con qué propuestas coincides más?</h1>
       <p class="sub" id="sub-eleccion"></p>
       
-      <!-- BOTÓN PARA VOLVER A CAMBIAR LA PROVINCIA -->
-      <button id="btn-cambiar-prov" class="enlace text-suave" style="font-size: 14px; margin-top: -10px; margin-bottom: 15px; display: block;">← Cambiar de provincia</button>
+      <!-- BOTÓN PARA VOLVER A CAMBIAR -->
+      <button id="btn-cambiar-prov" class="enlace text-suave" style="font-size: 14px; margin-top: -10px; margin-bottom: 15px; display: block;">← Cambiar de comunidad</button>
 
       <div class="caja-concienciacion">
         <h3>Tu voto es tu voz 🗳️</h3>
@@ -66,7 +66,7 @@
       </div>
 
       <div class="caja-partidos">
-        <strong>Partidos en tu circunscripción:</strong> <span id="lista-partidos-texto">Calculando...</span><br>
+        <strong>Partidos en tu comunidad:</strong> <span id="lista-partidos-texto">Calculando...</span><br>
         <span class="nota"><em>Nota:</em> Las propuestas aparecen sin nombre durante el test para evitar que votes por simpatía a unas siglas; descubrirás a quién pertenecen al final.</span>
       </div>
 
@@ -119,7 +119,6 @@
       <h1>Tus resultados</h1>
       <p class="nota" id="nota-resultados"></p>
       
-      <!-- NUEVO AVISO DE CONCIENCIACIÓN FINAL -->
       <div class="caja-concienciacion" style="background: var(--fondo); border-color: var(--borde); margin-bottom: 24px; padding: 16px;">
         <h3 style="font-size: 1rem; margin-bottom: 8px;">ℹ️ Tu voto, tu decisión</h3>
         <p style="font-size: 0.9rem; margin-top: 0;">Este test es solo una herramienta orientativa para ayudarte a ordenar tus prioridades. <strong>El resultado no debe ser tu decisión final de voto.</strong> Te animamos a informarte por tu cuenta, leer los programas electorales y contrastar información para tener una visión completa.</p>
