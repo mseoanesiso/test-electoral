@@ -398,15 +398,25 @@ if (typeof document !== "undefined") {
     if ($("btn-cambios")) $("btn-cambios").onclick = () => { pintarCambios(); irA("cambios"); };
     if ($("btn-volver-cambios")) $("btn-volver-cambios").onclick = () => mostrar(vistaAnterior);
 
-// --------- EVENTOS DEL MAPA ---------
-    document.querySelectorAll(".baldosa").forEach(btn => {
-      btn.onclick = (e) => {
-        window.comunidadSeleccionada = e.target.dataset.id; // Guardamos la CA
-        const nombreCA = e.target.textContent;
+// --------- EVENTOS DEL MAPA INTERACTIVO ---------
+    document.querySelectorAll(".comunidad").forEach(elemento => {
+      elemento.onclick = (e) => {
+        // Obtenemos la comunidad desde el 'data-id' o desde el padre 'g' en Canarias/Ceuta/Melilla
+        const caId = elemento.dataset.id || elemento.getAttribute("data-id");
+        window.comunidadSeleccionada = caId;
+        
+        // Obtenemos el nombre visual
+        let nombreCA = elemento.querySelector("text") ? elemento.querySelector("text").textContent : elemento.textContent.trim();
+        if (!nombreCA) {
+          // Fallback para los path simples, buscamos el text hermano que tenga las coordenadas en el mapa
+          const svg = elemento.closest("svg");
+          const textElement = Array.from(svg.querySelectorAll("text")).find(t => t.textContent.toLowerCase() === caId || (caId === "paisvasco" && t.textContent === "Euskadi") || (caId === "cyl" && t.textContent.includes("León")) || (caId === "valencia" && t.textContent.includes("Valenciana")) || (caId === "murcia" && t.textContent.includes("Murcia")));
+          nombreCA = textElement ? textElement.textContent : caId;
+        }
         
         // Personalizamos la pantalla de inicio con la comunidad elegida
         if ($("sub-eleccion")) {
-          $("sub-eleccion").innerHTML = `${ELECCIONES.nombre}<br><strong style="color:var(--acento)">📍 Test adaptado para ${nombreCA}</strong>`;
+          $("sub-eleccion").innerHTML = `${ELECCIONES.nombre}<br><span style="display:inline-block; margin-top:6px; background:var(--acento-secundario); color:var(--acento-oscuro); padding:4px 12px; border-radius:99px; font-weight:700; font-size:14px;">📍 Test adaptado para ${nombreCA}</span>`;
         }
         mostrar("inicio");
       };
