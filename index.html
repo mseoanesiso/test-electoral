@@ -26,7 +26,7 @@
   </header>
 
   <main>
-    <!-- MAPA DE COMUNIDADES -->
+    <!-- MAPA DE COMUNIDADES (INTERACTIVO REAL) -->
     <section id="vista-mapa" class="vista">
       <h1 style="text-align: center;">Selecciona tu Comunidad</h1>
       
@@ -36,30 +36,92 @@
         <p style="margin-bottom: 0;">Cuando tú votas, eliges a los diputados que le tocan a tu provincia. Por eso, las opciones políticas varían. Selecciona tu Comunidad Autónoma para hacer el test con los partidos que realmente estarán en tu colegio electoral.</p>
       </div>
 
-      <div class="mapa-baldosas">
-        <button class="baldosa" style="grid-area: GAL;" data-id="galicia">Galicia</button>
-        <button class="baldosa" style="grid-area: AST;" data-id="asturias">Asturias</button>
-        <button class="baldosa" style="grid-area: CNT;" data-id="cantabria">Cantabria</button>
-        <button class="baldosa" style="grid-area: PVS;" data-id="paisvasco">Euskadi</button>
-        <button class="baldosa" style="grid-area: NAV;" data-id="navarra">Navarra</button>
-        
-        <button class="baldosa" style="grid-area: CYL;" data-id="cyl">Castilla y León</button>
-        <button class="baldosa" style="grid-area: LRI;" data-id="larioja">La Rioja</button>
-        <button class="baldosa" style="grid-area: ARA;" data-id="aragon">Aragón</button>
-        <button class="baldosa" style="grid-area: CAT;" data-id="cataluna">Cataluña</button>
-        
-        <button class="baldosa" style="grid-area: MAD;" data-id="madrid">Madrid</button>
-        <button class="baldosa" style="grid-area: CLM;" data-id="clm">C. La Mancha</button>
-        <button class="baldosa" style="grid-area: VAL;" data-id="valencia">C. Valenciana</button>
-        <button class="baldosa" style="grid-area: BAL;" data-id="baleares">Baleares</button>
-        
-        <button class="baldosa" style="grid-area: EXT;" data-id="extremadura">Extremadura</button>
-        <button class="baldosa" style="grid-area: AND;" data-id="andalucia">Andalucía</button>
-        <button class="baldosa" style="grid-area: MUR;" data-id="murcia">R. Murcia</button>
-        
-        <button class="baldosa" style="grid-area: CAN;" data-id="canarias">Canarias</button>
-        <button class="baldosa" style="grid-area: CEU;" data-id="ceuta">Ceuta</button>
-        <button class="baldosa" style="grid-area: MEL;" data-id="melilla">Melilla</button>
+      <div class="contenedor-mapa">
+        <!-- Mapa de España en SVG -->
+        <svg id="mapa-svg" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+          <!-- Galicia -->
+          <path class="comunidad" data-id="galicia" d="M190,120 L210,125 L230,110 L250,130 L245,170 L210,185 L180,180 L165,160 L160,125 Z" />
+          <text x="195" y="150" class="map-label">Galicia</text>
+
+          <!-- Asturias -->
+          <path class="comunidad" data-id="asturias" d="M250,130 L295,125 L330,130 L325,150 L270,165 L245,170 Z" />
+          <text x="275" y="148" class="map-label">Asturias</text>
+
+          <!-- Cantabria -->
+          <path class="comunidad" data-id="cantabria" d="M330,130 L380,135 L385,155 L350,165 L325,150 Z" />
+          <text x="340" y="150" class="map-label">Cantabria</text>
+
+          <!-- País Vasco -->
+          <path class="comunidad" data-id="paisvasco" d="M380,135 L440,140 L445,165 L395,170 L385,155 Z" />
+          <text x="400" y="155" class="map-label">Euskadi</text>
+
+          <!-- Navarra -->
+          <path class="comunidad" data-id="navarra" d="M440,140 L490,145 L495,185 L445,185 L445,165 Z" />
+          <text x="450" y="170" class="map-label">Navarra</text>
+
+          <!-- La Rioja -->
+          <path class="comunidad" data-id="larioja" d="M395,170 L445,165 L445,185 L415,210 L380,185 Z" />
+          <text x="400" y="195" class="map-label">La Rioja</text>
+
+          <!-- Aragón -->
+          <path class="comunidad" data-id="aragon" d="M490,145 L580,165 L575,260 L540,290 L480,250 L475,225 L495,185 Z" />
+          <text x="515" y="215" class="map-label">Aragón</text>
+
+          <!-- Cataluña -->
+          <path class="comunidad" data-id="cataluna" d="M580,165 L675,180 L700,205 L690,240 L620,290 L585,250 L575,260 Z" />
+          <text x="620" y="225" class="map-label">Cataluña</text>
+
+          <!-- Castilla y León -->
+          <path class="comunidad" data-id="cyl" d="M245,170 L270,165 L325,150 L350,165 L385,155 L395,170 L380,185 L415,210 L475,225 L480,250 L415,310 L360,305 L290,295 L260,265 L275,210 L245,195 Z" />
+          <text x="310" y="240" class="map-label">Castilla y León</text>
+
+          <!-- Madrid -->
+          <path class="comunidad" data-id="madrid" d="M415,310 L460,295 L460,340 L410,345 Z" />
+          <text x="422" y="328" class="map-label">Madrid</text>
+
+          <!-- Castilla-La Mancha -->
+          <path class="comunidad" data-id="clm" d="M360,305 L415,310 L460,295 L480,250 L540,290 L525,350 L550,380 L520,440 L460,420 L395,410 L355,395 L345,345 Z" fill="#ebc2eb" />
+          <text x="405" y="380" class="map-label">Castilla-La Mancha</text>
+
+          <!-- Comunidad Valenciana -->
+          <path class="comunidad" data-id="valencia" d="M540,290 L575,260 L585,250 L620,290 L600,325 L610,410 L560,440 L540,430 L520,440 L550,380 L525,350 Z" />
+          <text x="560" y="360" class="map-label">C. Valenciana</text>
+
+          <!-- Extremadura -->
+          <path class="comunidad" data-id="extremadura" d="M260,265 L290,295 L360,305 L345,345 L355,395 L275,445 L255,390 L245,360 L240,320 Z" />
+          <text x="280" y="360" class="map-label">Extremadura</text>
+
+          <!-- Andalucía -->
+          <path class="comunidad" data-id="andalucia" d="M275,445 L355,395 L395,410 L460,420 L520,440 L515,480 L475,510 L480,545 L415,550 L340,540 L260,520 L245,490 Z" />
+          <text x="360" y="485" class="map-label">Andalucía</text>
+
+          <!-- Región de Murcia -->
+          <path class="comunidad" data-id="murcia" d="M520,440 L540,430 L560,440 L550,490 L495,495 L515,480 Z" />
+          <text x="515" y="470" class="map-label">R. Murcia</text>
+
+          <!-- Islas Baleares -->
+          <path class="comunidad" data-id="baleares" d="M685,350 L715,355 L710,375 L675,370 Z M655,385 L670,390 L665,400 L650,395 Z" />
+          <text x="680" y="385" class="map-label">Baleares</text>
+
+          <!-- Islas Canarias (Recuadro abajo a la izquierda) -->
+          <g data-id="canarias" class="comunidad">
+            <!-- Línea de recuadro -->
+            <rect x="50" y="470" width="180" height="120" fill="none" stroke="var(--borde)" stroke-width="1" stroke-dasharray="3" />
+            <!-- Islas canarias -->
+            <path d="M70,510 L85,505 L95,515 L80,525 Z M100,535 L120,530 L115,545 Z M130,525 L155,515 L160,530 L140,540 Z M170,525 L180,520 L195,530 L175,540 Z" />
+            <text x="110" y="575" class="map-label" style="font-size:16px;">Canarias</text>
+          </g>
+
+          <!-- Ceuta y Melilla (Cuadrados abajo centro) -->
+          <g data-id="ceuta" class="comunidad">
+            <rect x="360" y="580" width="70" height="35" rx="5" />
+            <text x="395" y="602" class="map-label" style="font-size:14px;">Ceuta</text>
+          </g>
+          <g data-id="melilla" class="comunidad">
+            <rect x="450" y="580" width="70" height="35" rx="5" />
+            <text x="485" y="602" class="map-label" style="font-size:14px;">Melilla</text>
+          </g>
+        </svg>
       </div>
     </section>
 
