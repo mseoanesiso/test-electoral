@@ -116,7 +116,16 @@ h2.pregunta { font-size: 1.3rem; line-height: 1.4; margin: 6px 0 22px; }
 
 /* Acordeón de Provincias */
 .acordeon-comunidades { display: flex; flex-direction: column; gap: 12px; }
-.comunidad-desplegable { background: var(--tarjeta); border: 2px solid var(--borde); border-left: 6px solid var(--color-ca, var(--acento)); border-radius: 14px; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.comunidad-desplegable { 
+  background: var(--tarjeta); 
+  border: 2px solid var(--borde); 
+  border-left-width: 8px; 
+  border-left-style: solid;
+  border-left-color: var(--color-ca, var(--acento)); 
+  border-radius: 14px; 
+  overflow: hidden; 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+}
 .comunidad-desplegable:hover { border-color: var(--acento); box-shadow: 0 4px 12px rgba(31, 79, 216, 0.08); }
 .comunidad-desplegable[open] { border-color: var(--acento); box-shadow: 0 6px 16px rgba(31, 79, 216, 0.15); }
 .comunidad-desplegable summary { padding: 16px 20px; font-weight: 700; font-size: 16px; cursor: pointer; color: var(--texto); background: var(--tarjeta); user-select: none; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
