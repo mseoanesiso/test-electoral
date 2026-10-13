@@ -5,9 +5,8 @@
 const ELECCIONES = {
   nombre: "Elecciones generales de España",
   fecha: "29 de noviembre de 2026",
-  actualizacion: "11/10/2026",
-  datosDeEjemplo: false,
-  datosVerificados: false // pasar a true cuando todas las posiciones tengan fuente con enlace
+  actualizacion: "13/10/2026",
+  datosDeEjemplo: false
 };
 
 const PREGUNTAS = [
@@ -109,17 +108,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    id: 10, tema: "Feminismo e Igualdad", pesoBase: 2,
-    texto: "¿Cuál debe ser el enfoque de las políticas de igualdad y violencia de género?",
-    contexto: "Existen visiones enfrentadas sobre si las leyes actuales protegen adecuadamente a mujeres y colectivos LGTBI o si, por el contrario, discriminan a los hombres y deben ser derogadas.",
-    opciones: [
-      { id: "A", texto: "Derogar la ley de violencia de género (hablando de 'violencia intrafamiliar') y suprimir el Ministerio de Igualdad." },
-      { id: "B", texto: "Mantener el pacto de Estado contra la violencia de género pero retocando leyes recientes (como la Ley Trans)." },
-      { id: "C", texto: "Profundizar las políticas y leyes feministas actuales, garantizando todos los derechos LGTBI y reproductivos." }
-    ]
-  },
-  {
-    id: 11, tema: "Okupación y Seguridad", pesoBase: 2,
+    id: 10, tema: "Okupación y Seguridad", pesoBase: 2,
     texto: "¿Cómo debe tratarse el problema de la okupación de viviendas?",
     contexto: "El enfoque varía entre quienes lo ven principalmente como un problema grave de seguridad (exigiendo penas de cárcel y desalojos inmediatos) y quienes lo enmarcan en la crisis habitacional y la pobreza.",
     opciones: [
@@ -129,7 +118,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    id: 12, tema: "Modelo de Jefatura del Estado", pesoBase: 1,
+    id: 11, tema: "Modelo de Jefatura del Estado", pesoBase: 1,
     texto: "¿Qué modelo de Jefatura del Estado prefieres?",
     contexto: "El histórico debate sobre si el Jefe del Estado debe ser el Rey (cargo hereditario) o un Presidente de la República (elegido democráticamente).",
     opciones: [
@@ -138,7 +127,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    id: 13, tema: "Política Exterior", pesoBase: 1,
+    id: 12, tema: "Política Exterior", pesoBase: 1,
     texto: "¿Cuál debería ser la posición internacional de España en conflictos globales?",
     contexto: "La postura internacional varía entre el alineamiento estricto con la OTAN y EEUU, o posiciones más independientes centradas en vías diplomáticas, derechos humanos y freno a la venta de armas.",
     opciones: [
@@ -148,7 +137,7 @@ const PREGUNTAS = [
     ]
   },
   {
-    id: 14, tema: "Conciliación y Natalidad", pesoBase: 2,
+    id: 13, tema: "Conciliación y Natalidad", pesoBase: 2,
     texto: "¿Cómo debería apoyarse a las familias y la natalidad?",
     contexto: "Ante la baja natalidad, las soluciones oscilan entre dar cheques de dinero directo a las familias numerosas o crear servicios públicos universales (como guarderías gratuitas) para facilitar tener hijos.",
     opciones: [
@@ -157,13 +146,53 @@ const PREGUNTAS = [
     ]
   },
   {
-    id: 15, tema: "Poder Judicial", pesoBase: 1,
+    id: 14, tema: "Poder Judicial", pesoBase: 1,
     texto: "¿Cómo deberían elegirse los vocales del Consejo General del Poder Judicial (CGPJ)?",
     contexto: "El órgano que gobierna a los jueces lo elige actualmente el Congreso y el Senado. Algunos partidos piden que lo elijan los propios jueces para evitar control político, otros prefieren mantener la elección democrática.",
     opciones: [
       { id: "A", texto: "Que la mayoría de los vocales sean elegidos directamente por los propios jueces, sin intervención política." },
       { id: "B", texto: "Mantener el sistema de elección parlamentaria que requiere consensos amplios (3/5 partes de las cámaras)." },
       { id: "C", texto: "Modificar las mayorías para renovarlo sin bloqueos o democratizar el acceso a la carrera judicial." }
+    ]
+  },
+  {
+    id: 15, tema: "Aborto", pesoBase: 3,
+    texto: "¿Cómo debe regularse la interrupción voluntaria del embarazo?",
+    contexto: "El debate gira en torno a los plazos, el acceso en hospitales públicos, la objeción de conciencia de los médicos y si las menores de 16 y 17 años necesitan permiso paterno para decidir.",
+    opciones: [
+      { id: "A", texto: "Garantizar el aborto en la sanidad pública y permitir que las menores decidan sin permiso paterno." },
+      { id: "B", texto: "Mantener el derecho al aborto, pero exigiendo consentimiento paterno para menores y protegiendo la objeción médica." },
+      { id: "C", texto: "Defender la vida desde la concepción, derogar la ley actual y ofrecer alternativas y ayudas a las mujeres embarazadas." }
+    ]
+  },
+  {
+    id: 16, tema: "Matrimonio Igualitario", pesoBase: 2,
+    texto: "¿Qué estatus legal deben tener las parejas del mismo sexo?",
+    contexto: "Aunque el matrimonio igualitario se aprobó en 2005, el debate persiste sobre si debe mantenerse con esa denominación (y derechos de adopción) o sustituirse por uniones civiles.",
+    opciones: [
+      { id: "A", texto: "Apoyo total al matrimonio igualitario, promoviendo activamente la diversidad en la educación y las instituciones." },
+      { id: "B", texto: "Respetar la ley actual de matrimonio igualitario, pero evitando el adoctrinamiento ideológico en los colegios." },
+      { id: "C", texto: "Sustituir el término matrimonio por uniones civiles para parejas del mismo sexo y proteger la familia tradicional." }
+    ]
+  },
+  {
+    id: 17, tema: "Ley Trans", pesoBase: 3,
+    texto: "¿Cómo debe enfocarse legalmente la transexualidad y el cambio de género?",
+    contexto: "La actual ley permite la 'autodeterminación de género' (cambiar el sexo en el DNI sin informes médicos). El debate está en si esto es un avance en derechos o si desprotege a mujeres y menores.",
+    opciones: [
+      { id: "A", texto: "Mantener la autodeterminación de género y garantizar el acceso a tratamientos afirmativos desde la sanidad pública." },
+      { id: "B", texto: "Reformar la ley para exigir informes médicos o psicológicos, especialmente para proteger a los menores de edad." },
+      { id: "C", texto: "Derogar la Ley Trans, eliminar la autodeterminación de género y prohibir intervenciones médicas de transición en menores." }
+    ]
+  },
+  {
+    id: 18, tema: "Violencia de Género", pesoBase: 3,
+    texto: "¿Qué enfoque penal requiere la violencia contra las mujeres?",
+    contexto: "Se discute si la violencia machista requiere leyes y juzgados específicos (por ser un problema estructural) o si las leyes actuales son asimétricas y deberían tratar toda violencia doméstica por igual.",
+    opciones: [
+      { id: "A", texto: "Ampliar la Ley de Violencia de Género y aumentar los recursos públicos para proteger a las víctimas." },
+      { id: "B", texto: "Mantener el Pacto de Estado y la ley actual, centrándose en la protección penal sin polarización ideológica." },
+      { id: "C", texto: "Derogar la ley actual (por ser asimétrica) y sustituirla por una Ley de Violencia Intrafamiliar que trate a todos igual." }
     ]
   }
 ];
@@ -181,12 +210,15 @@ const PARTIDOS = [
       7: { opcion: "C", fuente: "LOMLOE", fecha: "2020" },
       8: { opcion: "A", fuente: "Reforma de las Pensiones", fecha: "2023" },
       9: { opcion: "B", fuente: "Ley de Cambio Climático", fecha: "2021" },
-      10: { opcion: "C", fuente: "Programa 2023", fecha: "2023" },
-      11: { opcion: "B", fuente: "Ley de Enjuiciamiento Civil", fecha: "2023" },
-      12: { opcion: "A", fuente: "Posición histórica", fecha: "2026" },
-      13: { opcion: "B", fuente: "Declaraciones de presidencia", fecha: "2026" },
-      14: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
-      15: { opcion: "B", fuente: "Acuerdo renovación CGPJ", fecha: "2024" }
+      10: { opcion: "B", fuente: "Ley de Enjuiciamiento Civil", fecha: "2023" },
+      11: { opcion: "A", fuente: "Posición histórica", fecha: "2026" },
+      12: { opcion: "B", fuente: "Declaraciones de presidencia", fecha: "2026" },
+      13: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
+      14: { opcion: "B", fuente: "Acuerdo renovación CGPJ", fecha: "2024" },
+      15: { opcion: "A", fuente: "Reforma Ley del Aborto", fecha: "2023" },
+      16: { opcion: "A", fuente: "Posición histórica", fecha: "2005-2026" },
+      17: { opcion: "A", fuente: "Aprobación Ley Trans", fecha: "2023" },
+      18: { opcion: "A", fuente: "Pacto de Estado / Renovación", fecha: "2023" }
     }
   },
   {
@@ -201,12 +233,15 @@ const PARTIDOS = [
       7: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
       8: { opcion: "B", fuente: "Votaciones Congreso", fecha: "2023" },
       9: { opcion: "C", fuente: "Programa 2023", fecha: "2023" },
-      10: { opcion: "B", fuente: "Declaraciones públicas", fecha: "2026" },
-      11: { opcion: "A", fuente: "Propuesta Ley Antiokupas", fecha: "2024" },
-      12: { opcion: "A", fuente: "Posición histórica", fecha: "2026" },
-      13: { opcion: "A", fuente: "Votaciones Congreso", fecha: "2026" },
-      14: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
-      15: { opcion: "A", fuente: "Programa 2023 / Reclamaciones", fecha: "2023" }
+      10: { opcion: "A", fuente: "Propuesta Ley Antiokupas", fecha: "2024" },
+      11: { opcion: "A", fuente: "Posición histórica", fecha: "2026" },
+      12: { opcion: "A", fuente: "Votaciones Congreso", fecha: "2026" },
+      13: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
+      14: { opcion: "A", fuente: "Programa 2023 / Reclamaciones", fecha: "2023" },
+      15: { opcion: "B", fuente: "Votaciones y recursos TC", fecha: "2023" },
+      16: { opcion: "B", fuente: "Declaraciones líderes", fecha: "2024" },
+      17: { opcion: "B", fuente: "Programa Electoral", fecha: "2023" },
+      18: { opcion: "B", fuente: "Pacto de Estado VDG", fecha: "2017-2024" }
     }
   },
   {
@@ -222,11 +257,14 @@ const PARTIDOS = [
       8: { opcion: "C", fuente: "Programa Económico", fecha: "2023" },
       9: { opcion: "D", fuente: "Agenda España", fecha: "2023" },
       10: { opcion: "A", fuente: "Agenda España", fecha: "2023" },
-      11: { opcion: "A", fuente: "Agenda España", fecha: "2023" },
-      12: { opcion: "A", fuente: "Posición pública", fecha: "2026" },
-      13: { opcion: "A", fuente: "Declaraciones líderes", fecha: "2026" },
-      14: { opcion: "A", fuente: "Agenda España", fecha: "2023" },
-      15: { opcion: "A", fuente: "Votaciones Congreso", fecha: "2024" }
+      11: { opcion: "A", fuente: "Posición pública", fecha: "2026" },
+      12: { opcion: "A", fuente: "Declaraciones líderes", fecha: "2026" },
+      13: { opcion: "A", fuente: "Agenda España", fecha: "2023" },
+      14: { opcion: "A", fuente: "Votaciones Congreso", fecha: "2024" },
+      15: { opcion: "C", fuente: "Agenda España", fecha: "2023" },
+      16: { opcion: "C", fuente: "Agenda España / Declaraciones", fecha: "2023" },
+      17: { opcion: "C", fuente: "Agenda España", fecha: "2023" },
+      18: { opcion: "C", fuente: "Agenda España", fecha: "2023" }
     }
   },
   {
@@ -241,12 +279,15 @@ const PARTIDOS = [
       7: { opcion: "D", fuente: "Programa Sumar 2023", fecha: "2023" },
       8: { opcion: "A", fuente: "Acuerdos de coalición", fecha: "2023" },
       9: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
-      10: { opcion: "C", fuente: "Programa Sumar 2023", fecha: "2023" },
-      11: { opcion: "C", fuente: "Declaraciones públicas", fecha: "2024" },
-      12: { opcion: "B", fuente: "Posición histórica", fecha: "2026" },
-      13: { opcion: "C", fuente: "Votaciones y declaraciones", fecha: "2026" },
-      14: { opcion: "B", fuente: "Ministerio de Derechos Sociales", fecha: "2023" },
-      15: { opcion: "C", fuente: "Propuestas de reforma", fecha: "2023" }
+      10: { opcion: "C", fuente: "Declaraciones públicas", fecha: "2024" },
+      11: { opcion: "B", fuente: "Posición histórica", fecha: "2026" },
+      12: { opcion: "C", fuente: "Votaciones y declaraciones", fecha: "2026" },
+      13: { opcion: "B", fuente: "Ministerio de Derechos Sociales", fecha: "2023" },
+      14: { opcion: "C", fuente: "Propuestas de reforma", fecha: "2023" },
+      15: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
+      16: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
+      17: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
+      18: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" }
     }
   },
   {
@@ -261,21 +302,15 @@ const PARTIDOS = [
       7: { opcion: "D", fuente: "Programa 2023", fecha: "2023" },
       8: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
       9: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
-      10: { opcion: "C", fuente: "Programa 2023", fecha: "2023" },
-      11: { opcion: "C", fuente: "Declaraciones líderes", fecha: "2024" },
-      12: { opcion: "B", fuente: "Posición histórica", fecha: "2026" },
-      13: { opcion: "C", fuente: "Posición pública", fecha: "2026" },
-      14: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
-      15: { opcion: "C", fuente: "Declaraciones públicas", fecha: "2023" }
+      10: { opcion: "C", fuente: "Declaraciones líderes", fecha: "2024" },
+      11: { opcion: "B", fuente: "Posición histórica", fecha: "2026" },
+      12: { opcion: "C", fuente: "Posición pública", fecha: "2026" },
+      13: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
+      14: { opcion: "C", fuente: "Declaraciones públicas", fecha: "2023" },
+      15: { opcion: "A", fuente: "Programa 2023 / Ministerio Igualdad", fecha: "2023" },
+      16: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
+      17: { opcion: "A", fuente: "Impulso Ley Trans", fecha: "2023" },
+      18: { opcion: "A", fuente: "Programa 2023 / Ley Solo Sí es Sí", fecha: "2023" }
     }
   }
-];
-
-// ============================================================
-// REGISTRO DE CAMBIOS (el más reciente arriba). Se muestra en la web.
-// ============================================================
-const CAMBIOS = [
-  { fecha: "12/10/2026", texto: "Corregidos varios fallos: la fecha de actualización aparecía vacía, el botón de copiar no funcionaba y marcar «tema clave» sin elegir opción alteraba los porcentajes." },
-  { fecha: "12/10/2026", texto: "Añadidos el aviso de versión beta, el recuento «basado en X de Y preguntas», el soporte para fuentes con enlace y este registro de cambios." },
-  { fecha: "11/10/2026", texto: "Primera versión del test: 15 preguntas y 5 partidos (PSOE, PP, Vox, Frente Amplio y Podemos)." }
 ];
