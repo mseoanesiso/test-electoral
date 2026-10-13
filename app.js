@@ -1,4 +1,4 @@
-// Lógica del test (Límites, Navegación, Provincias y Compartir)
+// Lógica del test (Límites, Navegación, Comunidades y Compartir)
 const MAX_IMP = 3;
 const MAX_VETOS = 2;
 
@@ -19,7 +19,7 @@ function calcularAfinidad(partido, respuestas, preguntas) {
 
     let puntos = 0;
     if (r.inaceptable === pos.opcion) {
-      puntos = -pesoTotalPregunta * 1.5; // Veto penaliza
+      puntos = -pesoTotalPregunta * 1.5;
     } else if (r.principal === pos.opcion) {
       puntos = 1 * pesoTotalPregunta;
     } else if (r.secundaria === pos.opcion) {
@@ -60,7 +60,6 @@ if (typeof document !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     const $ = (id) => document.getElementById(id);
     
-    // Vista "mapa" al principio
     const vistas = ["mapa", "inicio", "pregunta", "resultados", "metodologia", "guia"]; 
     let indice = 0, respuestas = {}, vistaAnterior = "mapa";
 
@@ -116,7 +115,6 @@ if (typeof document !== "undefined") {
       if ($("tema")) $("tema").textContent = q.tema;
       if ($("texto-pregunta")) $("texto-pregunta").textContent = q.texto;
       
-      // Mostrar contexto informativo
       if ($("caja-contexto")) {
         if (q.contexto) {
           $("caja-contexto").innerHTML = `
@@ -229,6 +227,7 @@ if (typeof document !== "undefined") {
     function pintarResultados() {
       const partidosAUsar = window.partidosActivos || PARTIDOS;
       const res = partidosAUsar.map((p) => ({ p: p, r: calcularAfinidad(p, respuestas, PREGUNTAS) })).filter((x) => x.r.total !== null).sort((a, b) => b.r.total - a.r.total);
+      
       const cont = $("lista-resultados");
       if (!cont) return;
       cont.innerHTML = "";
@@ -280,7 +279,6 @@ if (typeof document !== "undefined") {
       };
     }
 
-    // NUEVO: Botón nativo para compartir en otras Apps
     if ($("btn-compartir")) {
       $("btn-compartir").addEventListener("click", () => {
         if (!window._resultado || window._resultado.length === 0) return;
@@ -303,48 +301,41 @@ if (typeof document !== "undefined") {
     if ($("btn-siguiente")) $("btn-siguiente").onclick = avanzar;
     if ($("btn-saltar")) $("btn-saltar").onclick = () => { delete respuestas[PREGUNTAS[indice].id]; avanzar(); };
     if ($("btn-atras")) $("btn-atras").onclick = () => { if (indice > 0) { indice--; pintarPregunta(); } };
-    if ($("btn-repetir")) $("btn-repetir").onclick = () => { respuestas = {}; indice = 0; mostrar("mapa"); }; // Volver a elegir provincia
+    if ($("btn-repetir")) $("btn-repetir").onclick = () => { respuestas = {}; indice = 0; mostrar("mapa"); };
     
-    // El nuevo botón para volver atrás
-    if ($("btn-cambiar-prov")) $("btn-cambiar-prov").addEventListener("click", (e) => {
-      e.preventDefault();
-      window.scrollTo(0, 0); 
-      mostrar("mapa"); 
-    });
+    if ($("btn-cambiar-prov")) {
+      $("btn-cambiar-prov").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo(0, 0); 
+        mostrar("mapa"); 
+      });
+    }
 
     if ($("btn-metodologia")) $("btn-metodologia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "metodologia") vistaAnterior = visible; mostrar("metodologia"); };
     if ($("btn-volver")) $("btn-volver").onclick = () => mostrar(vistaAnterior);
 
-    // EVENTOS PARA LA GUÍA
     if ($("btn-guia")) $("btn-guia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "guia") vistaAnterior = visible; mostrar("guia"); };
     if ($("btn-volver-guia")) $("btn-volver-guia").onclick = () => mostrar(vistaAnterior);
 
-    // EVENTOS SELECCIÓN DE PROVINCIA (DESPLEGABLES)
-    document.querySelectorAll(".btn-provincia").forEach(btn => {
+    // EVENTOS SELECCIÓN DE COMUNIDAD (LOS NUEVOS BOTONES)
+    document.querySelectorAll(".btn-comunidad").forEach(btn => {
       btn.addEventListener("click", (e) => {
-        window.provinciaSeleccionada = e.target.dataset.id;
-        window.comunidadSeleccionada = e.target.dataset.ca;
-        const nombreProvincia = e.target.textContent;
+        window.comunidadSeleccionada = e.target.dataset.id;
+        const nombreCA = e.target.textContent;
         
-        // FILTRAR PARTIDOS: Solo los que tengan "todas", coincidan con la CA o con la provincia
+        // FILTRAR PARTIDOS
         window.partidosActivos = PARTIDOS.filter(p => 
           !p.comunidades || 
           p.comunidades.includes("todas") || 
-          p.comunidades.includes(window.comunidadSeleccionada) ||
-          p.comunidades.includes(window.provinciaSeleccionada)
+          p.comunidades.includes(window.comunidadSeleccionada)
         );
         
-        // Escribir los nombres en la caja
         if ($("lista-partidos-texto")) {
           $("lista-partidos-texto").textContent = window.partidosActivos.map(p => p.nombre).join(", ");
         }
-
-        document.querySelectorAll(".comunidad-desplegable").forEach(det => {
-          det.removeAttribute("open");
-        });
         
         if ($("sub-eleccion")) {
-          $("sub-eleccion").innerHTML = `${ELECCIONES.nombre}<br><span style="display:inline-block; margin-top:6px; background:var(--acento-secundario); color:var(--acento-oscuro); padding:4px 12px; border-radius:99px; font-weight:700; font-size:14px;">📍 Circunscripción: ${nombreProvincia}</span>`;
+          $("sub-eleccion").innerHTML = `${ELECCIONES.nombre}<br><span style="display:inline-block; margin-top:6px; background:var(--acento-secundario); color:var(--acento-oscuro); padding:4px 12px; border-radius:99px; font-weight:700; font-size:14px;">📍 Comunidad: ${nombreCA}</span>`;
         }
         mostrar("inicio");
       });
@@ -358,7 +349,7 @@ if (typeof document !== "undefined") {
       $("num-preguntas").textContent = PREGUNTAS.length;
     }
     
-    // Mostramos la selección de provincias al cargar
+    // Al cargar enseñamos las comunidades
     mostrar("mapa"); 
   });
 }
