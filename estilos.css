@@ -145,6 +145,69 @@ h2.pregunta { font-size: 1.3rem; line-height: 1.4; margin: 6px 0 22px; }
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(31, 79, 216, 0.3);
 }
+/* Contenedor del Mapa interactivo real */
+.contenedor-mapa {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: visible;
+}
+#mapa-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Estilo para las comunidades individuales */
+.comunidad {
+  fill: var(--acento-secundario);
+  stroke: var(--tarjeta);
+  stroke-width: 2.5;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Colores personalizados aproximados para que parezca un mapa político vistoso */
+path[data-id="galicia"] { fill: #cbe3f5; }
+path[data-id="asturias"] { fill: #fcf5d3; }
+path[data-id="cantabria"] { fill: #e3d2eb; }
+path[data-id="paisvasco"] { fill: #d5eed1; }
+path[data-id="navarra"] { fill: #f9dcd2; }
+path[data-id="larioja"] { fill: #fbd6e5; }
+path[data-id="aragon"] { fill: #ecf3cb; }
+path[data-id="cataluna"] { fill: #fde5af; }
+path[data-id="cyl"] { fill: #edd6cb; }
+path[data-id="madrid"] { fill: #cbd3f5; }
+path[data-id="clm"] { fill: #ebc2eb; }
+path[data-id="valencia"] { fill: #fddcbd; }
+path[data-id="extremadura"] { fill: #dcdce1; }
+path[data-id="andalucia"] { fill: #c7ecc5; }
+path[data-id="murcia"] { fill: #fad9d7; }
+path[data-id="baleares"] { fill: #fbf5cd; fill-opacity: 0.9; }
+g[data-id="canarias"] path { fill: #fbf5cd; }
+g[data-id="ceuta"] rect { fill: #eedcb5; }
+g[data-id="melilla"] rect { fill: #cbd3eb; }
+
+/* Iluminación y Sombra al pasar el ratón o interactuar */
+.comunidad:hover, g.comunidad:hover path, g.comunidad:hover rect {
+  fill: var(--acento) !important;
+  stroke: #ffffff;
+  stroke-width: 3.5;
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Etiquetas del Mapa */
+.map-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  fill: var(--texto);
+  text-anchor: middle;
+  pointer-events: none; /* Permite clicar a través de las letras */
+  user-select: none;
+}
+@media (max-width: 500px) {
+  .map-label { font-size: 11.5px; } /* Ajuste de letras para móviles */
+}
 
 /* Resultados */
 .partido { border: 1px solid var(--borde); border-radius: 12px; padding: 16px; margin: 12px 0; }
