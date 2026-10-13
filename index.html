@@ -5,18 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Test de afinidad electoral · Elecciones 2026</title>
   <meta name="description" content="Responde a las preguntas y descubre con qué programas electorales coincides más. Sin partidos visibles.">
-  <meta property="og:title" content="¿Con qué propuestas coincides más? Test electoral 2026">
-  <meta property="og:description" content="15 preguntas, sin siglas a la vista y sin guardar tus respuestas. Versión beta.">
-  <meta property="og:type" content="website">
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <div class="franja-aviso">Datos actualizados a <span id="fecha-act">11/10/2026</span>. Las posturas pueden actualizarse hasta las elecciones.</div>
-
-  <div id="aviso-beta" class="aviso-beta" hidden>
-    ⚠️ <strong>Versión beta.</strong> Las posiciones de los partidos se están verificando y aún no todas llevan enlace a su fuente. No uses este resultado para decidir tu voto.
-  </div>
-
+  <div class="franja-aviso">Datos actualizados a <span id="fecha-act">13/10/2026</span>. Las posturas pueden actualizarse hasta las elecciones.</div>
+  
   <header class="cabecera">
     <a href="#" id="logo" class="logo">Test Electoral 2026</a>
     <div>
@@ -37,209 +30,47 @@
       </div>
 
       <div class="acordeon-comunidades">
-        <!-- Andalucía -->
-        <details class="comunidad-desplegable">
-          <summary>Andalucía</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="andalucia" data-id="almeria">Almería</button>
-            <button class="btn-provincia" data-ca="andalucia" data-id="cadiz">Cádiz</button>
-            <button class="btn-provincia" data-ca="andalucia" data-id="cordoba">Córdoba</button>
-            <button class="btn-provincia" data-ca="andalucia" data-id="granada">Granada</button>
-            <button class="btn-provincia" data-ca="andalucia" data-id="huelva">Huelva</button>
-            <button class="btn-provincia" data-ca="andalucia" data-id="jaen">Jaén</button>
-            <button class="btn-provincia" data-ca="andalucia" data-id="malaga">Málaga</button>
-            <button class="btn-provincia" data-ca="andalucia" data-id="sevilla">Sevilla</button>
-          </div>
-        </details>
-
-        <!-- Aragón -->
-        <details class="comunidad-desplegable">
-          <summary>Aragón</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="aragon" data-id="huesca">Huesca</button>
-            <button class="btn-provincia" data-ca="aragon" data-id="teruel">Teruel</button>
-            <button class="btn-provincia" data-ca="aragon" data-id="zaragoza">Zaragoza</button>
-          </div>
-        </details>
-
-        <!-- Asturias -->
-        <details class="comunidad-desplegable">
-          <summary>Asturias</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="asturias" data-id="asturias">Asturias (Provincia única)</button>
-          </div>
-        </details>
-
-        <!-- Baleares -->
-        <details class="comunidad-desplegable">
-          <summary>Islas Baleares</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="baleares" data-id="baleares">Islas Baleares</button>
-          </div>
-        </details>
-
-        <!-- Canarias -->
-        <details class="comunidad-desplegable">
-          <summary>Canarias</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="canarias" data-id="laspalmas">Las Palmas</button>
-            <button class="btn-provincia" data-ca="canarias" data-id="tenerife">Santa Cruz de Tenerife</button>
-          </div>
-        </details>
-
-        <!-- Cantabria -->
-        <details class="comunidad-desplegable">
-          <summary>Cantabria</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="cantabria" data-id="cantabria">Cantabria (Provincia única)</button>
-          </div>
-        </details>
-
-        <!-- Castilla-La Mancha -->
-        <details class="comunidad-desplegable">
-          <summary>Castilla-La Mancha</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="clm" data-id="albacete">Albacete</button>
-            <button class="btn-provincia" data-ca="clm" data-id="ciudadreal">Ciudad Real</button>
-            <button class="btn-provincia" data-ca="clm" data-id="cuenca">Cuenca</button>
-            <button class="btn-provincia" data-ca="clm" data-id="guadalajara">Guadalajara</button>
-            <button class="btn-provincia" data-ca="clm" data-id="toledo">Toledo</button>
-          </div>
-        </details>
-
-        <!-- Castilla y León -->
-        <details class="comunidad-desplegable">
-          <summary>Castilla y León</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="cyl" data-id="avila">Ávila</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="burgos">Burgos</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="leon">León</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="palencia">Palencia</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="salamanca">Salamanca</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="segovia">Segovia</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="soria">Soria</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="valladolid">Valladolid</button>
-            <button class="btn-provincia" data-ca="cyl" data-id="zamora">Zamora</button>
-          </div>
-        </details>
-
-        <!-- Cataluña -->
-        <details class="comunidad-desplegable">
-          <summary>Cataluña</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="cataluna" data-id="barcelona">Barcelona</button>
-            <button class="btn-provincia" data-ca="cataluna" data-id="girona">Girona</button>
-            <button class="btn-provincia" data-ca="cataluna" data-id="lleida">Lleida</button>
-            <button class="btn-provincia" data-ca="cataluna" data-id="tarragona">Tarragona</button>
-          </div>
-        </details>
-
-        <!-- Comunidad Valenciana -->
-        <details class="comunidad-desplegable">
-          <summary>Comunidad Valenciana</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="valencia" data-id="alicante">Alicante</button>
-            <button class="btn-provincia" data-ca="valencia" data-id="castellon">Castellón</button>
-            <button class="btn-provincia" data-ca="valencia" data-id="valenciaprov">Valencia</button>
-          </div>
-        </details>
-
-        <!-- Extremadura -->
-        <details class="comunidad-desplegable">
-          <summary>Extremadura</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="extremadura" data-id="badajoz">Badajoz</button>
-            <button class="btn-provincia" data-ca="extremadura" data-id="caceres">Cáceres</button>
-          </div>
-        </details>
-
-        <!-- Galicia -->
-        <details class="comunidad-desplegable">
-          <summary>Galicia</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="galicia" data-id="acoruna">A Coruña</button>
-            <button class="btn-provincia" data-ca="galicia" data-id="lugo">Lugo</button>
-            <button class="btn-provincia" data-ca="galicia" data-id="ourense">Ourense</button>
-            <button class="btn-provincia" data-ca="galicia" data-id="pontevedra">Pontevedra</button>
-          </div>
-        </details>
-
-        <!-- Madrid -->
-        <details class="comunidad-desplegable">
-          <summary>Comunidad de Madrid</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="madrid" data-id="madrid">Madrid (Provincia única)</button>
-          </div>
-        </details>
-
-        <!-- Murcia -->
-        <details class="comunidad-desplegable">
-          <summary>Región de Murcia</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="murcia" data-id="murcia">Murcia (Provincia única)</button>
-          </div>
-        </details>
-
-        <!-- Navarra -->
-        <details class="comunidad-desplegable">
-          <summary>Navarra</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="navarra" data-id="navarra">Navarra (Provincia única)</button>
-          </div>
-        </details>
-
-        <!-- País Vasco -->
-        <details class="comunidad-desplegable">
-          <summary>País Vasco / Euskadi</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="paisvasco" data-id="alava">Álava</button>
-            <button class="btn-provincia" data-ca="paisvasco" data-id="bizkaia">Bizkaia</button>
-            <button class="btn-provincia" data-ca="paisvasco" data-id="gipuzkoa">Gipuzkoa</button>
-          </div>
-        </details>
-
-        <!-- La Rioja -->
-        <details class="comunidad-desplegable">
-          <summary>La Rioja</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="larioja" data-id="larioja">La Rioja (Provincia única)</button>
-          </div>
-        </details>
-
-        <!-- Ceuta y Melilla -->
-        <details class="comunidad-desplegable">
-          <summary>Ciudades Autónomas</summary>
-          <div class="provincias-grid">
-            <button class="btn-provincia" data-ca="ceuta" data-id="ceuta">Ceuta</button>
-            <button class="btn-provincia" data-ca="melilla" data-id="melilla">Melilla</button>
-          </div>
-        </details>
-
+        <details class="comunidad-desplegable"><summary>Andalucía</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="andalucia" data-id="almeria">Almería</button><button class="btn-provincia" data-ca="andalucia" data-id="cadiz">Cádiz</button><button class="btn-provincia" data-ca="andalucia" data-id="cordoba">Córdoba</button><button class="btn-provincia" data-ca="andalucia" data-id="granada">Granada</button><button class="btn-provincia" data-ca="andalucia" data-id="huelva">Huelva</button><button class="btn-provincia" data-ca="andalucia" data-id="jaen">Jaén</button><button class="btn-provincia" data-ca="andalucia" data-id="malaga">Málaga</button><button class="btn-provincia" data-ca="andalucia" data-id="sevilla">Sevilla</button></div></details>
+        <details class="comunidad-desplegable"><summary>Aragón</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="aragon" data-id="huesca">Huesca</button><button class="btn-provincia" data-ca="aragon" data-id="teruel">Teruel</button><button class="btn-provincia" data-ca="aragon" data-id="zaragoza">Zaragoza</button></div></details>
+        <details class="comunidad-desplegable"><summary>Asturias</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="asturias" data-id="asturias">Asturias</button></div></details>
+        <details class="comunidad-desplegable"><summary>Islas Baleares</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="baleares" data-id="baleares">Islas Baleares</button></div></details>
+        <details class="comunidad-desplegable"><summary>Canarias</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="canarias" data-id="laspalmas">Las Palmas</button><button class="btn-provincia" data-ca="canarias" data-id="tenerife">Santa Cruz de Tenerife</button></div></details>
+        <details class="comunidad-desplegable"><summary>Cantabria</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="cantabria" data-id="cantabria">Cantabria</button></div></details>
+        <details class="comunidad-desplegable"><summary>Castilla-La Mancha</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="clm" data-id="albacete">Albacete</button><button class="btn-provincia" data-ca="clm" data-id="ciudadreal">Ciudad Real</button><button class="btn-provincia" data-ca="clm" data-id="cuenca">Cuenca</button><button class="btn-provincia" data-ca="clm" data-id="guadalajara">Guadalajara</button><button class="btn-provincia" data-ca="clm" data-id="toledo">Toledo</button></div></details>
+        <details class="comunidad-desplegable"><summary>Castilla y León</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="cyl" data-id="avila">Ávila</button><button class="btn-provincia" data-ca="cyl" data-id="burgos">Burgos</button><button class="btn-provincia" data-ca="cyl" data-id="leon">León</button><button class="btn-provincia" data-ca="cyl" data-id="palencia">Palencia</button><button class="btn-provincia" data-ca="cyl" data-id="salamanca">Salamanca</button><button class="btn-provincia" data-ca="cyl" data-id="segovia">Segovia</button><button class="btn-provincia" data-ca="cyl" data-id="soria">Soria</button><button class="btn-provincia" data-ca="cyl" data-id="valladolid">Valladolid</button><button class="btn-provincia" data-ca="cyl" data-id="zamora">Zamora</button></div></details>
+        <details class="comunidad-desplegable"><summary>Cataluña</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="cataluna" data-id="barcelona">Barcelona</button><button class="btn-provincia" data-ca="cataluna" data-id="girona">Girona</button><button class="btn-provincia" data-ca="cataluna" data-id="lleida">Lleida</button><button class="btn-provincia" data-ca="cataluna" data-id="tarragona">Tarragona</button></div></details>
+        <details class="comunidad-desplegable"><summary>Comunidad Valenciana</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="valencia" data-id="alicante">Alicante</button><button class="btn-provincia" data-ca="valencia" data-id="castellon">Castellón</button><button class="btn-provincia" data-ca="valencia" data-id="valenciaprov">Valencia</button></div></details>
+        <details class="comunidad-desplegable"><summary>Extremadura</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="extremadura" data-id="badajoz">Badajoz</button><button class="btn-provincia" data-ca="extremadura" data-id="caceres">Cáceres</button></div></details>
+        <details class="comunidad-desplegable"><summary>Galicia</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="galicia" data-id="acoruna">A Coruña</button><button class="btn-provincia" data-ca="galicia" data-id="lugo">Lugo</button><button class="btn-provincia" data-ca="galicia" data-id="ourense">Ourense</button><button class="btn-provincia" data-ca="galicia" data-id="pontevedra">Pontevedra</button></div></details>
+        <details class="comunidad-desplegable"><summary>Comunidad de Madrid</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="madrid" data-id="madrid">Madrid</button></div></details>
+        <details class="comunidad-desplegable"><summary>Región de Murcia</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="murcia" data-id="murcia">Murcia</button></div></details>
+        <details class="comunidad-desplegable"><summary>Navarra</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="navarra" data-id="navarra">Navarra</button></div></details>
+        <details class="comunidad-desplegable"><summary>País Vasco / Euskadi</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="paisvasco" data-id="alava">Álava</button><button class="btn-provincia" data-ca="paisvasco" data-id="bizkaia">Bizkaia</button><button class="btn-provincia" data-ca="paisvasco" data-id="gipuzkoa">Gipuzkoa</button></div></details>
+        <details class="comunidad-desplegable"><summary>La Rioja</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="larioja" data-id="larioja">La Rioja</button></div></details>
+        <details class="comunidad-desplegable"><summary>Ciudades Autónomas</summary><div class="provincias-grid"><button class="btn-provincia" data-ca="ceuta" data-id="ceuta">Ceuta</button><button class="btn-provincia" data-ca="melilla" data-id="melilla">Melilla</button></div></details>
       </div>
     </section>
 
-    <!-- INICIO (Asegúrate de que tenga "hidden" al final de esta primera línea) -->
+    <!-- INICIO (Oculto hasta elegir provincia) -->
     <section id="vista-inicio" class="vista" hidden>
-    <!-- INICIO -->
-    <section id="vista-inicio" class="vista">
       <h1>¿Con qué propuestas coincides más?</h1>
       <p class="sub" id="sub-eleccion"></p>
 
       <div class="caja-concienciacion">
         <h3>Tu voto es tu voz 🗳️</h3>
-        <p>Las decisiones políticas afectan a nuestro día a día: desde el precio del alquiler hasta el empleo o la sanidad. Da igual si no sigues la actualidad o si tienes dudas; <strong>votar, sea a la opción que sea, siempre es mejor que no hacerlo</strong>, porque es la mejor herramienta para decidir tu futuro.</p>
-        <p>Si no sabes a quién votar o no tienes mucha idea de política, este test está diseñado exactamente para ayudarte a descubrir qué propuestas encajan mejor contigo, de forma rápida y neutral.</p>
+        <p>Las decisiones políticas afectan a nuestro día a día: desde el precio del alquiler hasta el empleo o la sanidad. Da igual si no sigues la actualidad o si tienes dudas; <strong>votar siempre es mejor que no hacerlo</strong>, porque es la mejor herramienta para decidir tu futuro.</p>
+        <p>Si no sabes a quién votar o no tienes mucha idea de política, este test está diseñado para ayudarte a descubrir qué propuestas encajan mejor contigo, de forma rápida y neutral.</p>
       </div>
 
       <div class="caja-partidos">
         <strong>Partidos incluidos:</strong> PSOE, PP, Vox, Frente Amplio y Podemos.<br>
-        <span class="nota"><em>¿Por qué estos y no otros?</em> Se han incluido únicamente las formaciones de ámbito estatal (que se presentan en toda España) y que tienen posibilidades de obtener escaños según los sondeos actuales. Las propuestas aparecen sin nombre durante el test para evitar que votes por simpatía a unas siglas; descubrirás a quién pertenecen al final.</span>
+        <span class="nota"><em>Nota:</em> Las propuestas aparecen sin nombre durante el test para evitar que votes por simpatía a unas siglas; descubrirás a quién pertenecen al final.</span>
       </div>
 
-      <p>Responde a <strong id="num-preguntas">15</strong> preguntas. Las opciones resumen propuestas de cada partido; en los resultados verás la fuente de cada una (algunas aún en verificación).</p>
+      <p>Responde a <strong id="num-preguntas">18</strong> preguntas. Las opciones agrupan propuestas reales sacadas de programas y votaciones.</p>
       <ul class="lista-puntos">
         <li>👉 <strong>Múltiples opciones:</strong> Elige tu opción principal y, si quieres, otra que te parezca aceptable, o marca la opción como 'Inaceptable' (Línea roja).</li>
-        <li>⚖️ <strong>Pesos y Límites:</strong> Cada pregunta tiene un peso según la relevancia del tema (criterios en Metodología). Solo puedes marcar 3 temas como "Clave" y vetar 2 propuestas.</li>
+        <li>⚖️ <strong>Pesos y Límites:</strong> Los problemas más graves del CIS valen más puntos. Elige bien: solo puedes marcar 3 temas como "Clave" y vetar 2 propuestas en total.</li>
         <li>🔒 100% privado en tu navegador.</li>
       </ul>
       <button id="btn-empezar" class="boton primario">Empezar el test</button>
@@ -248,7 +79,7 @@
     <!-- CUESTIONARIO -->
     <section id="vista-pregunta" class="vista" hidden>
       <div class="progreso-caja" aria-hidden="true"><div id="progreso" class="progreso"></div></div>
-
+      
       <!-- Contadores de límites -->
       <div class="contadores-limites">
         <span id="cont-imp">⭐️ Importantes: 0/3</span>
@@ -261,15 +92,15 @@
       <p class="contador" id="contador"></p>
       <p class="tema" id="tema"></p>
       <h2 id="texto-pregunta" class="pregunta"></h2>
-
+      
       <!-- Hueco para el contexto informativo -->
       <div id="caja-contexto"></div>
-
+      
       <!-- Opciones dinámicas -->
       <div id="opciones-dinamicas" class="opciones-contenedor"></div>
 
       <label class="importante mt-3"><input type="checkbox" id="chk-importante"> Tema clave para mí (x2 puntos)</label>
-
+      
       <div class="acciones-pregunta">
         <button id="btn-siguiente" class="boton primario">Siguiente →</button>
       </div>
@@ -284,16 +115,16 @@
     <section id="vista-resultados" class="vista" hidden>
       <h1>Tus resultados</h1>
       <p class="nota" id="nota-resultados"></p>
-
+      
+      <!-- NUEVO AVISO DE CONCIENCIACIÓN FINAL -->
       <div class="caja-concienciacion" style="background: var(--fondo); border-color: var(--borde); margin-bottom: 24px; padding: 16px;">
         <h3 style="font-size: 1rem; margin-bottom: 8px;">ℹ️ Tu voto, tu decisión</h3>
-        <p style="font-size: 0.9rem; margin-top: 0;">Este test es solo una herramienta orientativa para ayudarte a ordenar tus prioridades. <strong>El resultado no debe ser tu decisión final de voto.</strong> Te animamos a informarte por tu cuenta, leer los programas electorales y contrastar información para tener una visión completa de por qué votar (o no votar) a cada formación.</p>
+        <p style="font-size: 0.9rem; margin-top: 0;">Este test es solo una herramienta orientativa para ayudarte a ordenar tus prioridades. <strong>El resultado no debe ser tu decisión final de voto.</strong> Te animamos a informarte por tu cuenta, leer los programas electorales y contrastar información para tener una visión completa.</p>
       </div>
 
       <div id="lista-resultados"></div>
       <div class="acciones">
         <button id="btn-whatsapp" class="boton btn-whatsapp">Compartir en WhatsApp 🟢</button>
-        <button id="btn-copiar" class="boton">Copiar mi resultado</button>
         <button id="btn-repetir" class="boton">Repetir el test</button>
       </div>
     </section>
@@ -303,14 +134,10 @@
       <h1>Metodología</h1>
       <p>Este test está diseñado para evitar votar por "etiqueta". Las mecánicas principales son:</p>
       <ul class="lista-puntos">
-        <li><strong>Pesos base (1 a 3):</strong> cada pregunta tiene un valor interno según la relevancia del tema. El criterio previsto es el ranking de problemas del CIS y si el asunto implica reformas de gran calado. <em>Los pesos actuales son provisionales y se revisarán.</em></li>
-        <li><strong>Tema clave (hasta 3):</strong> si marcas una pregunta como clave, sus puntos se multiplican por 2.</li>
-        <li><strong>Opción principal y aceptable:</strong> tu opción principal da el 100&nbsp;% de los puntos de esa pregunta; una segunda opción marcada como "aceptable" da el 50&nbsp;%; el resto, 0.</li>
-        <li><strong>Líneas rojas (hasta 2):</strong> si un partido propone justo la opción que has vetado, esa pregunta <em>resta</em> 1,5 veces su peso.</li>
-        <li><strong>Fórmula:</strong> afinidad = suma de puntos ÷ suma de los puntos máximos de las preguntas comparadas × 100 (mínimo 0&nbsp;%). Solo cuentan las preguntas que has respondido y en las que el partido tiene una posición registrada. Si un partido no tiene propuesta sobre un tema, esa pregunta no cuenta para él, y verás "basado en X de Y preguntas".</li>
-        <li><strong>Partidos ocultos:</strong> las opciones resumen propuestas sin indicar de quién son hasta el final.</li>
-        <li><strong>Fuentes:</strong> se usa, por este orden, el programa electoral de 2026 (si existe), el de 2023, votaciones e iniciativas en el Congreso y declaraciones oficiales. Cada posición muestra su fuente y su fecha; en esta versión beta, algunas aún no llevan enlace.</li>
-        <li><strong>Actualizaciones:</strong> los datos se irán revisando hasta el 29 de noviembre. Los cambios quedan anotados en el registro de cambios.</li>
+        <li><strong>Pesos Base (1 a 3):</strong> Las preguntas tienen un valor interno basado en el ranking de problemas del CIS o si implican reformas constitucionales.</li>
+        <li><strong>Doble Elección:</strong> Tu opción 'Principal' otorga todos los puntos de esa pregunta. Si marcas una segunda como 'Aceptable', otorga la mitad. Evita polarización en posturas intermedias.</li>
+        <li><strong>Líneas Rojas:</strong> Puedes vetar hasta un máximo de 2 opciones. Si un partido propone exactamente tu veto, sufrirá una fuerte penalización en el porcentaje total.</li>
+        <li><strong>Partidos Ocultos:</strong> Las opciones agrupan propuestas de programa, sin indicar de quién son hasta el final.</li>
       </ul>
       <button id="btn-volver" class="boton">Volver</button>
     </section>
@@ -319,29 +146,21 @@
     <section id="vista-guia" class="vista" hidden>
       <h1>Guía de Temas Clave</h1>
       <p>Antes de votar, es útil entender cuáles son los grandes debates que marcan estas elecciones. El test aborda estos bloques fundamentales:</p>
-
+      
       <ul class="lista-puntos">
         <li>🏠 <strong>Economía y Bienestar:</strong> Cómo garantizar el acceso a la vivienda, si debemos bajar impuestos o subirlos para financiar más servicios, y cómo asegurar el futuro de las pensiones y el empleo.</li>
         <li>🏥 <strong>Servicios Públicos:</strong> El modelo de Sanidad y Educación estatal, y el equilibrio entre lo público y lo concertado/privado.</li>
         <li>🌍 <strong>Retos Sociales:</strong> El enfoque del país ante la inmigración, las políticas de igualdad, la seguridad ciudadana y la transición ecológica.</li>
         <li>🏛️ <strong>Modelo de Estado:</strong> El grado de autogobierno de las comunidades autónomas, el debate sobre la Jefatura del Estado y la posición de España en conflictos internacionales.</li>
       </ul>
-
+      
       <p class="nota mt-3">Entender estas posturas te ayudará no solo a hacer el test con más claridad, sino a interpretar las noticias y los debates políticos en tu día a día.</p>
       <button id="btn-volver-guia" class="boton mt-3">Volver</button>
-    </section>
-
-    <!-- REGISTRO DE CAMBIOS -->
-    <section id="vista-cambios" class="vista" hidden>
-      <h1>Registro de cambios</h1>
-      <p class="nota">Aquí anotamos cada vez que cambian los datos, las preguntas o el funcionamiento del test.</p>
-      <div id="lista-cambios"></div>
-      <button id="btn-volver-cambios" class="boton mt-3">Volver</button>
     </section>
   </main>
 
   <footer class="pie">
-    <p>Proyecto independiente. No guarda tus datos. · <button id="btn-cambios" class="enlace enlace-pie">Registro de cambios</button></p>
+    <p>Proyecto independiente. No guarda tus datos.</p>
   </footer>
 
   <script src="datos.js"></script>
