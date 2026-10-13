@@ -304,14 +304,12 @@ if (typeof document !== "undefined") {
     if ($("btn-atras")) $("btn-atras").onclick = () => { if (indice > 0) { indice--; pintarPregunta(); } };
     if ($("btn-repetir")) $("btn-repetir").onclick = () => { respuestas = {}; indice = 0; mostrar("mapa"); }; // Volver a elegir provincia
     
-    // El nuevo botón para volver atrás (Corregido)
-    if ($("btn-cambiar-prov")) {
-      $("btn-cambiar-prov").addEventListener("click", (e) => {
-        e.preventDefault();
-        window.scrollTo(0, 0); 
-        mostrar("mapa"); 
-      });
-    }
+    // El nuevo botón para volver atrás
+    if ($("btn-cambiar-prov")) $("btn-cambiar-prov").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo(0, 0); 
+      mostrar("mapa"); 
+    });
 
     if ($("btn-metodologia")) $("btn-metodologia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "metodologia") vistaAnterior = visible; mostrar("metodologia"); };
     if ($("btn-volver")) $("btn-volver").onclick = () => mostrar(vistaAnterior);
