@@ -116,29 +116,65 @@ h2.pregunta { font-size: 1.3rem; line-height: 1.4; margin: 6px 0 22px; }
 
 /* Acordeón de Provincias */
 .acordeon-comunidades { display: flex; flex-direction: column; gap: 12px; }
+
 .comunidad-desplegable { 
   background: var(--tarjeta); 
-  border: 2px solid var(--borde); 
-  border-left-width: 8px; 
-  border-left-style: solid;
-  border-left-color: var(--color-ca, var(--acento)); 
+  border: 2px solid var(--color-ca, var(--borde)); 
   border-radius: 14px; 
   overflow: hidden; 
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
 }
-.comunidad-desplegable:hover { border-color: var(--acento); box-shadow: 0 4px 12px rgba(31, 79, 216, 0.08); }
-.comunidad-desplegable[open] { border-color: var(--acento); box-shadow: 0 6px 16px rgba(31, 79, 216, 0.15); }
-.comunidad-desplegable summary { padding: 16px 20px; font-weight: 700; font-size: 16px; cursor: pointer; color: var(--texto); background: var(--tarjeta); user-select: none; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: all 0.2s; }
-.comunidad-desplegable summary:hover { background: var(--fondo); color: var(--acento); }
-.comunidad-desplegable summary::-webkit-details-marker { display: none; }
-.comunidad-desplegable summary::after { content: "▼"; font-size: 12px; color: var(--suave); transition: transform 0.3s ease, background 0.3s; background: var(--fondo); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-.comunidad-desplegable[open] summary::after { transform: rotate(180deg); background: var(--acento); color: white; }
-.comunidad-desplegable[open] summary { background: var(--acento-secundario); color: var(--acento-oscuro); border-bottom: 2px solid var(--borde); }
+.comunidad-desplegable:hover { 
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12); 
+  transform: translateY(-2px); 
+}
+.comunidad-desplegable[open] { 
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); 
+  transform: none; 
+}
 
+/* Aquí está la magia: pintamos todo el fondo del botón con el color de la CA */
+.comunidad-desplegable summary { 
+  padding: 16px 20px; 
+  font-weight: 700; 
+  font-size: 16px; 
+  cursor: pointer; 
+  color: #ffffff; /* Texto en blanco para que resalte sobre el color */
+  background: var(--color-ca, var(--tarjeta)); 
+  user-select: none; 
+  list-style: none; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  transition: all 0.2s; 
+}
+.comunidad-desplegable summary:hover { 
+  filter: brightness(1.08); /* Se aclara un poco al pasar el ratón */
+}
+.comunidad-desplegable summary::-webkit-details-marker { display: none; }
+
+/* La flechita blanca y redonda */
+.comunidad-desplegable summary::after { 
+  content: "▼"; 
+  font-size: 12px; 
+  color: var(--color-ca, var(--texto)); 
+  transition: transform 0.3s ease; 
+  background: #ffffff; 
+  width: 32px; 
+  height: 32px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  border-radius: 50%; 
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.comunidad-desplegable[open] summary::after { transform: rotate(180deg); }
+.comunidad-desplegable[open] summary { border-bottom: 2px solid rgba(0,0,0,0.1); }
+
+/* Cuadrícula de provincias interior */
 .provincias-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; padding: 18px; background: var(--fondo); }
 .btn-provincia { background: var(--tarjeta); border: 2px solid var(--borde); border-radius: 10px; padding: 12px 8px; font-size: 14px; font-weight: 700; color: var(--texto); cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-.btn-provincia:hover { background: var(--acento); color: white; border-color: var(--acento); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(31, 79, 216, 0.2); }
-
+.btn-provincia:hover { background: var(--color-ca, var(--acento)); color: white; border-color: var(--color-ca, var(--acento)); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); }
 /* Resultados */
 .partido { border: 1px solid var(--borde); border-radius: 12px; padding: 16px; margin: 12px 0; }
 .partido-cab { display: flex; justify-content: space-between; align-items: baseline; }
