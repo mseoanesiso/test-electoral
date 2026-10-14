@@ -4,199 +4,200 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Test de afinidad electoral · Elecciones 2026</title>
-  <meta name="description" content="Responde a las preguntas y descubre con qué programas electorales coincides más. Sin partidos visibles.">
+  <meta name="description" content="Compara tus posturas con las propuestas y posiciones documentadas de los partidos políticos en España. Cuestionario a ciegas, transparente y privado.">
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <div class="franja-aviso">Datos actualizados a <span id="fecha-act">14/10/2026</span>. Las posturas pueden actualizarse hasta las elecciones.</div>
+  <div class="franja-aviso" role="region" aria-label="Aviso de actualización">
+    Datos revisados a <span id="fecha-act">14/10/2026</span> · Escenario electoral orientativo basado en programas vigentes, leyes y votaciones parlamentarias.
+  </div>
   
   <header class="cabecera">
-    <a href="#" id="logo" class="logo">Test Electoral 2026</a>
-    <div>
-      <button id="btn-guia" class="enlace" style="margin-right: 12px;">Guía de Temas</button>
-      <button id="btn-metodologia" class="enlace">Metodología</button>
-    </div>
+    <a href="#" id="logo" class="logo" aria-label="Volver al inicio del Test Electoral 2026">Test Electoral 2026</a>
+    <nav aria-label="Información del proyecto">
+      <button type="button" id="btn-guia" class="enlace" style="margin-right: 8px;">Guía de Temas</button>
+      <button type="button" id="btn-metodologia" class="enlace">Metodología</button>
+    </nav>
   </header>
 
   <main>
     <!-- SELECCIÓN DE COMUNIDAD -->
-    <section id="vista-mapa" class="vista">
-      <h1 style="text-align: center;">Selecciona tu Comunidad Autónoma</h1>
+    <section id="vista-mapa" class="vista" aria-labelledby="titulo-mapa">
+      <h1 id="titulo-mapa" style="text-align: center;">Selecciona tu Comunidad Autónoma</h1>
       
       <div class="caja-concienciacion" style="margin-bottom: 24px;">
-        <h3 style="margin-top: 0;">¿Cómo funcionan las elecciones? 🗳️</h3>
-        <p>En España los escaños del Congreso se reparten por territorios. Las opciones políticas que encontrarás en la papeleta varían dependiendo de dónde votes.</p>
-        <p style="margin-bottom: 0;">Selecciona tu Comunidad Autónoma para hacer el test adaptado con los partidos (estatales y regionalistas) que tienen opciones reales de conseguir representación allí.</p>
+        <h2 class="subtitulo-caja">¿Por qué elegir tu territorio? 🗳️</h2>
+        <p>En España los escaños del Congreso se eligen por circunscripciones provinciales. Las candidaturas con representación o presencia relevante varían según la comunidad autónoma en la que votes.</p>
+        <p style="margin-bottom: 0;">Selecciona tu comunidad para incluir en el cálculo tanto a los partidos de ámbito estatal como a las formaciones autonómicas o territoriales correspondientes.</p>
       </div>
 
-      <div class="grid-comunidades">
-        <button class="btn-comunidad" style="--color-ca: #009B48;" data-id="andalucia">Andalucía</button>
-        <button class="btn-comunidad" style="--color-ca: #E32726;" data-id="aragon">Aragón</button>
-        <button class="btn-comunidad" style="--color-ca: #005CB8;" data-id="asturias">Asturias</button>
-        <button class="btn-comunidad" style="--color-ca: #8C3F8F;" data-id="baleares">Islas Baleares</button>
-        <button class="btn-comunidad" style="--color-ca: #FFC400;" data-id="canarias">Canarias</button>
-        <button class="btn-comunidad" style="--color-ca: #C7243A;" data-id="cantabria">Cantabria</button>
-        <button class="btn-comunidad" style="--color-ca: #8B1C31;" data-id="clm">Castilla-La Mancha</button>
-        <button class="btn-comunidad" style="--color-ca: #AD1A28;" data-id="cyl">Castilla y León</button>
-        <button class="btn-comunidad" style="--color-ca: #F4B32A;" data-id="cataluna">Cataluña</button>
-        <button class="btn-comunidad" style="--color-ca: #F08B22;" data-id="valencia">Comunidad Valenciana</button>
-        <button class="btn-comunidad" style="--color-ca: #00A36C;" data-id="extremadura">Extremadura</button>
-        <button class="btn-comunidad" style="--color-ca: #74C1ED;" data-id="galicia">Galicia</button>
-        <button class="btn-comunidad" style="--color-ca: #CE1126;" data-id="madrid">Comunidad de Madrid</button>
-        <button class="btn-comunidad" style="--color-ca: #A20E36;" data-id="murcia">Región de Murcia</button>
-        <button class="btn-comunidad" style="--color-ca: #DE2B27;" data-id="navarra">Navarra</button>
-        <button class="btn-comunidad" style="--color-ca: #008000;" data-id="paisvasco">País Vasco / Euskadi</button>
-        <button class="btn-comunidad" style="--color-ca: #DF2027;" data-id="larioja">La Rioja</button>
-        <button class="btn-comunidad" style="--color-ca: #5c6578;" data-id="ceutamelilla">Ceuta y Melilla</button>
+      <div class="grid-comunidades" role="group" aria-label="Comunidades y ciudades autónomas">
+        <button type="button" class="btn-comunidad" style="--color-ca: #009B48;" data-id="andalucia">Andalucía</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #E32726;" data-id="aragon">Aragón</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #005CB8;" data-id="asturias">Asturias</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #8C3F8F;" data-id="baleares">Islas Baleares</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #D99B00;" data-id="canarias">Canarias</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #C7243A;" data-id="cantabria">Cantabria</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #8B1C31;" data-id="clm">Castilla-La Mancha</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #AD1A28;" data-id="cyl">Castilla y León</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #D99B00;" data-id="cataluna">Cataluña</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #F08B22;" data-id="valencia">Comunidad Valenciana</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #00A36C;" data-id="extremadura">Extremadura</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #007BC4;" data-id="galicia">Galicia</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #CE1126;" data-id="madrid">Comunidad de Madrid</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #A20E36;" data-id="murcia">Región de Murcia</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #DE2B27;" data-id="navarra">Navarra</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #008000;" data-id="paisvasco">País Vasco / Euskadi</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #DF2027;" data-id="larioja">La Rioja</button>
+        <button type="button" class="btn-comunidad" style="--color-ca: #5c6578;" data-id="ceutamelilla">Ceuta y Melilla</button>
       </div>
     </section>
 
     <!-- INICIO -->
-    <section id="vista-inicio" class="vista" hidden>
-      <h1>¿Con qué propuestas coincides más?</h1>
+    <section id="vista-inicio" class="vista" aria-labelledby="titulo-inicio" hidden>
+      <h1 id="titulo-inicio">¿Con qué propuestas coincides más?</h1>
       <p class="sub" id="sub-eleccion"></p>
       
-      <!-- BOTÓN PARA VOLVER A CAMBIAR -->
-      <button id="btn-cambiar-prov" class="enlace text-suave" style="font-size: 14px; margin-top: -10px; margin-bottom: 15px; display: block;">← Cambiar de comunidad</button>
+      <button type="button" id="btn-cambiar-prov" class="enlace text-suave" style="font-size: 14px; margin-top: -6px; margin-bottom: 16px; display: inline-block;">← Cambiar de comunidad autónoma</button>
 
       <div class="caja-concienciacion">
-        <h3>Tu voto es tu voz 🗳️</h3>
-        <p>Las decisiones políticas afectan a nuestro día a día: desde el precio del alquiler hasta el empleo o la sanidad. Da igual si no sigues la actualidad o si tienes dudas; <strong>votar siempre es mejor que no hacerlo</strong>, porque es la mejor herramienta para decidir tu futuro.</p>
-        <p>Si no sabes a quién votar o no tienes mucha idea de política, este test está diseñado para ayudarte a descubrir qué propuestas encajan mejor contigo, de forma rápida y neutral.</p>
+        <h2 class="subtitulo-caja">Compara propuestas sin siglas 🗳️</h2>
+        <p>Este cuestionario compara tus preferencias sobre <strong id="num-preguntas">18</strong> debates públicos con las posiciones documentadas de los partidos políticos, ocultando sus nombres durante las preguntas para reducir el sesgo por simpatía o rechazo previo a unas siglas.</p>
+        <p><strong>Los porcentajes obtenidos son orientativos:</strong> miden el grado de coincidencia con las opciones seleccionadas en este test, no una probabilidad de voto ni una recomendación electoral.</p>
       </div>
 
       <div class="caja-partidos">
-        <strong>Partidos en tu comunidad:</strong> <span id="lista-partidos-texto">Calculando...</span><br>
-        <span class="nota"><em>Nota:</em> Las propuestas aparecen sin nombre durante el test para evitar que votes por simpatía a unas siglas; descubrirás a quién pertenecen al final.</span>
+        <strong>Formaciones analizadas en tu comunidad:</strong> <span id="lista-partidos-texto">Calculando...</span>
+        <span class="nota">Al finalizar podrás consultar qué postura se atribuye a cada partido, la fuente documental y su estado de verificación.</span>
       </div>
 
-      <p>Responde a <strong id="num-preguntas">18</strong> preguntas. Las opciones agrupan propuestas reales sacadas de programas y votaciones.</p>
+      <h2 class="subtitulo-seccion">Cómo funciona tu respuesta en cada pregunta</h2>
       <ul class="lista-puntos">
-        <li>👉 <strong>Múltiples opciones:</strong> Elige tu opción principal y, si quieres, otra que te parezca aceptable, o marca la opción como 'Inaceptable' (Línea roja).</li>
-        <li>⚖️ <strong>Pesos y Límites:</strong> Los problemas más graves del CIS valen más puntos. Elige bien: solo puedes marcar 3 temas como "Clave" y vetar 2 propuestas en total.</li>
-        <li>🔒 100% privado en tu navegador.</li>
+        <li>👉 <strong>Elegir (Opción principal):</strong> Suma el <strong>100 %</strong> de los puntos de la pregunta si un partido defiende esa misma postura.</li>
+        <li>🤝 <strong>Aceptable (2.ª opción, opcional):</strong> Una vez elegida tu opción principal, puedes marcar una alternativa secundaria que suma el <strong>50 %</strong> de los puntos.</li>
+        <li>🚫 <strong>Inaceptable (Línea roja, máx. 2 en todo el test):</strong> Si un partido defiende una propuesta que has vetado, recibe una penalización explícita de <strong>-1,5 veces</strong> el peso de esa pregunta.</li>
+        <li>⭐️ <strong>Tema clave (máx. 3 en todo el test):</strong> Duplica (x2) el valor de esa pregunta en tu cálculo final siempre que hayas elegido una opción en ella.</li>
+        <li>🔒 <strong>Privacidad total:</strong> Tus respuestas se calculan localmente en la memoria de tu navegador y no se guardan ni se envían a ningún servidor.</li>
       </ul>
-      <button id="btn-empezar" class="boton primario">Empezar el test</button>
+      <button type="button" id="btn-empezar" class="boton primario">Empezar el cuestionario</button>
     </section>
 
     <!-- CUESTIONARIO -->
-    <section id="vista-pregunta" class="vista" hidden>
+    <section id="vista-pregunta" class="vista" aria-labelledby="texto-pregunta" hidden>
       <div class="progreso-caja" aria-hidden="true"><div id="progreso" class="progreso"></div></div>
       
       <!-- Contadores de límites -->
-      <div class="contadores-limites">
+      <div class="contadores-limites" aria-live="polite">
         <span id="cont-imp">⭐️ Importantes: 0/3</span>
         <span id="cont-veto">🚫 Inaceptables: 0/2</span>
       </div>
 
       <!-- Navegación por números -->
-      <div id="nav-numeros" class="nav-numeros"></div>
+      <nav id="nav-numeros" class="nav-numeros" aria-label="Navegación por preguntas"></nav>
+
+      <!-- Aviso accesible en interfaz (sustituye a alert) -->
+      <div id="aviso-interfaz" class="aviso-interfaz" role="alert" aria-live="assertive" hidden></div>
 
       <p class="contador" id="contador"></p>
       <p class="tema" id="tema"></p>
-      <h2 id="texto-pregunta" class="pregunta"></h2>
+      <h2 id="texto-pregunta" class="pregunta" tabindex="-1"></h2>
       
       <!-- Hueco para el contexto informativo -->
       <div id="caja-contexto"></div>
       
       <!-- Opciones dinámicas -->
-      <div id="opciones-dinamicas" class="opciones-contenedor"></div>
+      <div id="opciones-dinamicas" class="opciones-contenedor" role="group" aria-label="Opciones de respuesta"></div>
 
-      <label class="importante mt-3"><input type="checkbox" id="chk-importante"> Tema clave para mí (x2 puntos)</label>
+      <label class="importante mt-3">
+        <input type="checkbox" id="chk-importante">
+        <span>Tema clave para mí (duplica los puntos de esta pregunta si respondes)</span>
+      </label>
       
       <div class="acciones-pregunta">
-        <button id="btn-siguiente" class="boton primario">Siguiente →</button>
+        <button type="button" id="btn-siguiente" class="boton primario">Siguiente →</button>
       </div>
 
       <div class="navegacion">
-        <button id="btn-atras" class="enlace">← Atrás</button>
-        <button id="btn-saltar" class="enlace text-suave">Ninguna me convence / Saltar</button>
+        <button type="button" id="btn-atras" class="enlace">← Atrás</button>
+        <button type="button" id="btn-saltar" class="enlace text-suave">Ninguna me convence / Saltar pregunta</button>
       </div>
     </section>
 
     <!-- RESULTADOS -->
-    <section id="vista-resultados" class="vista" hidden>
-      <h1>Tus resultados</h1>
+    <section id="vista-resultados" class="vista" aria-labelledby="titulo-resultados" hidden>
+      <h1 id="titulo-resultados">Resultados de coincidencia</h1>
       <p class="nota" id="nota-resultados"></p>
       
-      <div class="caja-concienciacion" style="background: var(--fondo); border-color: var(--borde); margin-bottom: 24px; padding: 16px;">
-        <h3 style="font-size: 1rem; margin-bottom: 8px;">ℹ️ Tu voto, tu decisión</h3>
-        <p style="font-size: 0.9rem; margin-top: 0;">Este test es solo una herramienta orientativa para ayudarte a ordenar tus prioridades. <strong>El resultado no debe ser tu decisión final de voto.</strong> Te animamos a informarte por tu cuenta, leer los programas electorales y contrastar información para tener una visión completa.</p>
+      <div class="caja-concienciacion caja-neutral-resultados">
+        <h2 class="subtitulo-caja" style="font-size: 1rem; margin-bottom: 6px;">ℹ️ Cómo interpretar estos porcentajes</h2>
+        <p style="font-size: 0.92rem; margin-top: 0;">Un porcentaje representa el grado de coincidencia matemática entre tus selecciones y las posturas registradas en este test (de 0 % a 100 %). <strong>No es una predicción ni una recomendación de voto.</strong> Despliega cada formación para revisar el desglose por pregunta, las penalizaciones por líneas rojas y si cada fuente corresponde a un documento oficial verificado o a una posición en revisión.</p>
       </div>
+
+      <div id="aviso-compartir" class="aviso-interfaz" role="status" aria-live="polite" hidden></div>
 
       <div id="lista-resultados"></div>
       <div class="acciones">
-        <button id="btn-whatsapp" class="boton btn-whatsapp">Compartir en WhatsApp 🟢</button>
-        <button id="btn-compartir" class="boton">Compartir en otras apps 📲</button>
-        <button id="btn-repetir" class="boton">Repetir el test</button>
+        <button type="button" id="btn-whatsapp" class="boton btn-whatsapp">Compartir en WhatsApp 🟢</button>
+        <button type="button" id="btn-compartir" class="boton">Compartir o copiar resumen 📲</button>
+        <button type="button" id="btn-repetir" class="boton">Repetir el test / Cambiar comunidad</button>
       </div>
     </section>
 
     <!-- METODOLOGÍA -->
-    <section id="vista-metodologia" class="vista" hidden>
-      <h1>Metodología</h1>
-      <p>Este test está diseñado para evitar votar por "etiqueta". Las mecánicas principales son:</p>
+    <section id="vista-metodologia" class="vista" aria-labelledby="titulo-metodologia" hidden>
+      <h1 id="titulo-metodologia">Metodología y Transparencia</h1>
+      <p>Esta herramienta compara las respuestas de la persona usuaria con una matriz de posiciones políticas codificadas a partir de documentos públicos. A continuación se detalla el modelo matemático exacto y sus limitaciones.</p>
+
+      <h2 class="subtitulo-seccion">1. Fórmula matemática de afinidad</h2>
+      <p>Cada pregunta $i$ tiene un peso base $P_i \in \{1, 2, 3\}$ según su relevancia competencial y presencia en los debates de legislatura. Si marcas la pregunta como <strong>Tema clave</strong>, el multiplicador es $M_i = 2$ (en caso contrario, $M_i = 1$), resultando en un peso efectivo $W_i = P_i \times M_i$.</p>
       <ul class="lista-puntos">
-        <li><strong>Pesos Base (1 a 3):</strong> Las preguntas tienen un valor interno basado en el ranking de problemas del CIS o si implican reformas constitucionales.</li>
-        <li><strong>Doble Elección:</strong> Tu opción 'Principal' otorga todos los puntos de esa pregunta. Si marcas una segunda como 'Aceptable', otorga la mitad. Evita polarización en posturas intermedias.</li>
-        <li><strong>Líneas Rojas:</strong> Puedes vetar hasta un máximo de 2 opciones. Si un partido propone exactamente tu veto, sufrirá una fuerte penalización en el porcentaje total.</li>
-        <li><strong>Partidos Ocultos:</strong> Las opciones agrupan propuestas de programa, sin indicar de quién son hasta el final.</li>
+        <li><strong>Coincidencia con tu opción principal:</strong> suma $+1,0 \times W_i$ puntos y añade $W_i$ al máximo posible.</li>
+        <li><strong>Coincidencia con tu 2.ª opción (aceptable):</strong> suma $+0,5 \times W_i$ puntos y añade $W_i$ al máximo posible.</li>
+        <li><strong>No coincidencia:</strong> suma $0$ puntos y añade $W_i$ al máximo posible.</li>
+        <li><strong>Penalización por Línea Roja (Inaceptable):</strong> si el partido defiende la opción que has vetado, recibe $-1,5 \times W_i$ puntos. Si en una pregunta eliges opción principal (y/o secundaria) además de un veto, el peso $W_i$ forma parte del máximo posible. Si en una pregunta <em>únicamente</em> marcas un veto sin elegir opción favorita, ese veto solo penaliza a los partidos que propongan esa medida inaceptable sin alterar artificialmente el denominador del resto de formaciones.</li>
+        <li><strong>Preguntas omitidas o sin datos del partido:</strong> si saltas una pregunta, o si un partido carece de posición documentada en ella, la pregunta se excluye tanto del numerador como del denominador de ese partido (no se penaliza como desacuerdo).</li>
       </ul>
-      <button id="btn-volver" class="boton">Volver</button>
+      <p>El porcentaje global y por bloque temático se obtiene dividiendo la puntuación neta entre la suma de pesos máximos evaluables ($\text{Afinidad} = \text{redondeo}(\frac{\sum \text{Puntos}}{\sum W_{\text{evaluable}}} \times 100)$), acotado siempre en la escala de <strong>0 % a 100 %</strong> (si las líneas rojas sitúan el saldo neto en negativo, se muestra 0 % indicando las penalizaciones en el desglose).</p>
+
+      <h2 class="subtitulo-seccion">2. Fuentes y verificación de datos</h2>
+      <ul class="lista-puntos">
+        <li><strong>Convocatoria electoral:</strong> Mientras no exista un Real Decreto de convocatoria de elecciones generales publicado en el BOE con programas definitivos para 2026, el cuestionario evalúa un escenario preelectoral basado en la XV Legislatura.</li>
+        <li><strong>Distinción de fuentes:</strong> En el desglose de resultados cada postura indica su fuente y una etiqueta de verificación:
+          <ul>
+            <li><strong>Verificada (Documento oficial / BOE / Votación):</strong> Posición extraída directamente de leyes aprobadas, votaciones nominales en el Congreso, recursos ante el TC o programas electorales oficiales (2023-2024).</li>
+            <li><strong>En revisión (Síntesis / Declaraciones):</strong> Posición inferida de declaraciones públicas recientes, acuerdos de coalición en curso o ponencias pendientes de ratificación en un programa electoral de 2026.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2 class="subtitulo-seccion">3. Privacidad</h2>
+      <p>El código se ejecuta íntegramente en el navegador del usuario (sin llamadas a servidores externos, cookies de rastreo ni almacenamiento local persistente como <code>localStorage</code>). Al pulsar «Compartir», solo se genera un texto con el porcentaje mayoritario o un enlace genérico a la portada de la web, nunca tus respuestas individuales.</p>
+
+      <button type="button" id="btn-volver" class="boton mt-3">Volver</button>
     </section>
 
     <!-- GUÍA DE TEMAS -->
-    <section id="vista-guia" class="vista" hidden>
-      <h1>Guía de Temas Clave</h1>
-      <p>Antes de votar, es útil entender cuáles son los grandes debates que marcan estas elecciones. El test aborda estos bloques fundamentales:</p>
+    <section id="vista-guia" class="vista" aria-labelledby="titulo-guia" hidden>
+      <h1 id="titulo-guia">Guía de Temas del Cuestionario</h1>
+      <p>El cuestionario consta de 18 preguntas distribuidas en cuatro grandes ejes de política pública estatal y autonómica:</p>
       
       <ul class="lista-puntos">
-        <li>🏠 <strong>Economía y Bienestar:</strong> Cómo garantizar el acceso a la vivienda, si debemos bajar impuestos o subirlos para financiar más servicios, y cómo asegurar el futuro de las pensiones y el empleo.</li>
-        <li>🏥 <strong>Servicios Públicos:</strong> El modelo de Sanidad y Educación estatal, y el equilibrio entre lo público y lo concertado/privado.</li>
-        <li>🌍 <strong>Retos Sociales:</strong> El enfoque del país ante la inmigración, las políticas de igualdad, la seguridad ciudadana y la transición ecológica.</li>
-        <li>🏛️ <strong>Modelo de Estado:</strong> El grado de autogobierno de las comunidades autónomas, el debate sobre la Jefatura del Estado y la posición de España en conflictos internacionales.</li>
+        <li>🏠 <strong>Economía, Vivienda y Trabajo:</strong> Regulación del mercado del alquiler y construcción de vivienda (P1), jornada laboral y salario mínimo (P2), progresividad o rebaja de impuestos (P5) y sostenibilidad del sistema de pensiones (P8).</li>
+        <li>🏥 <strong>Servicios Públicos y Bienestar:</strong> Modelo de gestión sanitaria y conciertos (P3), relación entre escuela pública y concertada (P7), políticas de natalidad y permisos parentales (P13).</li>
+        <li>🌍 <strong>Derechos, Sociedad y Transición Ecológica:</strong> Política migratoria (P4), ritmo de transición energética y nucleares (P9), seguridad frente a la ocupación ilegal y vulnerabilidad habitacional (P10), regulación del aborto (P15), matrimonio igualitario (P16), legislación trans (P17) y legislación sobre violencia de género (P18).</li>
+        <li>🏛️ <strong>Modelo de Estado e Instituciones:</strong> Organización territorial y financiación autonómica (P6), Monarquía parlamentaria o República (P11), política exterior y alianzas internacionales (P12) y sistema de elección del CGPJ (P14).</li>
       </ul>
       
-      <p class="nota mt-3">Entender estas posturas te ayudará no solo a hacer el test con más claridad, sino a interpretar las noticias y los debates políticos en tu día a día.</p>
-      <button id="btn-volver-guia" class="boton mt-3">Volver</button>
+      <p class="nota mt-3">Cada pregunta incluye dentro del cuestionario un apartado desplegable («¿De qué va este debate?») que resume los argumentos principales de cada postura.</p>
+      <button type="button" id="btn-volver-guia" class="boton mt-3">Volver</button>
     </section>
   </main>
 
   <footer class="pie">
-    <p>Proyecto independiente. No guarda tus datos.</p>
+    <p>Proyecto cívico independiente de código abierto · Sin cookies ni almacenamiento de respuestas.</p>
   </footer>
 
   <script src="datos.js"></script>
   <script src="app.js"></script>
-  <script>
-    // Mejoras automáticas de interfaz (sincroniza fecha, logo y contador de resultados)
-    document.addEventListener("DOMContentLoaded", () => {
-      const fechaEl = document.getElementById("fecha-act");
-      if (typeof ELECCIONES !== "undefined" && fechaEl) {
-        fechaEl.textContent = ELECCIONES.actualizacion;
-      }
-
-      const logoEl = document.getElementById("logo");
-      if (logoEl) {
-        logoEl.addEventListener("click", (e) => {
-          e.preventDefault();
-          const btnRepetir = document.getElementById("btn-repetir");
-          if (btnRepetir) btnRepetir.click();
-        });
-      }
-
-      const listaRes = document.getElementById("lista-resultados");
-      const notaRes = document.getElementById("nota-resultados");
-      if (listaRes && notaRes) {
-        const obs = new MutationObserver(() => {
-          if (window._resultado && window._resultado.length > 0 && typeof PREGUNTAS !== "undefined") {
-            const resp = window._resultado[0].r.respondidas;
-            notaRes.textContent = `Calculado según tus respuestas en ${resp} de ${PREGUNTAS.length} temas.`;
-          }
-        });
-        obs.observe(listaRes, { childList: true });
-      }
-    });
-  </script>
 </body>
 </html>
