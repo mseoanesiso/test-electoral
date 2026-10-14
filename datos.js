@@ -198,9 +198,6 @@ const PREGUNTAS = [
 ];
 
 const PARTIDOS = [
-  // ============================================================
-  // PARTIDOS DE ÁMBITO ESTATAL
-  // ============================================================
   {
     id: "psoe", nombre: "PSOE", color: "#E01021", comunidades: ["todas"],
     posiciones: {
@@ -316,12 +313,6 @@ const PARTIDOS = [
       18: { opcion: "A", fuente: "Programa 2023 / Ley Solo Sí es Sí", fecha: "2023" }
     }
   },
-  
-  // ============================================================
-  // PARTIDOS AUTONÓMICOS Y NACIONALISTAS
-  // ============================================================
-
-  // CATALUÑA: ERC y Junts
   {
     id: "erc", nombre: "ERC", color: "#FFB232", comunidades: ["cataluna"],
     posiciones: {
@@ -368,8 +359,6 @@ const PARTIDOS = [
       18: { opcion: "A", fuente: "Leyes catalanas de igualdad", fecha: "2023" }
     }
   },
-
-  // GALICIA: BNG
   {
     id: "bng", nombre: "BNG", color: "#74C1ED", comunidades: ["galicia"],
     posiciones: {
@@ -393,8 +382,6 @@ const PARTIDOS = [
       18: { opcion: "A", fuente: "Ampliación recursos contra violencia machista", fecha: "2024" }
     }
   },
-
-  // PAÍS VASCO Y NAVARRA: EAJ-PNV, EH Bildu y UPN
   {
     id: "pnv", nombre: "EAJ-PNV", color: "#008000", comunidades: ["paisvasco", "navarra"],
     posiciones: {
@@ -457,3 +444,34 @@ const PARTIDOS = [
       11: { opcion: "A", fuente: "Defensa de la Monarquía Parlamentaria", fecha: "2026" },
       12: { opcion: "A", fuente: "Alineamiento europeo y atlántico", fecha: "2024" },
       13: { opcion: "A", fuente: "Apoyo fiscal a la natalidad y familias", fecha: "2023" },
+      14: { opcion: "A", fuente: "Elección judicial de vocales del CGPJ", fecha: "2024" },
+      15: { opcion: "B", fuente: "Consentimiento paterno y objeción médica", fecha: "2023" },
+      16: { opcion: "B", fuente: "Respeto a la ley vigente", fecha: "2023" },
+      17: { opcion: "B", fuente: "Exigencia de garantías médicas en menores", fecha: "2023" },
+      18: { opcion: "B", fuente: "Apoyo al Pacto de Estado", fecha: "2023" }
+    }
+  },
+  {
+    id: "cc", nombre: "Coalición Canaria", color: "#FFD700", comunidades: ["canarias"],
+    posiciones: {
+      1: { opcion: "C", fuente: "Decreto de medidas urgentes de vivienda en Canarias", fecha: "2024" },
+      2: { opcion: "A", fuente: "Acuerdos con agentes sociales canarios", fecha: "2024" },
+      3: { opcion: "B", fuente: "Gestión del Servicio Canario de la Salud", fecha: "2024" },
+      4: { opcion: "B", fuente: "Pacto migratorio y corresponsabilidad estatal/UE", fecha: "2024" },
+      5: { opcion: "A", fuente: "Bonificación Sucesiones y defensa del REF canario", fecha: "2023" },
+      6: { opcion: "A", fuente: "Defensa del fuero canario y singularidad ultraperiférica", fecha: "2024" },
+      7: { opcion: "C", fuente: "Acuerdos educativos en Canarias", fecha: "2023" },
+      8: { opcion: "A", fuente: "Voto a favor de la revalorización según IPC", fecha: "2023" },
+      9: { opcion: "B", fuente: "Transición energética en las islas", fecha: "2024" },
+      10: { opcion: "B", fuente: "Apoyo a agilización judicial con garantías", fecha: "2024" },
+      11: { opcion: "A", fuente: "Respeto al marco constitucional actual", fecha: "2026" },
+      12: { opcion: "B", fuente: "Posición europeísta y multilateral", fecha: "2024" },
+      13: { opcion: "B", fuente: "Impulso a plazas de 0 a 3 años en Canarias", fecha: "2024" },
+      14: { opcion: "B", fuente: "Apoyo al desbloqueo parlamentario del CGPJ", fecha: "2024" },
+      15: { opcion: "A", fuente: "Respeto a la legislación estatal vigente", fecha: "2023" },
+      16: { opcion: "A", fuente: "Apoyo a políticas de diversidad LGTBI", fecha: "2023" },
+      17: { opcion: "A", fuente: "Ley Trans e Intersex canaria", fecha: "2021-2024" },
+      18: { opcion: "A", fuente: "Refuerzo de recursos del Instituto Canario de Igualdad", fecha: "2024" }
+    }
+  }
+];
