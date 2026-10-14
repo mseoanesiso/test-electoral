@@ -5,7 +5,7 @@
 const ELECCIONES = {
   nombre: "Elecciones generales de España",
   fecha: "29 de noviembre de 2026",
-  actualizacion: "13/10/2026",
+  actualizacion: "14/10/2026",
   datosDeEjemplo: false
 };
 
@@ -131,7 +131,7 @@ const PREGUNTAS = [
     texto: "¿Cuál debería ser la posición internacional de España en conflictos globales?",
     contexto: "La postura internacional varía entre el alineamiento estricto con la OTAN y EEUU, o posiciones más independientes centradas en vías diplomáticas, derechos humanos y freno a la venta de armas.",
     opciones: [
-      { id: "A", texto: "Alineamiento total con la OTAN y apoyo incondicional a Ucrania y aliados occidentales." },
+      { id: "A", texto: "Alineamiento prioritario con la OTAN y apoyo firme a Ucrania y los aliados occidentales." },
       { id: "B", texto: "Apoyo a Ucrania, compromiso europeísta firme y reconocimiento activo del Estado de Palestina." },
       { id: "C", texto: "Ruptura de relaciones con Israel y fin del envío de armas a Ucrania, apostando por vías diplomáticas puras." }
     ]
@@ -198,6 +198,9 @@ const PREGUNTAS = [
 ];
 
 const PARTIDOS = [
+  // ============================================================
+  // PARTIDOS DE ÁMBITO ESTATAL
+  // ============================================================
   {
     id: "psoe", nombre: "PSOE", color: "#E01021", comunidades: ["todas"],
     posiciones: {
@@ -281,9 +284,9 @@ const PARTIDOS = [
       9: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
       10: { opcion: "C", fuente: "Declaraciones públicas", fecha: "2024" },
       11: { opcion: "B", fuente: "Posición histórica", fecha: "2026" },
-      12: { opcion: "C", fuente: "Votaciones y declaraciones", fecha: "2026" },
+      12: { opcion: "B", fuente: "Acuerdo de coalición y reconocimiento Palestina", fecha: "2024-2026" },
       13: { opcion: "B", fuente: "Ministerio de Derechos Sociales", fecha: "2023" },
-      14: { opcion: "C", fuente: "Propuestas de reforma", fecha: "2023" },
+      14: { opcion: "B", fuente: "Apoyo al acuerdo de renovación CGPJ", fecha: "2024" },
       15: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
       16: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
       17: { opcion: "A", fuente: "Programa Sumar 2023", fecha: "2023" },
@@ -304,9 +307,9 @@ const PARTIDOS = [
       9: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
       10: { opcion: "C", fuente: "Declaraciones líderes", fecha: "2024" },
       11: { opcion: "B", fuente: "Posición histórica", fecha: "2026" },
-      12: { opcion: "C", fuente: "Posición pública", fecha: "2026" },
+      12: { opcion: "C", fuente: "Posición pública y votaciones Congreso", fecha: "2026" },
       13: { opcion: "B", fuente: "Programa 2023", fecha: "2023" },
-      14: { opcion: "C", fuente: "Declaraciones públicas", fecha: "2023" },
+      14: { opcion: "C", fuente: "Rechazo al pacto CGPJ bipartidista", fecha: "2024" },
       15: { opcion: "A", fuente: "Programa 2023 / Ministerio Igualdad", fecha: "2023" },
       16: { opcion: "A", fuente: "Programa 2023", fecha: "2023" },
       17: { opcion: "A", fuente: "Impulso Ley Trans", fecha: "2023" },
@@ -314,21 +317,143 @@ const PARTIDOS = [
     }
   },
   
-  // EJEMPLO DE PARTIDO REGIONAL 1 (Solo se verá si pulsas Barcelona, Girona, Lleida o Tarragona)
+  // ============================================================
+  // PARTIDOS AUTONÓMICOS Y NACIONALISTAS
+  // ============================================================
+
+  // CATALUÑA: ERC y Junts
   {
     id: "erc", nombre: "ERC", color: "#FFB232", comunidades: ["cataluna"],
     posiciones: {
-      1: { opcion: "B", fuente: "Ley Vivienda", fecha: "2023" },
-      // ... rellena el resto de las 18 opciones de ERC para que puntúen correctamente en el test
+      1: { opcion: "B", fuente: "Defensa Ley Vivienda y topes de alquiler", fecha: "2023-2026" },
+      2: { opcion: "B", fuente: "Programa Electoral / Votaciones Congreso", fecha: "2024" },
+      3: { opcion: "D", fuente: "Gestión Generalitat / Programa", fecha: "2024" },
+      4: { opcion: "A", fuente: "Apoyo ILP Regularización", fecha: "2024" },
+      5: { opcion: "B", fuente: "Impuesto Grandes Fortunas / Programa", fecha: "2023" },
+      6: { opcion: "A", fuente: "Ponencia política (Financiación singular y soberanía)", fecha: "2024" },
+      7: { opcion: "C", fuente: "Modelo educativo público catalán", fecha: "2024" },
+      8: { opcion: "A", fuente: "Votaciones reforma pensiones", fecha: "2023" },
+      9: { opcion: "A", fuente: "Creación energética pública (L'Energètica)", fecha: "2023" },
+      10: { opcion: "C", fuente: "Ley catalana de emergencia habitacional", fecha: "2024" },
+      11: { opcion: "B", fuente: "Republicanismo histórico", fecha: "2026" },
+      12: { opcion: "C", fuente: "Posición en el Congreso", fecha: "2024" },
+      13: { opcion: "B", fuente: "Gratuidad infantil I2 en Cataluña", fecha: "2023" },
+      14: { opcion: "C", fuente: "Propuestas de reforma judicial", fecha: "2024" },
+      15: { opcion: "A", fuente: "Votación Reforma Ley Aborto", fecha: "2023" },
+      16: { opcion: "A", fuente: "Programa de Igualdad", fecha: "2023" },
+      17: { opcion: "A", fuente: "Apoyo Ley Trans", fecha: "2023" },
+      18: { opcion: "A", fuente: "Programa feminista ERC", fecha: "2023" }
     }
   },
-  
-  // EJEMPLO DE PARTIDO REGIONAL 2 (Solo se verá si pulsas A Coruña, Lugo, Ourense o Pontevedra)
+  {
+    id: "junts", nombre: "Junts per Catalunya", color: "#00C3B2", comunidades: ["cataluna"],
+    posiciones: {
+      1: { opcion: "A", fuente: "Crítica a topes estatales / Enmiendas", fecha: "2024" },
+      2: { opcion: "A", fuente: "Defensa de pymes y negociación colectiva", fecha: "2024" },
+      3: { opcion: "B", fuente: "Modelo sanitario concertado catalán", fecha: "2024" },
+      4: { opcion: "C", fuente: "Exigencia traspaso integral de inmigración", fecha: "2024" },
+      5: { opcion: "D", fuente: "Rebajas selectivas y bonificación Sucesiones", fecha: "2024" },
+      6: { opcion: "A", fuente: "Autodeterminación / Concierto económico", fecha: "2024" },
+      7: { opcion: "B", fuente: "Defensa escuela concertada y modelo propio", fecha: "2024" },
+      8: { opcion: "A", fuente: "Apoyo revalorización pensiones", fecha: "2023" },
+      9: { opcion: "B", fuente: "Transición energética con apoyo industrial", fecha: "2024" },
+      10: { opcion: "A", fuente: "Proposición de ley contra okupación", fecha: "2024" },
+      11: { opcion: "B", fuente: "Republicanismo independentista", fecha: "2026" },
+      12: { opcion: "B", fuente: "Postura proeuropea y apoyo a Ucrania", fecha: "2024" },
+      13: { opcion: "A", fuente: "Deducciones fiscales por nacimiento", fecha: "2024" },
+      14: { opcion: "C", fuente: "Crítica al sistema actual del CGPJ", fecha: "2024" },
+      15: { opcion: "A", fuente: "Posición favorable en Parlament y Congreso", fecha: "2023" },
+      16: { opcion: "A", fuente: "Consenso derechos LGTBI", fecha: "2023" },
+      17: { opcion: "A", fuente: "Voto a favor Ley Trans", fecha: "2023" },
+      18: { opcion: "A", fuente: "Leyes catalanas de igualdad", fecha: "2023" }
+    }
+  },
+
+  // GALICIA: BNG
   {
     id: "bng", nombre: "BNG", color: "#74C1ED", comunidades: ["galicia"],
     posiciones: {
-      1: { opcion: "B", fuente: "Programa BNG", fecha: "2023" },
-      // ... rellena el resto de las 18 opciones del BNG para que puntúen correctamente en el test
+      1: { opcion: "B", fuente: "Programa BNG", fecha: "2024" },
+      2: { opcion: "B", fuente: "Programa BNG (Jornada 35h)", fecha: "2024" },
+      3: { opcion: "C", fuente: "Defensa sanidad 100% pública gallega", fecha: "2024" },
+      4: { opcion: "A", fuente: "Apoyo ILP Regularización", fecha: "2024" },
+      5: { opcion: "B", fuente: "Programa fiscal BNG", fecha: "2024" },
+      6: { opcion: "A", fuente: "Soberanismo y concierto económico gallego", fecha: "2024" },
+      7: { opcion: "D", fuente: "Prioridad absoluta enseñanza pública", fecha: "2024" },
+      8: { opcion: "A", fuente: "Incremento pensiones mínimas por ley", fecha: "2024" },
+      9: { opcion: "A", fuente: "Tarifa eléctrica gallega y empresa pública", fecha: "2024" },
+      10: { opcion: "C", fuente: "Garantía de alternativa habitacional", fecha: "2024" },
+      11: { opcion: "B", fuente: "Posición histórica republicana", fecha: "2026" },
+      12: { opcion: "C", fuente: "Posición anti-OTAN y pacifista", fecha: "2024" },
+      13: { opcion: "B", fuente: "Red pública de escuelas infantiles gratis", fecha: "2024" },
+      14: { opcion: "C", fuente: "Reforma del sistema judicial", fecha: "2024" },
+      15: { opcion: "A", fuente: "Votación Ley del Aborto", fecha: "2023" },
+      16: { opcion: "A", fuente: "Programa Igualdad BNG", fecha: "2024" },
+      17: { opcion: "A", fuente: "Apoyo Ley Trans", fecha: "2023" },
+      18: { opcion: "A", fuente: "Ampliación recursos contra violencia machista", fecha: "2024" }
     }
-  }
-];
+  },
+
+  // PAÍS VASCO Y NAVARRA: EAJ-PNV, EH Bildu y UPN
+  {
+    id: "pnv", nombre: "EAJ-PNV", color: "#008000", comunidades: ["paisvasco", "navarra"],
+    posiciones: {
+      1: { opcion: "C", fuente: "Política de vivienda Gobierno Vasco", fecha: "2024" },
+      2: { opcion: "A", fuente: "Defensa del diálogo social vasco", fecha: "2024" },
+      3: { opcion: "D", fuente: "Refuerzo de Osakidetza", fecha: "2024" },
+      4: { opcion: "B", fuente: "Modelo vasco de acogida e inserción laboral", fecha: "2024" },
+      5: { opcion: "D", fuente: "Haciendas forales vascas", fecha: "2024" },
+      6: { opcion: "A", fuente: "Nuevo estatus de autogobierno bilateral", fecha: "2024" },
+      7: { opcion: "B", fuente: "Ley de Educación Vasca (pública y concertada/ikastolas)", fecha: "2023" },
+      8: { opcion: "A", fuente: "Apoyo revalorización conforme al IPC", fecha: "2023" },
+      9: { opcion: "B", fuente: "Transición energética competitiva para la industria", fecha: "2024" },
+      10: { opcion: "B", fuente: "Iniciativas de agilización judicial", fecha: "2024" },
+      11: { opcion: "B", fuente: "Tradición no monárquica", fecha: "2024" },
+      12: { opcion: "B", fuente: "Europeísmo, apoyo a Ucrania y dos Estados en Oriente Medio", fecha: "2024" },
+      13: { opcion: "A", fuente: "Ayudas directas mensuales por hijo en Euskadi", fecha: "2023" },
+      14: { opcion: "B", fuente: "Defensa de consensos parlamentarios", fecha: "2024" },
+      15: { opcion: "A", fuente: "Apoyo a la ley vigente", fecha: "2023" },
+      16: { opcion: "A", fuente: "Posición consolidada", fecha: "2024" },
+      17: { opcion: "A", fuente: "Ley Trans vasca y estatal", fecha: "2023" },
+      18: { opcion: "A", fuente: "Ley vasca para la Igualdad", fecha: "2023" }
+    }
+  },
+  {
+    id: "bildu", nombre: "EH Bildu", color: "#B5CF18", comunidades: ["paisvasco", "navarra"],
+    posiciones: {
+      1: { opcion: "B", fuente: "Apoyo Ley de Vivienda y tope de alquileres", fecha: "2023" },
+      2: { opcion: "B", fuente: "Reducción de jornada y subida SMI", fecha: "2024" },
+      3: { opcion: "C", fuente: "Desprivatización de servicios en Osakidetza", fecha: "2024" },
+      4: { opcion: "A", fuente: "Apoyo ILP Regularización", fecha: "2024" },
+      5: { opcion: "B", fuente: "Reforma fiscal progresiva a rentas del capital", fecha: "2024" },
+      6: { opcion: "A", fuente: "Soberanismo plurinacional", fecha: "2024" },
+      7: { opcion: "D", fuente: "Sistema educativo público vasco", fecha: "2023" },
+      8: { opcion: "A", fuente: "Blindaje de pensiones públicas", fecha: "2023" },
+      9: { opcion: "A", fuente: "Control público del sector energético", fecha: "2024" },
+      10: { opcion: "C", fuente: "Prohibición de desahucios sin alternativa", fecha: "2023" },
+      11: { opcion: "B", fuente: "Republicanismo independentista", fecha: "2026" },
+      12: { opcion: "C", fuente: "Posición anti-OTAN y apoyo a Palestina", fecha: "2024" },
+      13: { opcion: "B", fuente: "Universalización de cuidados públicos", fecha: "2024" },
+      14: { opcion: "C", fuente: "Reforma profunda de la judicatura", fecha: "2024" },
+      15: { opcion: "A", fuente: "Voto favorable Ley del Aborto", fecha: "2023" },
+      16: { opcion: "A", fuente: "Programa feminista y LGTBI+", fecha: "2024" },
+      17: { opcion: "A", fuente: "Voto favorable Ley Trans", fecha: "2023" },
+      18: { opcion: "A", fuente: "Ampliación de políticas contra violencia machista", fecha: "2024" }
+    }
+  },
+  {
+    id: "upn", nombre: "UPN", color: "#00599C", comunidades: ["navarra"],
+    posiciones: {
+      1: { opcion: "A", fuente: "Programa electoral UPN", fecha: "2023" },
+      2: { opcion: "A", fuente: "Defensa de negociación colectiva", fecha: "2024" },
+      3: { opcion: "B", fuente: "Propuestas sanitarias en Navarra", fecha: "2023" },
+      4: { opcion: "C", fuente: "Votaciones en el Congreso", fecha: "2024" },
+      5: { opcion: "A", fuente: "Propuesta de alivio fiscal en Navarra", fecha: "2024" },
+      6: { opcion: "D", fuente: "Defensa del Régimen Foral dentro de la Constitución", fecha: "2024" },
+      7: { opcion: "B", fuente: "Defensa de la libertad de elección educativa", fecha: "2023" },
+      8: { opcion: "B", fuente: "Sostenibilidad del sistema de pensiones", fecha: "2023" },
+      9: { opcion: "C", fuente: "Competitividad energética industrial", fecha: "2024" },
+      10: { opcion: "A", fuente: "Apoyo al desalojo exprés", fecha: "2024" },
+      11: { opcion: "A", fuente: "Defensa de la Monarquía Parlamentaria", fecha: "2026" },
+      12: { opcion: "A", fuente: "Alineamiento europeo y atlántico", fecha: "2024" },
+      13: { opcion: "A", fuente: "Apoyo fiscal a la natalidad y familias", fecha: "2023" },
