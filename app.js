@@ -183,13 +183,13 @@ if (typeof document !== "undefined") {
 
       if ($("btn-atras")) $("btn-atras").style.visibility = indice === 0 ? "hidden" : "visible";
       if ($("btn-siguiente")) $("btn-siguiente").disabled = !(respuestas[q.id] && (respuestas[q.id].principal || respuestas[q.id].inaceptable));
+
       const vistaPreg = $("vista-pregunta");
       if (vistaPreg) {
         vistaPreg.style.animation = "none";
         vistaPreg.offsetHeight; /* Fuerza el repintado */
         vistaPreg.style.animation = "entradaVista 0.28s cubic-bezier(0.16, 1, 0.3, 1)";
       }
-      
     }
 
     function marcarOpcion(idPregunta, idOpcion, tipo) {
@@ -324,11 +324,11 @@ if (typeof document !== "undefined") {
     if ($("btn-guia")) $("btn-guia").onclick = () => { const visible = vistas.find((v) => $("vista-" + v) && !$("vista-" + v).hidden); if (visible !== "guia") vistaAnterior = visible; mostrar("guia"); };
     if ($("btn-volver-guia")) $("btn-volver-guia").onclick = () => mostrar(vistaAnterior);
 
-    // EVENTOS SELECCIÓN DE COMUNIDAD (LOS NUEVOS BOTONES)
+    // EVENTOS SELECCIÓN DE COMUNIDAD
     document.querySelectorAll(".btn-comunidad").forEach(btn => {
-      btn.addEventListener("click", (e) => {
-        window.comunidadSeleccionada = e.target.dataset.id;
-        const nombreCA = e.target.textContent;
+      btn.addEventListener("click", () => {
+        window.comunidadSeleccionada = btn.dataset.id;
+        const nombreCA = btn.textContent;
         
         // FILTRAR PARTIDOS
         window.partidosActivos = PARTIDOS.filter(p => 
