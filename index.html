@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Test de afinidad electoral · Elecciones 2026</title>
-  <meta name="description" content="Compara tus posturas con las propuestas y posiciones documentadas de los partidos políticos en España. Cuestionario a ciegas, transparente y privado.">
+  <meta name="description" content="Compara tus posturas en 20 temas clave con las posiciones documentadas de los partidos políticos en España. Cuestionario a ciegas, transparente y privado.">
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
@@ -62,24 +62,24 @@
 
       <div class="caja-concienciacion">
         <h2 class="subtitulo-caja">Compara propuestas sin siglas 🗳️</h2>
-        <p>Este cuestionario compara tus preferencias sobre <strong id="num-preguntas">18</strong> debates públicos con las posiciones documentadas de los partidos políticos, ocultando sus nombres durante las preguntas para reducir el sesgo por simpatía o rechazo previo a unas siglas.</p>
-        <p><strong>Los porcentajes obtenidos son orientativos:</strong> miden el grado de coincidencia con las opciones seleccionadas en este test, no una probabilidad de voto ni una recomendación electoral.</p>
+        <p>Este cuestionario compara tus preferencias sobre <strong id="num-preguntas">20</strong> debates públicos con las posiciones documentadas de los partidos políticos, ocultando sus nombres durante las preguntas para reducir el sesgo por simpatía o rechazo previo a unas siglas.</p>
+        <p><strong>Los porcentajes obtenidos son orientativos:</strong> miden el grado de semejanza con las opciones seleccionadas en este cuestionario, no una probabilidad de voto ni una recomendación electoral.</p>
       </div>
 
       <div class="caja-partidos">
         <strong>Formaciones analizadas en tu comunidad:</strong> <span id="lista-partidos-texto">Calculando...</span>
-        <span class="nota">Al finalizar podrás consultar qué postura se atribuye a cada partido, la fuente documental y su estado de verificación.</span>
+        <span class="nota">Al finalizar podrás consultar qué postura se atribuye a cada partido, el documento o ley de referencia, el enlace a fuentes oficiales cuando esté disponible y su nivel de verificación.</span>
       </div>
 
       <h2 class="subtitulo-seccion">Cómo funciona tu respuesta en cada pregunta</h2>
       <ul class="lista-puntos">
-        <li>👉 <strong>Elegir (Opción principal):</strong> Suma el <strong>100 %</strong> de los puntos de la pregunta si un partido defiende esa misma postura.</li>
-        <li>🤝 <strong>Aceptable (2.ª opción, opcional):</strong> Una vez elegida tu opción principal, puedes marcar una alternativa secundaria que suma el <strong>50 %</strong> de los puntos.</li>
-        <li>🚫 <strong>Inaceptable (Línea roja, máx. 2 en todo el test):</strong> Si un partido defiende una propuesta que has vetado, recibe una penalización explícita de <strong>-1,5 veces</strong> el peso de esa pregunta.</li>
-        <li>⭐️ <strong>Tema clave (máx. 3 en todo el test):</strong> Duplica (x2) el valor de esa pregunta en tu cálculo final siempre que hayas elegido una opción en ella.</li>
-        <li>🔒 <strong>Privacidad total:</strong> Tus respuestas se calculan localmente en la memoria de tu navegador y no se guardan ni se envían a ningún servidor.</li>
+        <li>👉 <strong>Elegir principal:</strong> Suma el <strong>100 %</strong> de los puntos de la pregunta si un partido defiende esa misma postura.</li>
+        <li>🤝 <strong>2.ª opción aceptable (opcional):</strong> Una vez elegida tu opción principal, puedes marcar una alternativa secundaria que suma el <strong>50 %</strong> de los puntos.</li>
+        <li>🚫 <strong>Inaceptable / Línea roja (máx. 2 en todo el test):</strong> Si un partido defiende una propuesta que has vetado, recibe una penalización explícita de <strong>-1,5 veces</strong> el peso de esa pregunta.</li>
+        <li>⭐️ <strong>Tema clave (máx. 3 en todo el test):</strong> Duplica (x2) el valor de esa pregunta en tu cálculo final siempre que hayas seleccionado alguna opción en ella.</li>
+        <li>🔒 <strong>Privacidad en el navegador:</strong> Tus respuestas se procesan únicamente en la memoria local de tu navegador; no se guardan en servidores ni se incluyen en los enlaces al compartir.</li>
       </ul>
-      <button type="button" id="btn-empezar" class="boton primario">Empezar el cuestionario</button>
+      <button type="button" id="btn-empezar" class="boton primario">Empezar el cuestionario (20 preguntas)</button>
     </section>
 
     <!-- CUESTIONARIO -->
@@ -130,7 +130,7 @@
       
       <div class="caja-concienciacion caja-neutral-resultados">
         <h2 class="subtitulo-caja" style="font-size: 1rem; margin-bottom: 6px;">ℹ️ Cómo interpretar estos porcentajes</h2>
-        <p style="font-size: 0.92rem; margin-top: 0;">Un porcentaje representa el grado de coincidencia matemática entre tus selecciones y las posturas registradas en este test (de 0 % a 100 %). <strong>No es una predicción ni una recomendación de voto.</strong> Despliega cada formación para revisar el desglose por pregunta, las penalizaciones por líneas rojas y si cada fuente corresponde a un documento oficial verificado o a una posición en revisión.</p>
+        <p style="font-size: 0.92rem; margin-top: 0;">Un porcentaje representa el grado de coincidencia matemática entre tus selecciones y las posturas codificadas en este cuestionario (de 0 % a 100 %). <strong>No es una predicción ni una recomendación de voto.</strong> Despliega cada formación para revisar el desglose de las 20 preguntas, los enlaces a fuentes oficiales (BOE / Congreso) y si existe alguna pregunta sin posición asignada por evidencia insuficiente.</p>
       </div>
 
       <div id="aviso-compartir" class="aviso-interfaz" role="status" aria-live="polite" hidden></div>
@@ -146,55 +146,52 @@
     <!-- METODOLOGÍA -->
     <section id="vista-metodologia" class="vista" aria-labelledby="titulo-metodologia" hidden>
       <h1 id="titulo-metodologia">Metodología y Transparencia</h1>
-      <p>Esta herramienta compara las respuestas de la persona usuaria con una matriz de posiciones políticas codificadas a partir de documentos públicos. A continuación se detalla el modelo matemático exacto y sus limitaciones.</p>
+      <p>Esta herramienta compara las respuestas de la persona usuaria en <strong>20 preguntas</strong> con una matriz de posiciones políticas documentadas a partir de textos legislativos, iniciativas parlamentarias y programas oficiales.</p>
 
-      <h2 class="subtitulo-seccion">1. Fórmula matemática de afinidad</h2>
-      <p>Cada pregunta $i$ tiene un peso base $P_i \in \{1, 2, 3\}$ según su relevancia competencial y presencia en los debates de legislatura. Si marcas la pregunta como <strong>Tema clave</strong>, el multiplicador es $M_i = 2$ (en caso contrario, $M_i = 1$), resultando en un peso efectivo $W_i = P_i \times M_i$.</p>
+      <h2 class="subtitulo-seccion">1. Fórmula matemática y ponderaciones</h2>
+      <p>Cada pregunta $i \in \{1, \dots, 20\}$ tiene un peso base $P_i \in \{1, 2, 3\}$ según su relevancia competencial y presencia en los debates de legislatura (la suma total de pesos base de las 20 preguntas es de 44 puntos). Si marcas una pregunta como <strong>Tema clave</strong> (máximo 3), su multiplicador es $M_i = 2$ (en caso contrario, $M_i = 1$), generando un peso efectivo $W_i = P_i \times M_i$.</p>
       <ul class="lista-puntos">
-        <li><strong>Coincidencia con tu opción principal:</strong> suma $+1,0 \times W_i$ puntos y añade $W_i$ al máximo posible.</li>
-        <li><strong>Coincidencia con tu 2.ª opción (aceptable):</strong> suma $+0,5 \times W_i$ puntos y añade $W_i$ al máximo posible.</li>
-        <li><strong>No coincidencia:</strong> suma $0$ puntos y añade $W_i$ al máximo posible.</li>
-        <li><strong>Penalización por Línea Roja (Inaceptable):</strong> si el partido defiende la opción que has vetado, recibe $-1,5 \times W_i$ puntos. Si en una pregunta eliges opción principal (y/o secundaria) además de un veto, el peso $W_i$ forma parte del máximo posible. Si en una pregunta <em>únicamente</em> marcas un veto sin elegir opción favorita, ese veto solo penaliza a los partidos que propongan esa medida inaceptable sin alterar artificialmente el denominador del resto de formaciones.</li>
-        <li><strong>Preguntas omitidas o sin datos del partido:</strong> si saltas una pregunta, o si un partido carece de posición documentada en ella, la pregunta se excluye tanto del numerador como del denominador de ese partido (no se penaliza como desacuerdo).</li>
+        <li><strong>Coincidencia con tu opción principal:</strong> suma $+1,0 \times W_i$ puntos y añade $W_i$ al máximo evaluable.</li>
+        <li><strong>Coincidencia con tu 2.ª opción aceptable:</strong> suma $+0,5 \times W_i$ puntos y añade $W_i$ al máximo evaluable.</li>
+        <li><strong>Discrepancia (otra opción):</strong> suma $0$ puntos y añade $W_i$ al máximo evaluable.</li>
+        <li><strong>Penalización por Línea Roja (Inaceptable, máx. 2):</strong> si el partido defiende la opción que has vetado, recibe $-1,5 \times W_i$ puntos y añade $W_i$ al denominador evaluable. Si en una pregunta <em>únicamente</em> marcas un veto sin elegir opción favorita, ese veto solo penaliza a los partidos que propongan esa medida inaceptable sin alterar artificialmente el denominador del resto de formaciones.</li>
+        <li><strong>Preguntas omitidas o sin posición asignada (`opcion: null`):</strong> si saltas una pregunta, o si un partido carece de evidencia suficiente para asignarle una única opción entre las propuestas, dicha pregunta se excluye tanto del numerador como del denominador de ese partido (la falta de datos no se computa como acuerdo ni como desacuerdo) y se advierte expresamente en la tarjeta de resultados.</li>
       </ul>
-      <p>El porcentaje global y por bloque temático se obtiene dividiendo la puntuación neta entre la suma de pesos máximos evaluables ($\text{Afinidad} = \text{redondeo}(\frac{\sum \text{Puntos}}{\sum W_{\text{evaluable}}} \times 100)$), acotado siempre en la escala de <strong>0 % a 100 %</strong> (si las líneas rojas sitúan el saldo neto en negativo, se muestra 0 % indicando las penalizaciones en el desglose).</p>
+      <p>El porcentaje global y por bloque temático se calcula como $\text{redondeo}(\frac{\sum \text{Puntos}}{\sum W_{\text{evaluable}}} \times 100)$, acotado siempre en la escala de <strong>0 % a 100 %</strong>.</p>
 
-      <h2 class="subtitulo-seccion">2. Fuentes y verificación de datos</h2>
+      <h2 class="subtitulo-seccion">2. Jerarquía de fuentes y trazabilidad</h2>
+      <p>Para cada partido y pregunta se registra el tipo de evidencia, la fecha del documento, el pasaje o norma de referencia y el nivel de confianza:</p>
       <ul class="lista-puntos">
-        <li><strong>Convocatoria electoral:</strong> Mientras no exista un Real Decreto de convocatoria de elecciones generales publicado en el BOE con programas definitivos para 2026, el cuestionario evalúa un escenario preelectoral basado en la XV Legislatura.</li>
-        <li><strong>Distinción de fuentes:</strong> En el desglose de resultados cada postura indica su fuente y una etiqueta de verificación:
-          <ul>
-            <li><strong>Verificada (Documento oficial / BOE / Votación):</strong> Posición extraída directamente de leyes aprobadas, votaciones nominales en el Congreso, recursos ante el TC o programas electorales oficiales (2023-2024).</li>
-            <li><strong>En revisión (Síntesis / Declaraciones):</strong> Posición inferida de declaraciones públicas recientes, acuerdos de coalición en curso o ponencias pendientes de ratificación en un programa electoral de 2026.</li>
-          </ul>
-        </li>
+        <li><strong>Fuente documental verificada:</strong> Posición respaldada por leyes publicadas en el BOE, votaciones nominales o proposiciones de ley registradas en el Congreso/Parlamentos autonómicos o programas electorales oficiales (2023-2024). Incluye enlace directo al registro oficial cuando está disponible.</li>
+        <li><strong>Posición en revisión / síntesis:</strong> Posición inferida de acuerdos parciales o declaraciones donde existen matices internos pendientes de un programa electoral definitivo para 2026.</li>
+        <li><strong>Evidencia insuficiente (Sin posición asignada):</strong> Casos en los que una formación no tiene una postura única encajable en las opciones cerradas sin distorsionar su programa real (por ejemplo, cuando apoya simultáneamente varias medidas o prioriza otro enfoque).</li>
       </ul>
 
-      <h2 class="subtitulo-seccion">3. Privacidad</h2>
-      <p>El código se ejecuta íntegramente en el navegador del usuario (sin llamadas a servidores externos, cookies de rastreo ni almacenamiento local persistente como <code>localStorage</code>). Al pulsar «Compartir», solo se genera un texto con el porcentaje mayoritario o un enlace genérico a la portada de la web, nunca tus respuestas individuales.</p>
+      <h2 class="subtitulo-seccion">3. Privacidad y ejecución local</h2>
+      <p>Toda la lógica de cálculo se ejecuta localmente en tu navegador mediante JavaScript estático. No se utilizan cookies analíticas, rastreadores de terceros ni bases de datos remotas que almacenen tus respuestas políticas. La función de compartir únicamente genera un resumen de texto con el porcentaje mayoritario y la URL genérica de la portada. Ten en cuenta que, al alojarse en GitHub Pages y cargar la tipografía desde Google Fonts, dichos proveedores de infraestructura gestionan las peticiones de red estándar (como la dirección IP de conexión) conforme a sus políticas técnicas, sin tener acceso en ningún momento a las respuestas que marcas en la página.</p>
 
       <button type="button" id="btn-volver" class="boton mt-3">Volver</button>
     </section>
 
     <!-- GUÍA DE TEMAS -->
     <section id="vista-guia" class="vista" aria-labelledby="titulo-guia" hidden>
-      <h1 id="titulo-guia">Guía de Temas del Cuestionario</h1>
-      <p>El cuestionario consta de 18 preguntas distribuidas en cuatro grandes ejes de política pública estatal y autonómica:</p>
+      <h1 id="titulo-guia">Guía de los 20 Temas del Cuestionario</h1>
+      <p>El cuestionario consta de 20 preguntas distribuidas en cuatro grandes bloques de política pública estatal y autonómica:</p>
       
       <ul class="lista-puntos">
-        <li>🏠 <strong>Economía, Vivienda y Trabajo:</strong> Regulación del mercado del alquiler y construcción de vivienda (P1), jornada laboral y salario mínimo (P2), progresividad o rebaja de impuestos (P5) y sostenibilidad del sistema de pensiones (P8).</li>
-        <li>🏥 <strong>Servicios Públicos y Bienestar:</strong> Modelo de gestión sanitaria y conciertos (P3), relación entre escuela pública y concertada (P7), políticas de natalidad y permisos parentales (P13).</li>
-        <li>🌍 <strong>Derechos, Sociedad y Transición Ecológica:</strong> Política migratoria (P4), ritmo de transición energética y nucleares (P9), seguridad frente a la ocupación ilegal y vulnerabilidad habitacional (P10), regulación del aborto (P15), matrimonio igualitario (P16), legislación trans (P17) y legislación sobre violencia de género (P18).</li>
-        <li>🏛️ <strong>Modelo de Estado e Instituciones:</strong> Organización territorial y financiación autonómica (P6), Monarquía parlamentaria o República (P11), política exterior y alianzas internacionales (P12) y sistema de elección del CGPJ (P14).</li>
+        <li>🏠 <strong>Economía, Vivienda y Trabajo (5 preguntas):</strong> Acceso a la vivienda y alquileres (P1), jornada laboral y salario mínimo (P2), progresividad o rebaja de impuestos (P5), sostenibilidad de las pensiones (P8) y estrategia macroeconómica ante el coste de la vida y la inflación (P19).</li>
+        <li>🏥 <strong>Servicios Públicos y Bienestar (3 preguntas):</strong> Gestión de la Sanidad Pública y conciertos (P3), relación entre escuela pública y concertada (P7) y políticas de conciliación, natalidad y escuelas de 0 a 3 años (P13).</li>
+        <li>🌍 <strong>Derechos, Sociedad y Transición Ecológica (7 preguntas):</strong> Política migratoria (P4), transición energética y centrales nucleares (P9), ocupación ilegal y desahucios vulnerables (P10), regulación del aborto (P15), matrimonio igualitario (P16), legislación trans (P17) y legislación sobre violencia de género (P18).</li>
+        <li>🏛️ <strong>Modelo de Estado, Instituciones y Regeneración (5 preguntas):</strong> Organización territorial y financiación autonómica (P6), Jefatura del Estado: Monarquía o República (P11), política exterior y defensa (P12), elección del CGPJ (P14) y lucha contra la corrupción, transparencia y control del poder público (P20).</li>
       </ul>
       
-      <p class="nota mt-3">Cada pregunta incluye dentro del cuestionario un apartado desplegable («¿De qué va este debate?») que resume los argumentos principales de cada postura.</p>
+      <p class="nota mt-3">Cada pregunta incluye dentro del cuestionario un apartado desplegable («¿De qué va este debate?») que resume de forma neutral los argumentos principales de cada postura.</p>
       <button type="button" id="btn-volver-guia" class="boton mt-3">Volver</button>
     </section>
   </main>
 
   <footer class="pie">
-    <p>Proyecto cívico independiente de código abierto · Sin cookies ni almacenamiento de respuestas.</p>
+    <p>Proyecto cívico independiente de código abierto · Procesamiento 100 % local en tu navegador.</p>
   </footer>
 
   <script src="datos.js"></script>
