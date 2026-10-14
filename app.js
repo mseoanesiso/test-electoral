@@ -1,4 +1,4 @@
-// Lógica del test (Cálculo de Afinidad, Límites, Navegación, Accesibilidad y Resultados)
+// Lógica del test (Cálculo de Afinidad en 20 preguntas, Evidencia Trazable, Accesibilidad y Resultados)
 const MAX_IMP = 3;
 const MAX_VETOS = 2;
 
@@ -14,21 +14,21 @@ function tieneSeleccionEfectiva(r) {
 /**
  * Calcula la afinidad entre las respuestas del usuario y un partido político.
  *
- * Criterios matemáticos y metodológicos:
- * 1. Solo intervienen las preguntas donde el usuario ha realizado una selección efectiva
- *    y donde el partido tiene una posición definida (los datos desconocidos no penalizan).
- * 2. Peso de la pregunta: W_i = (pesoBase || 1) * (importante ? 2 : 1).
- * 3. Si el usuario eligió opción principal (y/o secundaria):
- *    - Esa pregunta añade W_i al denominador máximo posible (sumaPesosMax) de todos los partidos con posición.
+ * Reglas matemáticas y de tratamiento de datos desconocidos:
+ * 1. Solo intervienen las preguntas donde el usuario ha realizado una selección efectiva.
+ * 2. Si el partido no tiene una posición asignada (pos.opcion === null o indefinida) por evidencia
+ *    insuficiente, no se penaliza como desacuerdo ni se suma al denominador (sumaPesosMax),
+ *    pero se registra en el desglose y en el contador 'sinPosicion' para total transparencia.
+ * 3. Peso de la pregunta: W_i = (pesoBase || 1) * (importante ? 2 : 1).
+ * 4. Si el usuario eligió preferencia positiva (principal y/o secundaria):
+ *    - Añade W_i al denominador (sumaPesosMax).
  *    - Si el partido coincide con 'inaceptable', recibe -1.5 * W_i.
  *    - Si coincide con 'principal', recibe +1.0 * W_i.
  *    - Si coincide con 'secundaria', recibe +0.5 * W_i.
- *    - Si no coincide con ninguna, recibe 0 puntos.
- * 4. Si el usuario SOLO marcó una línea roja ('inaceptable') sin elegir opción principal:
- *    - El usuario no ha expresado qué propuesta le gusta en ese tema, solo cuál rechaza.
- *    - Por tanto, no se infla sumaPesosMax para los partidos que NO proponen ese veto.
- *    - Si el partido SÍ propone la opción vetada, recibe la penalización (-1.5 * W_i) y suma W_i a su base evaluada.
- * 5. El porcentaje se acota en el intervalo [0, 100].
+ *    - Si no coincide, recibe 0 puntos.
+ * 5. Si el usuario SOLO marcó una línea roja ('inaceptable') sin elegir opción principal:
+ *    - Solo añade W_i y resta -1.5 * W_i si el partido incurre en la opción vetada.
+ * 6. El porcentaje se acota en el intervalo [0, 100].
  */
 function calcularAfinidad(partido, respuestas, preguntas) {
   let sumaPuntos = 0;
@@ -49,8 +49,37 @@ function calcularAfinidad(partido, respuestas, preguntas) {
     if (!tieneSeleccionEfectiva(r)) continue;
 
     const pos = partido.posiciones ? partido.posiciones[q.id] : null;
+    const textoPrincipal = r.principal
+      ? (q.opciones.find(o => o.id === r.principal)?.texto || "Ninguna")
+      : "Sin preferencia principal";
+    const textoSecundaria = r.secundaria
+      ? (q.opciones.find(o => o.id === r.secundaria)?.texto || null)
+      : null;
+    const textoVeto = r.inaceptable
+      ? (q.opciones.find(o => o.id === r.inaceptable)?.texto || null)
+      : null;
+
     if (!pos || !pos.opcion) {
       preguntasSinPosicionPartido++;
+      detalle.push({
+        pregunta: q,
+        sinPosicion: true,
+        textoTuya: textoPrincipal,
+        textoSecundaria,
+        textoVeto,
+        textoPartido: "Sin posición asignada (evidencia insuficiente para decantar una única opción)",
+        puntosObtenidos: 0,
+        pesoMaximo: 0,
+        fuente: pos && pos.fuente ? `${pos.fuente} (${pos.fecha || "s/f"})` : "Sin fuente asignada",
+        urlFuente: pos && pos.url ? pos.url : null,
+        referencia: pos && pos.referencia ? pos.referencia : null,
+        tipoEvidencia: pos && pos.tipoEvidencia ? pos.tipoEvidencia : "Evidencia insuficiente",
+        nivelConfianza: pos && pos.nivelConfianza ? pos.nivelConfianza : "baja",
+        notaEvidencia: pos && pos.nota ? pos.nota : null,
+        verificada: false,
+        vetado: false,
+        importante: Boolean(r.importante)
+      });
       continue;
     }
 
@@ -76,7 +105,6 @@ function calcularAfinidad(partido, respuestas, preguntas) {
         coincidenciasSecundarias++;
       }
     } else {
-      // Caso en que el usuario solo marcó línea roja en esta pregunta y el partido NO propone esa línea roja
       puntos = 0;
       pesoDenominadorPregunta = 0;
     }
@@ -91,19 +119,11 @@ function calcularAfinidad(partido, respuestas, preguntas) {
       porTema[q.tema].max += pesoDenominadorPregunta;
     }
 
-    const textoPrincipal = r.principal
-      ? (q.opciones.find(o => o.id === r.principal)?.texto || "Ninguna")
-      : "Sin preferencia principal";
-    const textoSecundaria = r.secundaria
-      ? (q.opciones.find(o => o.id === r.secundaria)?.texto || null)
-      : null;
-    const textoVeto = r.inaceptable
-      ? (q.opciones.find(o => o.id === r.inaceptable)?.texto || null)
-      : null;
     const textoPartido = q.opciones.find(o => o.id === pos.opcion)?.texto || "Sin definir";
 
     detalle.push({
       pregunta: q,
+      sinPosicion: false,
       textoTuya: textoPrincipal,
       textoSecundaria,
       textoVeto,
@@ -111,6 +131,11 @@ function calcularAfinidad(partido, respuestas, preguntas) {
       puntosObtenidos: puntos,
       pesoMaximo: pesoDenominadorPregunta,
       fuente: `${pos.fuente || "Fuente no especificada"} (${pos.fecha || "s/f"})`,
+      urlFuente: pos.url || null,
+      referencia: pos.referencia || null,
+      tipoEvidencia: pos.tipoEvidencia || null,
+      nivelConfianza: pos.nivelConfianza || (pos.verificada !== false ? "alta" : "media"),
+      notaEvidencia: pos.nota || null,
       verificada: pos.verificada !== false,
       vetado: esVetado,
       importante: Boolean(r.importante)
@@ -122,10 +147,6 @@ function calcularAfinidad(partido, respuestas, preguntas) {
     total = Math.round((sumaPuntos / sumaPesosMax) * 100);
     if (total < 0) total = 0;
     if (total > 100) total = 100;
-  } else if (preguntasEvaluadasPartido > 0 && vetosActivados === 0) {
-    // Si el usuario únicamente marcó líneas rojas en el test y este partido no incurrió en ninguna,
-    // no hay base de preferencia positiva para otorgar un porcentaje de afinidad.
-    total = null;
   }
 
   const temas = Object.entries(porTema).map(([tema, t]) => {
@@ -135,6 +156,10 @@ function calcularAfinidad(partido, respuestas, preguntas) {
     return { tema, pct };
   });
 
+  const coberturaDatos = totalRespondidasUsuario > 0
+    ? Math.round((preguntasEvaluadasPartido / totalRespondidasUsuario) * 100)
+    : 0;
+
   return {
     total,
     temas,
@@ -142,13 +167,14 @@ function calcularAfinidad(partido, respuestas, preguntas) {
     respondidas: totalRespondidasUsuario,
     evaluadas: preguntasEvaluadasPartido,
     sinPosicion: preguntasSinPosicionPartido,
+    coberturaDatos,
     coincidenciasPrincipales,
     coincidenciasSecundarias,
     vetosActivados
   };
 }
 
-// Exportación compatible con entornos de pruebas (Node/CommonJS) sin afectar al navegador
+// Exportación para pruebas automatizadas en Node/CommonJS sin afectar al navegador
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { calcularAfinidad, tieneSeleccionEfectiva };
 }
@@ -494,7 +520,7 @@ if (typeof document !== "undefined") {
 
         cab.append(spanNombre, spanPct);
 
-        // Etiquetas de resumen (coincidencias y vetos)
+        // Etiquetas de resumen (coincidencias, vetos y cobertura de datos)
         const resumenMetricas = document.createElement("div");
         resumenMetricas.className = "resumen-metricas-partido";
 
@@ -519,8 +545,8 @@ if (typeof document !== "undefined") {
 
         if (x.r.sinPosicion > 0) {
           const tagSinPos = document.createElement("span");
-          tagSinPos.className = "metrica-tag";
-          tagSinPos.textContent = `ℹ️ Sin datos en ${x.r.sinPosicion} pregunta(s)`;
+          tagSinPos.className = "metrica-tag" + (x.r.coberturaDatos < 75 ? " tag-aviso" : "");
+          tagSinPos.textContent = `ℹ️ Evaluado en ${x.r.evaluadas}/${x.r.respondidas} temas respondidos (${x.r.sinPosicion} sin posición asignada)`;
           resumenMetricas.append(tagSinPos);
         }
 
@@ -541,7 +567,7 @@ if (typeof document !== "undefined") {
         // Desplegable de detalle
         const det = document.createElement("details");
         const sum = document.createElement("summary");
-        sum.textContent = "Ver desglose por tema, comparativa de respuestas y fuentes";
+        sum.textContent = "Ver desglose por tema, comparativa de respuestas y evidencia documental";
         det.append(sum);
 
         if (x.r.temas.length > 0) {
@@ -565,10 +591,11 @@ if (typeof document !== "undefined") {
           f.className = "detalle-preg";
 
           const titulo = document.createElement("div");
-          titulo.className = "detalle-preg-titulo" + (d.vetado ? " es-vetado" : "");
+          titulo.className = "detalle-preg-titulo" + (d.vetado ? " es-vetado" : "") + (d.sinPosicion ? " sin-posicion" : "");
           let textoTitulo = `${d.pregunta.id}. ${d.pregunta.tema}`;
           if (d.importante) textoTitulo += " ⭐️ (Tema clave x2)";
           if (d.vetado) textoTitulo += " 🚫 (Línea roja penalizada)";
+          if (d.sinPosicion) textoTitulo += " · (No computa por evidencia insuficiente)";
           titulo.textContent = textoTitulo;
 
           const comparativa = document.createElement("div");
@@ -610,17 +637,50 @@ if (typeof document !== "undefined") {
           const meta = document.createElement("div");
           meta.className = "detalle-meta";
 
+          const metaFila1 = document.createElement("div");
+          metaFila1.className = "detalle-meta-fila";
+
           const spanPuntos = document.createElement("span");
-          spanPuntos.textContent = `⚖️ Puntos: ${d.puntosObtenidos} / ${d.pesoMaximo}`;
+          spanPuntos.textContent = d.sinPosicion
+            ? "⚖️ Puntos: Excluida del cálculo"
+            : `⚖️ Puntos: ${d.puntosObtenidos} / ${d.pesoMaximo}`;
 
           const spanFuente = document.createElement("span");
-          spanFuente.textContent = `🔗 Fuente: ${d.fuente}`;
+          spanFuente.textContent = "🔗 Fuente: ";
+          if (d.urlFuente) {
+            const aFuente = document.createElement("a");
+            aFuente.href = d.urlFuente;
+            aFuente.target = "_blank";
+            aFuente.rel = "noopener noreferrer";
+            aFuente.className = "enlace-fuente";
+            aFuente.textContent = d.fuente;
+            spanFuente.append(aFuente);
+          } else {
+            spanFuente.textContent += d.fuente;
+          }
 
           const badgeVerif = document.createElement("span");
           badgeVerif.className = "badge-verificacion " + (d.verificada ? "badge-verificada" : "badge-revision");
-          badgeVerif.textContent = d.verificada ? "✓ Fuente documental verificada" : "⚠️ Posición en revisión / síntesis";
+          if (d.sinPosicion) {
+            badgeVerif.textContent = "⚠️ Evidencia insuficiente / Sin posición asignada";
+          } else {
+            badgeVerif.textContent = d.verificada
+              ? `✓ Verificada (${d.tipoEvidencia || "Documento oficial"})`
+              : `⚠️ En revisión (${d.tipoEvidencia || "Síntesis"})`;
+          }
 
-          meta.append(spanPuntos, spanFuente, badgeVerif);
+          metaFila1.append(spanPuntos, spanFuente, badgeVerif);
+          meta.append(metaFila1);
+
+          if (d.referencia || d.notaEvidencia) {
+            const metaNota = document.createElement("div");
+            metaNota.className = "detalle-nota-evidencia";
+            const partes = [];
+            if (d.referencia) partes.push(`Ref.: ${d.referencia}`);
+            if (d.notaEvidencia) partes.push(d.notaEvidencia);
+            metaNota.textContent = partes.join(" · ");
+            meta.append(metaNota);
+          }
 
           f.append(titulo, comparativa, meta);
           det.append(f);
@@ -633,16 +693,16 @@ if (typeof document !== "undefined") {
 
     function obtenerTextoCompartir() {
       if (!window._resultado || window._resultado.length === 0) return null;
-      const top = window._resultado.slice(0, 2).map(x => `${x.p.nombre} (${x.r.total}%)`).join(" y ");
-      return `He completado el Test de Afinidad Electoral 2026 🗳️. Mis mayores coincidencias de programa han sido con ${top}.\n\nCompruébalo de forma anónima aquí:`;
+      return `He completado el Test de Afinidad Electoral 2026 (20 preguntas sobre programas y leyes vigentes) 🗳️.\n\nHaz el cuestionario a ciegas aquí:`;
     }
 
-    // Eventos de compartir
+    // Eventos de compartir (sin filtrar respuestas ni afinidades individuales en la URL)
     if ($("btn-whatsapp")) {
       $("btn-whatsapp").addEventListener("click", () => {
         const base = obtenerTextoCompartir();
         if (!base) return;
-        const texto = `${base}\n${location.href}`;
+        const urlLimpia = location.origin + location.pathname;
+        const texto = `${base}\n${urlLimpia}`;
         const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
         window.open(url, "_blank", "noopener,noreferrer");
       });
@@ -652,13 +712,14 @@ if (typeof document !== "undefined") {
       $("btn-compartir").addEventListener("click", async () => {
         const base = obtenerTextoCompartir();
         if (!base) return;
+        const urlLimpia = location.origin + location.pathname;
 
         if (navigator.share) {
           try {
             await navigator.share({
               title: "Test Electoral 2026",
               text: base,
-              url: location.href
+              url: urlLimpia
             });
             return;
           } catch (err) {
@@ -666,17 +727,17 @@ if (typeof document !== "undefined") {
           }
         }
 
-        const textoCompleto = `${base} ${location.href}`;
+        const textoCompleto = `${base} ${urlLimpia}`;
         if (navigator.clipboard && navigator.clipboard.writeText) {
           try {
             await navigator.clipboard.writeText(textoCompleto);
-            mostrarAvisoInterfaz("aviso-compartir", "✓ Resumen y enlace copiados al portapapeles.", "info");
+            mostrarAvisoInterfaz("aviso-compartir", "✓ Enlace de invitación copiado al portapapeles (sin incluir tus respuestas personales).", "info");
             return;
           } catch (_) {
             // Continúa al aviso alternativo
           }
         }
-        mostrarAvisoInterfaz("aviso-compartir", `Copia este enlace para compartir el test: ${location.href}`, "info");
+        mostrarAvisoInterfaz("aviso-compartir", `Copia este enlace para compartir el test: ${urlLimpia}`, "info");
       });
     }
 
