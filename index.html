@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-  <div class="franja-aviso">Datos actualizados a <span id="fecha-act">13/10/2026</span>. Las posturas pueden actualizarse hasta las elecciones.</div>
+  <div class="franja-aviso">Datos actualizados a <span id="fecha-act">14/10/2026</span>. Las posturas pueden actualizarse hasta las elecciones.</div>
   
   <header class="cabecera">
     <a href="#" id="logo" class="logo">Test Electoral 2026</a>
@@ -168,5 +168,35 @@
 
   <script src="datos.js"></script>
   <script src="app.js"></script>
+  <script>
+    // Mejoras automáticas de interfaz (sincroniza fecha, logo y contador de resultados)
+    document.addEventListener("DOMContentLoaded", () => {
+      const fechaEl = document.getElementById("fecha-act");
+      if (typeof ELECCIONES !== "undefined" && fechaEl) {
+        fechaEl.textContent = ELECCIONES.actualizacion;
+      }
+
+      const logoEl = document.getElementById("logo");
+      if (logoEl) {
+        logoEl.addEventListener("click", (e) => {
+          e.preventDefault();
+          const btnRepetir = document.getElementById("btn-repetir");
+          if (btnRepetir) btnRepetir.click();
+        });
+      }
+
+      const listaRes = document.getElementById("lista-resultados");
+      const notaRes = document.getElementById("nota-resultados");
+      if (listaRes && notaRes) {
+        const obs = new MutationObserver(() => {
+          if (window._resultado && window._resultado.length > 0 && typeof PREGUNTAS !== "undefined") {
+            const resp = window._resultado[0].r.respondidas;
+            notaRes.textContent = `Calculado según tus respuestas en ${resp} de ${PREGUNTAS.length} temas.`;
+          }
+        });
+        obs.observe(listaRes, { childList: true });
+      }
+    });
+  </script>
 </body>
 </html>
