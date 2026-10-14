@@ -183,6 +183,13 @@ if (typeof document !== "undefined") {
 
       if ($("btn-atras")) $("btn-atras").style.visibility = indice === 0 ? "hidden" : "visible";
       if ($("btn-siguiente")) $("btn-siguiente").disabled = !(respuestas[q.id] && (respuestas[q.id].principal || respuestas[q.id].inaceptable));
+      const vistaPreg = $("vista-pregunta");
+      if (vistaPreg) {
+        vistaPreg.style.animation = "none";
+        vistaPreg.offsetHeight; /* Fuerza el repintado */
+        vistaPreg.style.animation = "entradaVista 0.28s cubic-bezier(0.16, 1, 0.3, 1)";
+      }
+      
     }
 
     function marcarOpcion(idPregunta, idOpcion, tipo) {
