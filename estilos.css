@@ -648,4 +648,193 @@ h2.pregunta:focus {
 .partido-cab {
   display: flex;
   justify-content: space-between;
-  align-
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.partido-nombre {
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+.partido-pct {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--acento);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Etiquetas resumen de cada partido */
+.resumen-metricas-partido {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.metrica-tag {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 99px;
+  background: var(--acento-secundario);
+  color: var(--acento);
+  border: 1px solid rgba(67, 56, 202, 0.2);
+  line-height: 1.4;
+}
+.metrica-tag.tag-veto {
+  background: var(--peligro-suave);
+  color: var(--peligro);
+  border-color: rgba(190, 18, 60, 0.3);
+}
+.metrica-tag.tag-aviso {
+  background: var(--aviso-suave);
+  color: var(--aviso);
+  border-color: rgba(180, 83, 9, 0.3);
+}
+
+/* Barra visual de coincidencia */
+.barra {
+  height: 12px;
+  background: var(--borde);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.barra > div {
+  height: 100%;
+  border-radius: 99px;
+  animation: crecerBarra 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Desplegable de detalle de cada partido */
+.partido details > summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--acento);
+  padding: 8px 0;
+  list-style-position: inside;
+}
+.partido details > summary:hover { color: var(--acento-oscuro); }
+.partido details[open] > summary {
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--borde);
+}
+
+/* Desglose por tema */
+.bloque-temas-resumen {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin: 8px 0 16px;
+}
+.tema-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 14.5px;
+  border-bottom: 1px dashed var(--borde);
+}
+.tema-fila:last-child { border-bottom: none; }
+.tema-fila strong { color: var(--acento); font-variant-numeric: tabular-nums; }
+
+/* Detalle por pregunta */
+.detalle-preg {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin: 10px 0;
+  font-size: 14.5px;
+}
+.detalle-preg-titulo {
+  font-weight: 800;
+  font-size: 14.5px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--borde);
+}
+.detalle-preg-titulo.es-vetado { color: var(--peligro); }
+.detalle-preg-titulo.sin-posicion { color: var(--suave); }
+
+.detalle-comparativa {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.5;
+}
+.detalle-comparativa strong { font-weight: 700; }
+.detalle-veto-usuario {
+  color: var(--peligro);
+  font-weight: 600;
+}
+
+/* Metadatos de evidencia */
+.detalle-meta {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--borde);
+  font-size: 13px;
+  color: var(--suave);
+}
+.detalle-meta-fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+.detalle-nota-evidencia {
+  margin-top: 8px;
+  line-height: 1.45;
+}
+.enlace-fuente {
+  color: var(--acento);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.enlace-fuente:hover { color: var(--acento-oscuro); }
+
+.badge-verificacion {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 99px;
+  line-height: 1.4;
+}
+.badge-verificada {
+  background: var(--exito-suave);
+  color: var(--exito);
+}
+.badge-revision {
+  background: var(--aviso-suave);
+  color: var(--aviso);
+}
+
+/* Acciones finales de resultados */
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+/* Pie de página */
+.pie {
+  padding-top: 8px;
+  padding-bottom: 36px;
+  text-align: center;
+  color: var(--suave);
+  font-size: 13px;
+}
+
+@media (max-width: 540px) {
+  h1 { font-size: 1.5rem; }
+  .partido { padding: 16px 14px; }
+  .partido-pct { font-size: 1.3rem; }
+  .detalle-preg { padding: 12px; }
+}
